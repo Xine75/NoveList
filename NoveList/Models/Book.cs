@@ -8,7 +8,7 @@ namespace NoveList.Models
     public class Book
     {
         public int Id { get; set; }
-        public int GoogleApiId { get; set; }
+        public string GoogleApiId { get; set; }
         public int Rating { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime FinishDate { get; set; }
