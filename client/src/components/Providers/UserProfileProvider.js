@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
-import { Spinner } from "reactstrap";
+import { Spinner } from "react-bootstrap";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 

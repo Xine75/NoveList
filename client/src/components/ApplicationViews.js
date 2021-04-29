@@ -1,8 +1,9 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { UserProfileContext, UserProfileProvider } from "../providers/UserProfileProvider";
-import Login from "./Login/Login"
-import Register from "./Login/Register"
+import React, { useContext } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { UserProfileContext, UserProfileProvider } from "./Providers/UserProfileProvider";
+import Login from "./Login/Login";
+import Register from "./Login/Register";
+import Hello from "./Hello";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -22,12 +23,7 @@ export default function ApplicationViews() {
                 <Register />
             </Route>
 
-            <Route path="/posts/add">
-                <PostForm />
-            </Route>
 
         </Switch>
     );
 };
-
-export default ApplicationViews;
