@@ -18,7 +18,7 @@ export default function Header() {
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <Navbar.Brand tag={RRNavLink} to="/">Tabloid</Navbar.Brand>
+                <Navbar.Brand tag={RRNavLink} to="/">NoveList</Navbar.Brand>
                 <Navbar.Toggle onClick={toggle} />
                 <Navbar.Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
@@ -32,12 +32,7 @@ export default function Header() {
                                 <NavLink tag={RRNavLink} to="/post/add">Add Post</NavLink>
                             </NavItem>
                         }
-                        {isLoggedIn && userProfile.userTypeId == 1 &&
-                            <NavItem className="nav-items">
-                                <NavLink tag={RRNavLink} to="/tag">Tag Management</NavLink>
-                                <NavLink tag={RRNavLink} to="/userProfiles">User Profiles</NavLink>
-                            </NavItem>
-                        }
+
                     </Nav>
                     <Nav navbar>
                         {isLoggedIn &&

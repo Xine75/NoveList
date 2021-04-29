@@ -18,7 +18,7 @@ export default function Login() {
     };
 
     return (
-        <Form onSubmit={loginSubmit}>
+        <Form onSubmit={loginSubmit} >
             <fieldset>
                 <FormGroup>
                     <InputGroup.Text placeholder="email">Email</InputGroup.Text>
@@ -29,7 +29,11 @@ export default function Login() {
                     <input id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Button>Login</Button>
+                    <Button>
+                        <Link to={"/"}>
+                            Login
+                        </Link>
+                    </Button>
                 </FormGroup>
                 <em>
                     Not registered? <Link to="register">Register</Link>
