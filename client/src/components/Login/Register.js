@@ -9,9 +9,8 @@ export default function Register() {
 
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
-    const [displayName, setDisplayName] = useState();
+    const [userName, setUserName] = useState();
     const [email, setEmail] = useState();
-    const [imageLocation, setImageLocation] = useState();
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
 
@@ -20,7 +19,7 @@ export default function Register() {
         if (password && password !== confirmPassword) {
             alert("Passwords don't match. Do better.");
         } else {
-            const userProfile = { firstName, lastName, displayName, imageLocation, email };
+            const userProfile = { firstName, lastName, userName, email };
             register(userProfile, password)
                 .then(() => history.push("/"));
         }
@@ -38,16 +37,12 @@ export default function Register() {
                     <InputGroup id="lastName" type="text" onChange={e => setLastName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <InputGroup.Text htmlFor="displayName">Display Name</InputGroup.Text>
-                    <InputGroup id="displayName" type="text" onChange={e => setDisplayName(e.target.value)} />
+                    <InputGroup.Text htmlFor="userName">Display Name</InputGroup.Text>
+                    <InputGroup id="userName" type="text" onChange={e => setUserName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <InputGroup.Text for="email">Email</InputGroup.Text>
                     <InputGroup id="email" type="text" onChange={e => setEmail(e.target.value)} />
-                </FormGroup>
-                <FormGroup>
-                    <InputGroup.Text htmlFor="imageLocation">Profile Image URL</InputGroup.Text>
-                    <InputGroup id="imageLocation" type="text" onChange={e => setImageLocation(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <InputGroup.Text for="password">Password</InputGroup.Text>
