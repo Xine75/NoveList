@@ -30,27 +30,27 @@ export default function Register() {
             <fieldset>
                 <FormGroup>
                     <InputGroup.Text htmlFor="firstName">First Name</InputGroup.Text>
-                    <InputGroup id="firstName" type="text" onChange={e => setFirstName(e.target.value)} />
+                    <input id="firstName" type="text" onChange={e => setFirstName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <InputGroup.Text htmlFor="lastName">Last Name</InputGroup.Text>
-                    <InputGroup id="lastName" type="text" onChange={e => setLastName(e.target.value)} />
+                    <input id="lastName" type="text" onChange={e => setLastName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <InputGroup.Text htmlFor="userName">Display Name</InputGroup.Text>
-                    <InputGroup id="userName" type="text" onChange={e => setUserName(e.target.value)} />
+                    <input id="userName" type="text" onChange={e => setUserName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <InputGroup.Text for="email">Email</InputGroup.Text>
-                    <InputGroup id="email" type="text" onChange={e => setEmail(e.target.value)} />
+                    <input id="email" type="text" onChange={e => setEmail(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <InputGroup.Text for="password">Password</InputGroup.Text>
-                    <InputGroup id="password" type="password" onChange={e => setPassword(e.target.value)} />
+                    <input id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <InputGroup.Text for="confirmPassword">Confirm Password</InputGroup.Text>
-                    <InputGroup id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
+                    <input id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <Button>Register</Button>

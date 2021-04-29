@@ -21,12 +21,12 @@ export default function Login() {
         <Form onSubmit={loginSubmit}>
             <fieldset>
                 <FormGroup>
-                    <InputGroup.Text for="email">Email</InputGroup.Text>
-                    <InputGroup id="email" type="text" onChange={e => setEmail(e.target.value)} />
+                    <InputGroup.Text placeholder="email">Email</InputGroup.Text>
+                    <input id="email" type="text" onChange={e => setEmail(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <InputGroup.Text for="password">Password</InputGroup.Text>
-                    <InputGroup id="password" type="password" onChange={e => setPassword(e.target.value)} />
+                    <input id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <Button>Login</Button>

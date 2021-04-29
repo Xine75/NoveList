@@ -20,7 +20,7 @@ export default function Header() {
             <Navbar color="light" light expand="md">
                 <Navbar.Brand tag={RRNavLink} to="/">Tabloid</Navbar.Brand>
                 <Navbar.Toggle onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
+                <Navbar.Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         { /* When isLoggedIn === true, we will render the Home and Post links */}
                         {isLoggedIn &&
@@ -59,7 +59,7 @@ export default function Header() {
                             </>
                         }
                     </Nav>
-                </Collapse>
+                </Navbar.Collapse>
             </Navbar>
         </div >
     );
