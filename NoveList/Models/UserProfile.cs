@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NoveList.Models
 {
-    public class Users
+    public class UserProfile
     {
         public int Id { get; set; }
         public int FirebaseId { get; set; }

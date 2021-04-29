@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NoveList.Models
 {
-    public class Books
+    public class Book
     {
         public int Id { get; set; }
         public int GoogleApiId { get; set; }
