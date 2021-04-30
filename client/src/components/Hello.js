@@ -10,7 +10,7 @@ export default function Hello() {
                 top: "50%",
                 marginTop: "-0.5rem",
                 textAlign: "center",
-            }}>Welcome to Tabloid
+            }}>Welcome to NoveList
       <div>Do you dare enter the blogosphere?</div></span>
 
         </>
