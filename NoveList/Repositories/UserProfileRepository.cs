@@ -78,7 +78,7 @@ namespace NoveList.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, Up.FirebaseId, up.FirstName, up.LastName, up.UserName, up.Email,
+                        SELECT up.Id, Up.FirebaseId, up.FirstName, up.LastName, up.UserName, up.Email
                           FROM UserProfile up
                          WHERE FirebaseId = @FirebaseId";
 
