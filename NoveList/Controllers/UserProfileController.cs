@@ -37,7 +37,7 @@ namespace NoveList.Controllers
             return Ok(user);
         }
         //GetUserByFirebaseId
-        [HttpGet("login/{firebaseUserId}")]
+        [HttpGet("login/{firebaseId}")]
         public IActionResult GetUserProfile(string firebaseId)
         {
             return Ok(_userProfileRepository.GetByFirebaseId(firebaseId));

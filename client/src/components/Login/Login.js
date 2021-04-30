@@ -17,11 +17,13 @@ export default function Login() {
             .catch(() => alert("Invalid email or password"));
     };
 
+
+
     return (
-        <Form onSubmit={loginSubmit}>
+        <Form>
             <fieldset>
                 <FormGroup>
-                    <InputGroup.Text placeholder="email">Email</InputGroup.Text>
+                    <InputGroup.Text for="email">Email</InputGroup.Text>
                     <input id="email" type="text" onChange={e => setEmail(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
@@ -29,7 +31,7 @@ export default function Login() {
                     <input id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Button>Login</Button>
+                    <Button onClick={loginSubmit}>Login</Button>
                 </FormGroup>
                 <em>
                     Not registered? <Link to="register">Register</Link>
@@ -38,3 +40,4 @@ export default function Login() {
         </Form>
     );
 }
+
