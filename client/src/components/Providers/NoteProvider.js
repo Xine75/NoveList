@@ -18,5 +18,15 @@ export function NoteProvider(props) {
             }).then((res) => res.json())
                 .then(setNotes)
         )
-    }
-}
+    };
+
+
+    return (
+        <NoteContext.Provider
+            value={{ note, notes, setNote, setNotes, getNotesByBookId }}
+        >
+            {props.children}
+        </NoteContext.Provider>
+    );
+};
+export default NoteProvider;
