@@ -117,6 +117,12 @@ namespace NoveList.Repositories
                                     OUTPUT INSERTED.ID
                                     VALUES (@FirstName, @LastName, @UserName, @Email)";
 
+                    DbUtils.AddParameter(cmd, "@FirstName", user.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", user.LastName);
+                    DbUtils.AddParameter(cmd, "@DisplayName", user.UserName);
+                    DbUtils.AddParameter(cmd, "@Email", user.Email);
+
+
                     user.Id = (int)cmd.ExecuteScalar();
                 }
             }
