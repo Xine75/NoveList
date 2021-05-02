@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react"
-import { useHistory, useParams } from "react-router-dom"
-import { NoteContext } from "./NoteProvider"
-import { NoteCard } from "./NoteCard"
-import Button from "react-bootstrap/Button"
+import React, { useContext, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { NoteContext } from "../Providers/NoteProvider";
+import { Note } from "./Note";
+import Button from "react-bootstrap/Button";
 
 export const NoteList = () => {
     const { notes, getNotesByBookId } = useContext(NoteContext);
@@ -22,7 +22,7 @@ export const NoteList = () => {
                 {
                     notes.filter(note => note.bookId === parseInt(bookId)).map(note => {
 
-                        return <NoteCard key={note.id} note={note} />
+                        return <Note key={note.id} note={note} />
                     })
                 }
             </div>

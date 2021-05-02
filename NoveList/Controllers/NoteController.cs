@@ -31,7 +31,7 @@ namespace NoveList.Controllers
         }
 
         //Edit a note
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Put(int id, Note note)
         {
             if (id != note.Id)

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { NoteContext } from "./Providers/NoteProvider";
+import { NoteContext } from "../Providers/NoteProvider";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-export const NoteCard = ({ note }) => {
+export const Note = ({ note }) => {
     const { getNotesByBookId } = useContext(NoteContext);
 
 
@@ -20,4 +20,5 @@ export const NoteCard = ({ note }) => {
             </Card>
         </>
     )
-}
+};
+export default Note;
