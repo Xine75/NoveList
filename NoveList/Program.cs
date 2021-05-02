@@ -27,7 +27,9 @@ namespace NoveList
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var streamTask = client.GetStreamAsync("https://www.googleapis.com/books/v1/volumes?q={searchTerms}&key=AIzaSyAWa0D5qNDRqhiLmfU5nE3w7X5ivwP9MZ8");
+            var streamTask = client.GetStreamAsync("GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?&key=AIzaSyAWa0D5qNDRqhiLmfU5nE3w7X5ivwP9MZ8");
+
+            ////var streamTask = client.GetStreamAsync("https://www.googleapis.com/books/v1/volumes?q={searchTerms}&key=AIzaSyAWa0D5qNDRqhiLmfU5nE3w7X5ivwP9MZ8");
             var repositories = await JsonSerializer.DeserializeAsync<List<Rootobject>>(await streamTask);
 
             foreach (var repo in repositories)
