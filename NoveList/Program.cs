@@ -18,6 +18,7 @@ namespace NoveList
 
         static async Task Main(string[] args)
         {
+            CreateHostBuilder(args).Build().Run();
             await ProcessRepositories();
         }
 
@@ -35,10 +36,7 @@ namespace NoveList
             foreach (var repo in repositories)
                 Console.WriteLine(repo.Kind);
         }
-
-
-
-
+ 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
