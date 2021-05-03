@@ -25,6 +25,7 @@ namespace NoveList
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<INoteRepository, NoteRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
