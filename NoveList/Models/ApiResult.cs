@@ -23,7 +23,7 @@ public class Item
 public class Volumeinfo
 {
     public string title { get; set; }
-    public string[] authors { get; set; }
+    public List<string> authors { get; set; }
     public string publisher { get; set; }
     public string publishedDate { get; set; }
     public string description { get; set; }
