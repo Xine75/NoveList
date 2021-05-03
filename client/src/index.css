@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+main {
+  margin: 2em;
+}
+.app-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+}
+ 
+p {
+    line-height: 2rem;
+}
+
+.post p {
+    white-space: pre-wrap;
+}
+
+.nav-items {
+  display: flex;
+  flex-direction: row;
+}
