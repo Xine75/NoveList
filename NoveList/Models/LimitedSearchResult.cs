@@ -8,13 +8,15 @@ namespace NoveList.Models
     public class LimitedSearchResult
     {
 
+        public string Id { get; set; }
         public string Title { get; set; }
         public List<string> Authors { get; set; }
         public string Thumbnail { get; set; }
         public string TextSnippet { get; set; }
 
-        public LimitedSearchResult (string title, List<string> authors, string thumbnail, string textSnippet)
+        public LimitedSearchResult (string id, string title, List<string> authors, string thumbnail, string textSnippet)
         {
+            Id = id;
             Title = title;
             Authors = authors;
             //string authorString = String.Join(",", authors);
