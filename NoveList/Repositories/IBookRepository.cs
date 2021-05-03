@@ -6,6 +6,6 @@ namespace NoveList.Repositories
 {
     public interface IBookRepository
     {
-        Task<List<Book>> Search(string q);
+        Task<SearchResponse> Search(string q);
     }
 }

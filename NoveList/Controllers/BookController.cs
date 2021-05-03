@@ -19,13 +19,16 @@ namespace NoveList.Controllers
         }
         //get books by google search
         [HttpGet("search/{searchTerm=searchTerm}")]
-        public IActionResult SearchBooks(string searchTerm)
+        
+        public async Task<IActionResult> SearchBooks(string searchTerm)
         {
-
-            return Ok(_bookRepository.Search(searchTerm));
+           searchTerm = searchTerm.Replace(' ', '+');
+           var searchResults =  await _bookRepository.Search(searchTerm);
+           return Ok(searchResults);
         }
         
 
     
     }
 }
+
