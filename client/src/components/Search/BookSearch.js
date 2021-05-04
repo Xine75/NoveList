@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { SearchContext } from "../Providers/SearchProvider";
+import {SearchList } from "./SearchList"
 import { Button } from 'react-bootstrap'
 
 //This component is responsible for rendering the search bar
@@ -25,6 +26,7 @@ export const GoogleSearch = () => {
 
             onChange={e => setSearchTerms(e.target.value)} placeholder="Search by author or title" />
             <Button onClick={searchSubmit}>Search</Button>
+            <SearchList />
         </>
     )
 }

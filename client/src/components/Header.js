@@ -24,11 +24,11 @@ export default function Header() {
                         { /* When isLoggedIn === true, we will render the Home and Post links */}
                         {isLoggedIn &&
                             <NavItem className="nav-items">
-                                <NavLink tag={RRNavLink} to="/">Home</NavLink>
-                                <NavLink tag={RRNavLink} to="/novels">Novels</NavLink>
-                                <NavLink tag={RRNavLink} to="/shelves">Shelves</NavLink>
-                                <NavLink tag={RRNavLink} to="/friends">Friends</NavLink>
-                                <NavLink tag={RRNavLink} to="/search">Search</NavLink>
+                                <Nav.Link href="/">Home</Nav.Link>
+                                <Nav.Link href="/novels">Novels</Nav.Link>
+                                <Nav.Link href="/shelves">Shelves</Nav.Link>
+                                <Nav.Link href="/friends">Friends</Nav.Link>
+                                <Nav.Link href="/search">Search</Nav.Link>
                             </NavItem>
                         }
 

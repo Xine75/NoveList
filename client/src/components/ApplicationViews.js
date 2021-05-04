@@ -28,13 +28,13 @@ export default function ApplicationViews() {
                 <Register />
             </Route>
 
-            <Route path="/search" exact>
+            <Route path="/search" >
                 {isLoggedIn ? <GoogleSearch /> : <Redirect to="/login" />}
             </Route>
 
-            <Route path="/search/:searchTerms" exact>
+            {/* <Route path="/search/:searchTerms" exact>
                 {isLoggedIn ? <SearchList /> : <Redirect to="/login" />}
-            </Route>
+            </Route> */}
 
             <Route path="/notes/:id(\d+)" exact>
                 <NoteProvider>
