@@ -10,7 +10,7 @@ export function SearchProvider(props) {
 
     const Search = (searchTerms) => {
         return getToken().then((token) =>
-            fetch(`search/${searchTerms}`, {
+            fetch(`/api/book/search/${searchTerms}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`

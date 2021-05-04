@@ -9,31 +9,22 @@ export const GoogleSearch = () => {
     const { Search } = useContext(SearchContext);
     const history = useHistory();
 
-    // const searchSubmit = (e) => {
-    //     e.preventDefault();
-    //     Search(searchTerms)
-    //         .then(() => history.push(`/search/${searchTerms}`))
-    //         .then(() => setSearchResults(e.target.value))
-    // }
-
-    useEffect(() => {
-        Search(searchTerms);
-    }, []);
+    const searchSubmit = (e) => {
+        e.preventDefault();
+        Search(searchTerms)
+            .then(() => history.push(`/search/${searchTerms}`))
+    }
 
     return (
         <>
             Search for a Book:
-            <div className="instrument-search__form">
-                <input id="search" value={criterion} onChange={e => setSearchTerms(e.target.value)} />
-                <Button onClick={() => searchInstruments(searchTerms)}>Search</Button>
-            </div>
+ 
+                       
+            <input type="text" className="input--wide" value={searchTerms}             
 
 
-            {/*             
-            <input type="text" className="input--wide"
-
-                placeholder="Search by author or title" />
-            <Button onClick={searchSubmit}>Search</Button> */}
+            onChange={e => setSearchTerms(e.target.value)} placeholder="Search by author or title" />
+            <Button onClick={searchSubmit}>Search</Button>
         </>
     )
 }
