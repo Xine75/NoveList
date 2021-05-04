@@ -1,17 +1,27 @@
 import React, { useContext, useState } from "react";
+import { useHistory, useParams } from 'react-router-dom';
 import { SearchContext } from "../Providers/SearchProvider";
+import { Button } from 'react-bootstrap'
 
 export const GoogleSearch = () => {
-    const { searchTerms, setSearchTerms, searchResults, setSearchResults } = useContext(SearchContext);
+    const { setSearchResults } = useContext(SearchContext);
+    const [searchTerms, setSearchTerms] = useState("");
+    const { Search } = useContext(SearchContext);
+    const history = useHistory();
 
+    const searchSubmit = (e) => {
+        e.preventDefault();
+        Search(searchTerms)
+            .then(() => history.push(`/search/${searchTerms}`))
+            .then(() => setSearchResults(e.target.value))
+    }
     return (
         <>
             Search for a Book:
             <input type="text" className="input--wide"
-                onKeyUp={(e) => setSearchTerms(e.target.value)}
-
 
                 placeholder="Search by author or title" />
+            <Button onClick={searchSubmit}>Search</Button>
         </>
     )
 }
