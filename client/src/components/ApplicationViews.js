@@ -29,17 +29,12 @@ export default function ApplicationViews() {
             </Route>
 
             <Route path="/search" exact>
-                <SearchProvider>
-                    {isLoggedIn ? <GoogleSearch /> : <Redirect to="/login" />}
-                </SearchProvider>
+                {isLoggedIn ? <GoogleSearch /> : <Redirect to="/login" />}
             </Route>
 
-            <Route path="/search/${searchTerms}" exact>
-                <SearchProvider>
-                    {isLoggedIn ? <SearchList /> : <Redirect to="/login" />}
-                </SearchProvider>
+            <Route path="/search/:searchTerms" exact>
+                {isLoggedIn ? <SearchList /> : <Redirect to="/login" />}
             </Route>
-
 
             <Route path="/notes/:id(\d+)" exact>
                 <NoteProvider>

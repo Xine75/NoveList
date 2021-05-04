@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { SearchContext } from "./Providers/SearchProvider"
+import { SearchContext } from "../Providers/SearchProvider"
 import Card from "react-bootstrap/Card"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
@@ -10,8 +10,8 @@ import Button from "react-bootstrap/Button"
 //id, title, image, author, summary and link to add novel to collection
 
 export const SearchCard = ({ searchResult }) => {
-    const { searchResult, searchResult } = useContext(SearchContext);
-
+    //const { searchResult, setSearchResult } = useContext(SearchContext);
+    debugger
     return (
         <>
             <Card className="searchResult_card" border="success">

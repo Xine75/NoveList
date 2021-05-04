@@ -3,7 +3,7 @@ import { UserProfileContext } from "./UserProfileProvider";
 
 export const SearchContext = createContext();
 
-export function SearchProvider(props) {
+export const SearchProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
     const [searchResult, setSearchResult] = useState([]);
     const [searchTerms, setSearchTerms] = useState("");
