@@ -18,10 +18,8 @@ export const GoogleSearch = () => {
     return (
         <>
             Search for a Book:
- 
-                       
+         
             <input type="text" className="input--wide" value={searchTerms}             
-
 
             onChange={e => setSearchTerms(e.target.value)} placeholder="Search by author or title" />
             <Button onClick={searchSubmit}>Search</Button>

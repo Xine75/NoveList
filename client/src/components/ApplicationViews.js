@@ -7,8 +7,8 @@ import Login from "./Login/Login";
 import Register from "./Login/Register";
 import Hello from "./Hello";
 import NoteList from "./Note/NoteList"
-import GoogleSearch from "./Book/BookSearch"
-import { GoogleSearchResults } from "./Book/SearchResults";
+import GoogleSearch from "./Search/BookSearch"
+import { GoogleSearchResults } from "./Search/SearchResults";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
