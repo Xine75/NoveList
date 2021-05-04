@@ -14,7 +14,7 @@ export const SearchList = () => {
     return (
         <>
             <div className="searchResult">
-                {searchResult.map(sr => {
+                {searchResult.map(searchResult => {
                     return <SearchCard key={searchResult.id} searchResult={searchResult} />
                 })}
             </div>

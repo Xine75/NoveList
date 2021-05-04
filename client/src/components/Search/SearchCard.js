@@ -10,7 +10,6 @@ import Button from "react-bootstrap/Button"
 //id, title, image, author, summary and link to add novel to collection
 
 export const SearchCard = ({ searchResult }) => {
-    //const { searchResult, setSearchResult } = useContext(SearchContext);
     debugger
     return (
         <>
@@ -19,7 +18,7 @@ export const SearchCard = ({ searchResult }) => {
                     <Card.Img className="searchResult__card__image" src={searchResult.imageURL} />
                     <Card.Title className="searchResult_title">
                         {searchResult.title}
-                        <div className="searchResult__author">{searchResult.map(sr => sr.author).join(", ")}</div>
+                        <div className="searchResult__author">{searchResult.authors.ToString()}</div>
                         <div className="searchResult__summary">{searchResult.textSnippet}</div>
                     </Card.Title>
                 </Card.Body>

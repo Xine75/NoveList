@@ -23,6 +23,7 @@ namespace NoveList.Controllers
         public async Task<IActionResult> SearchBooks(string searchTerm)
         {
            searchTerm = searchTerm.Replace(' ', '+');
+           
            var searchResults =  await _bookRepository.Search(searchTerm);
            return Ok(searchResults);
         }

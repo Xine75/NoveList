@@ -7,7 +7,7 @@ export const SearchProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
     const [searchResult, setSearchResult] = useState([]);
     const [searchTerms, setSearchTerms] = useState("");
-
+    debugger
     const Search = (searchTerms) => {
         return getToken().then((token) =>
             fetch(`/api/book/search/${searchTerms}`, {
