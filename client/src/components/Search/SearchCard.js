@@ -27,6 +27,6 @@ export const SearchCard = ({ searchResult }) => {
             </Card>
             <br />
         </>
-    )
-
-}
+    );
+};
+export default SearchCard;
