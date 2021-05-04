@@ -6,6 +6,7 @@ export const SearchContext = createContext();
 export function SearchProvider(props) {
     const { getToken } = useContext(UserProfileContext);
     const [searchResults, setSearchResults] = useState([]);
+    const [searchTerms, setSearchTerms] = useState("");
 
     const Search = (searchTerms) => {
         return getToken().then((token) =>
@@ -14,14 +15,16 @@ export function SearchProvider(props) {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            }).then(setSearchResults)
+            }).then((res) => res.json())
+                .then(setSearchResults)
         )
     };
 
     return (
         <SearchContext.Provider
-            value={{ searchResults, setSearchResult, Search }}
-        >{props.children}
+            value={{ searchTerms, setSearchTerms, searchResults, setSearchResults, Search }}
+        >
+            {props.children}
         </SearchContext.Provider>
     );
 };
