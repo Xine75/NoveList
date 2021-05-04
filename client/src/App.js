@@ -5,13 +5,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { UserProfileProvider } from "./components/Providers/UserProfileProvider";
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
+import SearchProvider from './components/Providers/SearchProvider';
 
 function App() {
   return (
     <Router>
       <UserProfileProvider>
-        <Header />
-        <ApplicationViews />
+        <SearchProvider>
+          <Header />
+          <ApplicationViews />
+        </SearchProvider>
       </UserProfileProvider>
     </Router>
   );

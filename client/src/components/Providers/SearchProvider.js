@@ -3,9 +3,9 @@ import { UserProfileContext } from "./UserProfileProvider";
 
 export const SearchContext = createContext();
 
-export function SearchProvider(props) {
+export const SearchProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResult, setSearchResult] = useState([]);
     const [searchTerms, setSearchTerms] = useState("");
 
     const Search = (searchTerms) => {
@@ -16,13 +16,13 @@ export function SearchProvider(props) {
                     Authorization: `Bearer ${token}`
                 }
             }).then((res) => res.json())
-                .then(setSearchResults)
+                .then(setSearchResult)
         )
     };
 
     return (
         <SearchContext.Provider
-            value={{ searchTerms, setSearchTerms, searchResults, setSearchResults, Search }}
+            value={{ searchTerms, setSearchTerms, searchResult, setSearchResult, Search }}
         >
             {props.children}
         </SearchContext.Provider>

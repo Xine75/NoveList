@@ -7,8 +7,8 @@ import Login from "./Login/Login";
 import Register from "./Login/Register";
 import Hello from "./Hello";
 import NoteList from "./Note/NoteList"
-import GoogleSearch from "./Book/BookSearch"
-import { GoogleSearchResults } from "./Book/SearchResults";
+import GoogleSearch from "./Search/BookSearch"
+import { SearchList } from "./Search/SearchList";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -29,17 +29,12 @@ export default function ApplicationViews() {
             </Route>
 
             <Route path="/search" exact>
-                <SearchProvider>
-                    {isLoggedIn ? <GoogleSearch /> : <Redirect to="/login" />}
-                </SearchProvider>
+                {isLoggedIn ? <GoogleSearch /> : <Redirect to="/login" />}
             </Route>
 
-            <Route path="/search/${searchTerms}" exact>
-                <SearchProvider>
-                    {isLoggedIn ? <GoogleSearchResults /> : <Redirect to="/login" />}
-                </SearchProvider>
+            <Route path="/search/:searchTerms" exact>
+                {isLoggedIn ? <SearchList /> : <Redirect to="/login" />}
             </Route>
-
 
             <Route path="/notes/:id(\d+)" exact>
                 <NoteProvider>

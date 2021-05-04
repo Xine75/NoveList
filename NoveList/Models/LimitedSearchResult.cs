@@ -18,8 +18,8 @@ namespace NoveList.Models
         {
             Id = id;
             Title = title;
+            //string authorString = string.Join(",", authors.ToArray());
             Authors = authors;
-            //string authorString = String.Join(",", authors);
             Thumbnail = thumbnail;
             TextSnippet = textSnippet;
 
