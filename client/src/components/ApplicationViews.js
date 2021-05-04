@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext, UserProfileProvider } from "./Providers/UserProfileProvider";
 import { NoteProvider } from "./Providers/NoteProvider";
+import { SearchProvider } from "./Providers/SearchProvider";
 import Login from "./Login/Login";
 import Register from "./Login/Register";
 import Hello from "./Hello";
 import NoteList from "./Note/NoteList"
+import GoogleSearch from "./Book/BookSearch"
+import { GoogleSearchResults } from "./Book/SearchResults";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -25,6 +28,19 @@ export default function ApplicationViews() {
                 <Register />
             </Route>
 
+            <Route path="/search" exact>
+                <SearchProvider>
+                    {isLoggedIn ? <GoogleSearch /> : <Redirect to="/login" />}
+                </SearchProvider>
+            </Route>
+
+            <Route path="/search/${searchTerms}" exact>
+                <SearchProvider>
+                    {isLoggedIn ? <GoogleSearchResults /> : <Redirect to="/login" />}
+                </SearchProvider>
+            </Route>
+
+
             <Route path="/notes/:id(\d+)" exact>
                 <NoteProvider>
                     {isLoggedIn ? <NoteList /> : <Redirect to="/login" />}
@@ -32,6 +48,6 @@ export default function ApplicationViews() {
             </Route>
 
 
-        </Switch>
+        </Switch >
     );
 };
