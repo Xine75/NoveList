@@ -5,6 +5,7 @@ using NoveList.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace NoveList.Controllers
@@ -43,11 +44,10 @@ namespace NoveList.Controllers
         public IActionResult Post(Book book)
         {
             //set userId to current user
-            var currentUser = _userProfileRepository.GetById(id);
+            var currentUser = GetCurrentUserProfile();
             book.UserId = currentUser.Id;
-            
-            DateTime startDate = DateTime.Now;
-            book.StartDate = startDate;
+            //set start date to current date
+            book.StartDate = DateTime.Now;
 
             _bookRepository.Add(book);
             return CreatedAtAction("Get", new { id = book.Id }, book);
@@ -60,6 +60,12 @@ namespace NoveList.Controllers
         {
             _bookRepository.Delete(id);
             return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseId(firebaseUserId);
         }
 
 
