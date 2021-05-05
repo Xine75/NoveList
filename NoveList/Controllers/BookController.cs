@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NoveList.Models;
 using NoveList.Repositories;
 using System;
 using System.Collections.Generic;
@@ -27,9 +28,26 @@ namespace NoveList.Controllers
            var searchResults =  await _bookRepository.Search(searchTerm);
            return Ok(searchResults);
         }
-        
 
     
+
+        //Add book from Google Search/by GoogleApiId
+        [HttpPost("{GoogleApiId}")]
+        public IActionResult Post(Book book)
+        {
+            _bookRepository.Add(book);
+            return CreatedAtAction("Get", new { id = book.Id }, book);
+        }
+
+        //Delete Book
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _bookRepository.Delete(id);
+            return NoContent();
+        }
+
+
     }
 }
 
