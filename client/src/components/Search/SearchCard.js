@@ -57,7 +57,7 @@ export const SearchCard = ({ searchResult }) => {
                             keyboard={false}
                         >
                             <Modal.Header closeButton>
-                                <Modal.Title>Add Book to My Library {searchResult.id}</Modal.Title>
+                                <Modal.Title>Add Book to My Library</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 {/* import details of chosen book */}
