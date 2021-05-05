@@ -6,14 +6,17 @@ import { UserProfileProvider } from "./components/Providers/UserProfileProvider"
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import SearchProvider from './components/Providers/SearchProvider';
+import { BookProvider } from './components/Providers/BookProvider';
 
 function App() {
   return (
     <Router>
       <UserProfileProvider>
         <SearchProvider>
-          <Header />
-          <ApplicationViews />
+          <BookProvider>
+            <Header />
+            <ApplicationViews />
+          </BookProvider>
         </SearchProvider>
       </UserProfileProvider>
     </Router>
