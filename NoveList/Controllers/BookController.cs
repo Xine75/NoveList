@@ -28,8 +28,12 @@ namespace NoveList.Controllers
            var searchResults =  await _bookRepository.Search(searchTerm);
            return Ok(searchResults);
         }
-
-    
+        //get all books by current user
+        [HttpGet("{userId}")]
+        public IActionResult GetBooksByCurrentUser(int id)
+        {
+            return Ok(_bookRepository.GetBooksByCurrentUser(id));
+        }
 
         //Add book from Google Search/by GoogleApiId
         [HttpPost("{GoogleApiId}")]

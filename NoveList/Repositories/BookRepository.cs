@@ -30,8 +30,37 @@ namespace NoveList.Repositories
 
             return desiredParts;
         }
+        //get all books of current user
+        public List<Book> GetBooksByCurrentUser(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.StartDate, b.FinishDate, b.ShelfId
+                                    FROM Book b
+                                    WHERE b.userId = @Id
+                                    ORDER BY b.StartDate ASC";
 
-      
+                    var reader = cmd.ExecuteReader();
+                    var books = new List<Book>();
+                    while (reader.Read())
+                    {
+                        books.Add(new Book()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            GoogleApiId = DbUtils.GetString(reader, "GoogleApiId"),
+                            ShelfId = DbUtils.GetInt(reader, "ShelfId"),
+                            StartDate = DbUtils.GetDateTime(reader, "StartDate"),
+                            FinishDate = DbUtils.GetDateTime(reader, "FinishDate")
+                        });
+                    }
+                    reader.Close();
+                    return books;
+                }
+            }
+        }
         //add book by GoogleApiId
         public void Add(Book book)
         {

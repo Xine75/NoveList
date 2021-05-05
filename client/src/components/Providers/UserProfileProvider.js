@@ -94,7 +94,7 @@ export function UserProfileProvider(props) {
 
     const saveUser = (userProfile) => {
         return getToken().then((token) =>
-            fetch(apiUrl, {
+            fetch(`${apiUrl}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

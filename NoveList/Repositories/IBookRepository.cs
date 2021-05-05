@@ -8,6 +8,7 @@ namespace NoveList.Repositories
     {
         void Add(Book book);
         void Delete(int id);
+        List<Book> GetBooksByCurrentUser(int id);
         Task<List<LimitedSearchResult>> Search(string q);
     }
 }
