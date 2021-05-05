@@ -10,9 +10,11 @@ export function UserProfileProvider(props) {
     const userProfile = sessionStorage.getItem("userProfile");
     const [userProfiles, setUserProfiles] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
+
     const getToken = () => firebase.auth().currentUser.getIdToken();
 
     const [isFirebaseReady, setIsFirebaseReady] = useState(false);
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged((u) => {
             setIsFirebaseReady(true);
@@ -94,7 +96,7 @@ export function UserProfileProvider(props) {
 
     const saveUser = (userProfile) => {
         return getToken().then((token) =>
-            fetch(apiUrl, {
+            fetch(`${apiUrl}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

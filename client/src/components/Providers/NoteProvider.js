@@ -10,7 +10,7 @@ export function NoteProvider(props) {
 
     const getNotesByBookId = (bookId) => {
         return getToken().then((token) =>
-            fetch(`notes/${bookId}`, {
+            fetch(`api/book/{bookId}/notes`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`

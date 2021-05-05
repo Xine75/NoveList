@@ -17,7 +17,7 @@ export default function Header() {
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <Navbar.Brand tag={RRNavLink} to="/">NoveList</Navbar.Brand>
+                <Navbar.Brand href="/">NoveList</Navbar.Brand>
                 <Navbar.Toggle onClick={toggle} />
                 <Navbar.Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
