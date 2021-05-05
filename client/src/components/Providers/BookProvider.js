@@ -10,7 +10,7 @@ export function BookProvider(props) {
     const userProfile = sessionStorage.getItem("userProfile");
     //do i need this to access LimitedSearchResult model info? if so, how?
     const { searchResult } = useContext(SearchContext);
-    const [books, setBooks] = useState([])
+    const [books, setBook, setBooks] = useState([])
 
     const getBooksByCurrentUser = (userId) => {
         return getToken().then((token) =>
@@ -50,7 +50,7 @@ export function BookProvider(props) {
     };
     return (
         <BookContext.Provider
-            value={{ books, setBooks, getBooksByCurrentUser, addBook, deleteBook }}
+            value={{ books, setBooks, setBook, getBooksByCurrentUser, addBook, deleteBook }}
         >
             {props.children}
         </BookContext.Provider>
