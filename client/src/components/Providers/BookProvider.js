@@ -7,6 +7,7 @@ export const BookContext = createContext();
 export function BookProvider(props) {
     const apiUrl = "/api/book";
     const { getToken } = useContext(UserProfileContext);
+    const userProfile = sessionStorage.getItem("userProfile");
     //do i need this to access LimitedSearchResult model info? if so, how?
     const { searchResult } = useContext(SearchContext);
     const [books, setBooks] = useState([])

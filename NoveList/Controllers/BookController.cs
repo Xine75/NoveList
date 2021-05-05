@@ -14,9 +14,11 @@ namespace NoveList.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
-        public BookController(IBookRepository bookRepository)
+        private readonly IUserProfileRepository _userProfileRepository;
+        public BookController(IBookRepository bookRepository, IUserProfileRepository userProfileRepository)
         {
             _bookRepository = bookRepository;
+            _userProfileRepository = userProfileRepository;
         }
         //get books by google search
         [HttpGet("search/{searchTerm=searchTerm}")]
@@ -35,13 +37,22 @@ namespace NoveList.Controllers
             return Ok(_bookRepository.GetBooksByCurrentUser(id));
         }
 
+
         //Add book from Google Search/by GoogleApiId
         [HttpPost("{GoogleApiId}")]
         public IActionResult Post(Book book)
         {
+            //set userId to current user
+            var currentUser = _userProfileRepository.GetById(id);
+            book.UserId = currentUser.Id;
+            
+            DateTime startDate = DateTime.Now;
+            book.StartDate = startDate;
+
             _bookRepository.Add(book);
             return CreatedAtAction("Get", new { id = book.Id }, book);
         }
+
 
         //Delete Book
         [HttpDelete("{id}")]
