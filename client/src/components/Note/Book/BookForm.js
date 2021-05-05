@@ -3,18 +3,20 @@ import { useHistory, useParams } from 'react-router-dom';
 import { BookContext } from "..//Providers/BookProvider"
 import Modal from "react-bootstrap/Button"
 import Button from "react-bootstrap/Button"
+import { propTypes } from "react-bootstrap/esm/Image";
 
 //BookForm allows a user to add a book from the google search results - NO EDIT HERE
 //will be directed here by clicking on title from search results
 //will be a pop-up/modal
 //will add book upon click Save
 
-export const BookForm = () => {
+export const BookForm = (props) => {
 
     const { addBook } = useContext(BookContext);
     //-------------Only choice is shelf----------------
 
     const [book, setBook] = useState({
+        googleApiId: "searchResult.Id",
         shelfId: 0
     });
 
@@ -31,16 +33,11 @@ export const BookForm = () => {
         e.preventDefault()
         const newBook = { ...book }
         addBook(newBook)
-            .then(() => history.push("/"))//close modal and go to home page w/new book
+        props.onHide()
     };
 
     //------------setting up Modal --------------------
-    function AddBookPopUp() {
-        const [show, setShow] = useState(false);
 
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow(true);
-    }
 
 
 
