@@ -14,7 +14,7 @@ import "./Search.css"
 
 export const SearchCard = ({ searchResult }) => {
 
-
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
     const history = useHistory();
     //--------------Setting up modal------------------
     const [show, setShow] = useState(false);
@@ -30,7 +30,8 @@ export const SearchCard = ({ searchResult }) => {
         author: searchResult.authors.toString(),
         thumbnail: searchResult.thumbnail,
         textSnippet: searchResult.textSnippet,
-        shelfId: 0
+        shelfId: 0,
+        userId: currentUser
     })
 
     //-------------Saving User Input-------------

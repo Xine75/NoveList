@@ -8,7 +8,7 @@ import Register from "./Login/Register";
 import Hello from "./Hello";
 import NoteList from "./Note/NoteList"
 import GoogleSearch from "./Search/BookSearch"
-import { SearchList } from "./Search/SearchList";
+import { BookList } from "./Book/BookList";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -30,6 +30,10 @@ export default function ApplicationViews() {
 
             <Route path="/search" >
                 {isLoggedIn ? <GoogleSearch /> : <Redirect to="/login" />}
+            </Route>
+
+            <Route path="/book/:id(\d+)" exact>
+                {isLoggedIn ? <BookList /> : <Redirect to="/login" />}
             </Route>
 
             <Route path="/notes/:id(\d+)" exact>

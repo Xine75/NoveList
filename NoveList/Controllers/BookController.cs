@@ -32,9 +32,16 @@ namespace NoveList.Controllers
            return Ok(searchResults);
         }
 
+        //get all books
+        [HttpGet]
+        public IActionResult GetAllBooks()
+        {
+            return Ok(_bookRepository.GetAllBooks());
+        }
+
 
         //get all books by current user
-        [HttpGet("{userId}")]
+        [HttpGet("{id}")]
         public IActionResult GetBooksByCurrentUser(int id)
         {
             return Ok(_bookRepository.GetBooksByCurrentUser(id));

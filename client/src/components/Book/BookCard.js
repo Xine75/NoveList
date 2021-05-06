@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import { BookContext } from "../Providers/BookProvider"
 import Table from "react-bootstrap/Table"
 import Button from "react-bootstrap/Button"
-import "./Book.css"
+
 
 //Book Card renders list view of current user's books
 //Renders a link on a book title that will take the user to details and notes for a specific book
