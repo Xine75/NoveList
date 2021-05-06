@@ -69,9 +69,9 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO Book (GoogleApiId, StartDate, ShelfId, userId)
+                    cmd.CommandText = @"INSERT INTO Book (GoogleApiId, StartDate, ShelfId, UserId)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@GoogleApiId, @StartDate, @UserId)";
+                                        VALUES (@GoogleApiId, @StartDate, @ShelfId, @UserId)";
 
                     cmd.Parameters.AddWithValue("@GoogleApiId", book.GoogleApiId);
                     cmd.Parameters.AddWithValue("@StartDate", book.StartDate);

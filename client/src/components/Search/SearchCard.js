@@ -22,6 +22,8 @@ export const SearchCard = ({ searchResult }) => {
     //-------------------Setting State----------------------
     const { addBook } = useContext(BookContext);
     const [book, setBook] = useState({
+        id: "",
+        googleApiId: searchResult.id,
         shelfId: 0
     })
 
