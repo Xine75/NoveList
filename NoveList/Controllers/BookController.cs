@@ -31,6 +31,8 @@ namespace NoveList.Controllers
            var searchResults =  await _bookRepository.Search(searchTerm);
            return Ok(searchResults);
         }
+
+
         //get all books by current user
         [HttpGet("{userId}")]
         public IActionResult GetBooksByCurrentUser(int id)
@@ -39,7 +41,7 @@ namespace NoveList.Controllers
         }
 
 
-        //Add book from Google Search/by GoogleApiId
+        //Add book from Google Search
         [HttpPost]
         public IActionResult Create(Book book)
         {
@@ -50,7 +52,7 @@ namespace NoveList.Controllers
             book.StartDate = DateTime.Now;
 
             _bookRepository.Add(book);
-            return CreatedAtAction("Get", new { id = book.Id }, book);
+            return NoContent();
         }
 
 

@@ -33,7 +33,8 @@ export function BookProvider(props) {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(bookObj)
-            }).then(resp => resp.json()));
+            }));
+        //.then(resp => resp.json())
     };
 
     const deleteBook = (bookId) => {
