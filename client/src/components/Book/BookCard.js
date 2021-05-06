@@ -12,6 +12,7 @@ export const BookCard = ({ book }) => {
 
     const { deleteBook } = useContext(BookContext)
 
+
     const history = useHistory();
     const date = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
 
@@ -19,9 +20,7 @@ export const BookCard = ({ book }) => {
 
     const handleDelete = () => {
         deleteBook(book.id)
-
     }
-
 
 
     //------------------JSX for Book Card -------------------------
@@ -46,7 +45,7 @@ export const BookCard = ({ book }) => {
                     <tr>
 
                         <td>{date}</td>
-                        <td>{book.title}</td>
+                        <td><Link to={`/book/${book.id}`}>{book.title}</Link></td>
                         <td>{book.author}</td>
                         <td>{book.shelf.name}</td>
                         <td>{book.rating}</td>
