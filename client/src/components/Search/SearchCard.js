@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { SearchContext } from "../Providers/SearchProvider"
 import { BookContext } from "../Providers/BookProvider"
@@ -18,7 +18,12 @@ export const SearchCard = ({ searchResult }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const { book, setBook, addBook } = useContext(BookContext);
+
+    //-------------------Setting State----------------------
+    const { addBook } = useContext(BookContext);
+    const [book, setBook] = useState({
+        shelfId: 0
+    })
 
     //-------------Saving User Input-------------
     const handleControlledInputChange = (e) => {
@@ -46,44 +51,6 @@ export const SearchCard = ({ searchResult }) => {
                         <Button variant="link"
                             onClick={handleShow} className="" id="bootstrap" >
                             {searchResult.title}</Button>
-
-
-
-
-                        <Modal
-                            show={show}
-                            onHide={handleClose}
-                            backdrop="static"
-                            keyboard={false}
-                        >
-                            <Modal.Header closeButton>
-                                <Modal.Title>Add Book to My Library</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                {/* import details of chosen book */}
-
-                                <fieldset>
-                                    <div className="form-group">
-                                        <label htmlFor="shelfId">Add To Shelf:</label>
-                                        <select name="shelfId" id="shelfId" className="form-control" onChange={handleControlledInputChange}>
-                                            <option value="0">Choose a shelf</option>
-                                            <option value="1">Currently Reading</option>
-                                            <option value="2">Book Club</option>
-                                            <option value="3">Mystery</option>
-                                            <option value="4">Historical Fiction</option>
-                                            <option value="5">Beach Read</option>
-                                        </select>
-                                    </div>
-                                </fieldset>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Close
-          </Button>
-                                <Button variant="primary" onClick={addBook}>Add</Button>
-                            </Modal.Footer>
-                        </Modal>
-
                         <div className="searchResult__author">{searchResult.authors}</div>
                         <div className="searchResult__summary">{searchResult.textSnippet}</div>
                     </Card.Title>
@@ -91,6 +58,37 @@ export const SearchCard = ({ searchResult }) => {
 
             </Card>
             <br />
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Add {searchResult.title} to My Library</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="shelfId">Add To Shelf:</label>
+                            <select name="shelfId" id="shelfId" className="form-control" onChange={handleControlledInputChange}>
+                                <option value="0">Choose a shelf</option>
+                                <option value="1">Currently Reading</option>
+                                <option value="2">Book Club</option>
+                                <option value="3">Mystery</option>
+                                <option value="4">Historical Fiction</option>
+                                <option value="5">Beach Read</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}> Close </Button>
+                    <Button variant="primary" onClick={handleClickSaveBook}>Add</Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 };

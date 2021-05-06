@@ -40,7 +40,7 @@ namespace NoveList.Controllers
 
 
         //Add book from Google Search/by GoogleApiId
-        [HttpPost("{GoogleApiId}")]
+        [HttpPost]
         public IActionResult Post(Book book)
         {
             //set userId to current user
