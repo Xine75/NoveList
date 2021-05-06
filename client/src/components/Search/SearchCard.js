@@ -24,7 +24,7 @@ export const SearchCard = ({ searchResult }) => {
     //-------------------Setting State----------------------
     const { addBook } = useContext(BookContext);
     const [book, setBook] = useState({
-        id: 2,
+        id: 0,
         googleApiId: searchResult.id,
         shelfId: 0
     })
@@ -45,13 +45,13 @@ export const SearchCard = ({ searchResult }) => {
             .then(() => history.push("/"))
     };
 
-    //-------------------------JSX for Search Card-------------------------
+    //-------------------------JSX for Search Card & Book Add Modal-------------------------
 
     return (
         <>
             <div className="searchResult__card__container">
 
-                <Card style={{ width: '18rem' }} className="searchResult_card" border="info">
+                <Card style={{ width: '18rem' }} className="searchResult_card" border="no border">
                     <Card.Body>
                         <Card.Img className="searchResult__card__image" src={searchResult.thumbnail} />
                         <Card.Title className="">
@@ -66,7 +66,6 @@ export const SearchCard = ({ searchResult }) => {
             </div>
             <br />
 
-            {/* ------------------JSX for Modal---------------------------- */}
 
             <Modal
                 show={show}
@@ -94,7 +93,7 @@ export const SearchCard = ({ searchResult }) => {
                     </fieldset>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}> Close </Button>
+                    <Button variant="secondary" onClick={handleClose}>Close</Button>
                     <Button variant="primary" onClick={handleClickSaveBook}>Add</Button>
                 </Modal.Footer>
             </Modal>

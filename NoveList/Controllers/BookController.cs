@@ -50,7 +50,8 @@ namespace NoveList.Controllers
             book.StartDate = DateTime.Now;
 
             _bookRepository.Add(book);
-            return CreatedAtAction("Get", new { id = book.Id }, book);
+            return NoContent();
+            //return CreatedAtAction("Get", new { id = book.Id }, book);
         }
 
 
