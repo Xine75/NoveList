@@ -31,6 +31,8 @@ namespace NoveList.Controllers
            var searchResults =  await _bookRepository.Search(searchTerm);
            return Ok(searchResults);
         }
+
+
         //get all books by current user
         [HttpGet("{userId}")]
         public IActionResult GetBooksByCurrentUser(int id)
@@ -51,7 +53,6 @@ namespace NoveList.Controllers
 
             _bookRepository.Add(book);
             return NoContent();
-            //return CreatedAtAction("Get", new { id = book.Id }, book);
         }
 
 

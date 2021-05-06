@@ -61,6 +61,8 @@ namespace NoveList.Repositories
                 }
             }
         }
+  
+
         //add book by GoogleApiId
         public void Add(Book book)
         {
@@ -69,11 +71,15 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO Book (GoogleApiId, StartDate, ShelfId, UserId)
+                    cmd.CommandText = @"INSERT INTO Book (GoogleApiId, Title, Author, Thumbnail, TextSnippet, StartDate, ShelfId, UserId)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@GoogleApiId, @StartDate, @ShelfId, @UserId)";
+                                        VALUES (@GoogleApiId, @Title, @Author, @Thumbnail, @TextSnippet, @StartDate, @ShelfId, @UserId)";
 
                     cmd.Parameters.AddWithValue("@GoogleApiId", book.GoogleApiId);
+                    cmd.Parameters.AddWithValue("@Title", book.Title);
+                    cmd.Parameters.AddWithValue("@Author", book.Author);
+                    cmd.Parameters.AddWithValue("@Thumbnail", book.Thumbnail);
+                    cmd.Parameters.AddWithValue("@TextSnippet", book.TextSnippet);
                     cmd.Parameters.AddWithValue("@StartDate", book.StartDate);
                     cmd.Parameters.AddWithValue("@ShelfId", book.ShelfId);
                     cmd.Parameters.AddWithValue("@UserId", book.UserId);
