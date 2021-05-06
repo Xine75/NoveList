@@ -25,7 +25,7 @@ export default function Header() {
                         {isLoggedIn &&
                             <NavItem className="nav-items">
                                 <Nav.Link href="/">Home</Nav.Link>
-                                <Nav.Link href="/novels">Novels</Nav.Link>
+                                <Nav.Link href="/book">Novels</Nav.Link>
                                 <Nav.Link href="/shelves">Shelves</Nav.Link>
                                 <Nav.Link href="/friends">Friends</Nav.Link>
                                 <Nav.Link href="/search">Search</Nav.Link>

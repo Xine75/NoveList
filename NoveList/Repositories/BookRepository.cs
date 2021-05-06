@@ -30,6 +30,40 @@ namespace NoveList.Repositories
 
             return desiredParts;
         }
+        public List<Book> GetAllBooks()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.StartDate, b.FinishDate, b.ShelfId, b.UserId
+                                    FROM Book b
+                                    ORDER BY b.StartDate ASC";
+
+                    var reader = cmd.ExecuteReader();
+                    var books = new List<Book>();
+                    while (reader.Read())
+                    {
+                        books.Add(new Book()
+                        {
+                            Id = DbUtils.GetInt(reader, "BookId"),
+                            GoogleApiId = DbUtils.GetString(reader, "GoogleApiId"),
+                            Title = DbUtils.GetString(reader, "Title"),
+                            Author = DbUtils.GetString(reader, "Author"),
+                            Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
+                            TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
+                            ShelfId = DbUtils.GetInt(reader, "ShelfId"),
+                            StartDate = DbUtils.GetDateTime(reader, "StartDate"),
+                            FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
+                            UserId = DbUtils.GetInt(reader, "UserId")
+                        });
+                    }
+                    reader.Close();
+                    return books;
+                }
+            }
+        }
         //get all books of current user
         public List<Book> GetBooksByCurrentUser(int id)
         {
@@ -40,16 +74,17 @@ namespace NoveList.Repositories
                 {
                     cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.StartDate, b.FinishDate, b.ShelfId
                                     FROM Book b
-                                    WHERE b.userId = @Id
+                                    WHERE b.userId = @id
                                     ORDER BY b.StartDate ASC";
 
+                    DbUtils.AddParameter(cmd, "@id", id);
                     var reader = cmd.ExecuteReader();
                     var books = new List<Book>();
                     while (reader.Read())
                     {
                         books.Add(new Book()
                         {
-                            Id = DbUtils.GetInt(reader, "Id"),
+                            Id = DbUtils.GetInt(reader, "BookId"),
                             GoogleApiId = DbUtils.GetString(reader, "GoogleApiId"),
                             Title = DbUtils.GetString(reader, "Title"),
                             Author = DbUtils.GetString(reader, "Author"),
@@ -57,7 +92,7 @@ namespace NoveList.Repositories
                             TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
                             ShelfId = DbUtils.GetInt(reader, "ShelfId"),
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
-                            FinishDate = DbUtils.GetDateTime(reader, "FinishDate")
+                            FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate")
                         });
                     }
                     reader.Close();
@@ -80,7 +115,7 @@ namespace NoveList.Repositories
                                         VALUES (@GoogleApiId, @Title, @Author, @Thumbnail, @TextSnippet, @StartDate, @ShelfId, @UserId)";
 
                     cmd.Parameters.AddWithValue("@GoogleApiId", book.GoogleApiId);
-                    cmd.Parameters.AddWithValue("@Title", book.Title);
+                    cmd.Parameters.AddWithValue("@Title", book.Title) ;
                     cmd.Parameters.AddWithValue("@Author", book.Author);
                     cmd.Parameters.AddWithValue("@Thumbnail", book.Thumbnail);
                     cmd.Parameters.AddWithValue("@TextSnippet", book.TextSnippet);
