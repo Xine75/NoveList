@@ -41,7 +41,7 @@ namespace NoveList.Controllers
         }
 
 
-        //Add book from Google Search/by GoogleApiId
+        //Add book from Google Search
         [HttpPost]
         public IActionResult Create(Book book)
         {

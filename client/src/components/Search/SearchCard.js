@@ -27,7 +27,7 @@ export const SearchCard = ({ searchResult }) => {
         id: 0,
         googleApiId: searchResult.id,
         title: searchResult.title,
-        author: searchResult.authors,
+        author: searchResult.authors.toString(),
         thumbnail: searchResult.thumbnail,
         textSnippet: searchResult.textSnippet,
         shelfId: 0

@@ -38,7 +38,7 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.StartDate, b.FinishDate, b.ShelfId
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.StartDate, b.FinishDate, b.ShelfId
                                     FROM Book b
                                     WHERE b.userId = @Id
                                     ORDER BY b.StartDate ASC";
@@ -51,6 +51,10 @@ namespace NoveList.Repositories
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             GoogleApiId = DbUtils.GetString(reader, "GoogleApiId"),
+                            Title = DbUtils.GetString(reader, "Title"),
+                            Author = DbUtils.GetString(reader, "Author"),
+                            Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
+                            TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
                             ShelfId = DbUtils.GetInt(reader, "ShelfId"),
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                             FinishDate = DbUtils.GetDateTime(reader, "FinishDate")
@@ -63,7 +67,7 @@ namespace NoveList.Repositories
         }
   
 
-        //add book by GoogleApiId
+        //add book 
         public void Add(Book book)
         {
             using (var conn = Connection)
