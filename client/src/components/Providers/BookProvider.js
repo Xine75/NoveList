@@ -8,8 +8,8 @@ export function BookProvider(props) {
     const apiUrl = "/api/book";
     const { getToken } = useContext(UserProfileContext);
     const userProfile = sessionStorage.getItem("userProfile");
-    //do i need this to access LimitedSearchResult model info? if so, how?
-    const { searchResult } = useContext(SearchContext);
+
+    const { searchTerms } = useContext(SearchContext);
     const [books, setBook, setBooks] = useState([])
 
     const getBooksByCurrentUser = (userId) => {
@@ -26,7 +26,7 @@ export function BookProvider(props) {
 
     const addBook = bookObj => {
         return getToken().then((token) =>
-            fetch(`{apiUrl}`, {
+            fetch(`${apiUrl}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

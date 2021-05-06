@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import React, { useContext, useState } from "react"
+import { Link, useHistory } from "react-router-dom"
 import { SearchContext } from "../Providers/SearchProvider"
 import { BookContext } from "../Providers/BookProvider"
 import Card from "react-bootstrap/Card"
@@ -14,11 +14,20 @@ import "./Search.css"
 
 export const SearchCard = ({ searchResult }) => {
 
+
+    const history = useHistory();
     //--------------Setting up modal------------------
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const { book, setBook, addBook } = useContext(BookContext);
+
+    //-------------------Setting State----------------------
+    const { addBook } = useContext(BookContext);
+    const [book, setBook] = useState({
+        id: 2,
+        googleApiId: searchResult.id,
+        shelfId: 0
+    })
 
     //-------------Saving User Input-------------
     const handleControlledInputChange = (e) => {
@@ -33,64 +42,62 @@ export const SearchCard = ({ searchResult }) => {
         e.preventDefault()
         const newBook = { ...book }
         addBook(newBook)
+            .then(() => history.push("/"))
     };
+
+    //-------------------------JSX for Search Card-------------------------
 
     return (
         <>
-            <Card className="searchResult_card" border="success">
-                <Card.Body>
-                    <Card.Img className="searchResult__card__image" src={searchResult.thumbnail} />
-                    <Card.Title className="searchResult_title">
-                        {/* <BookForm key={searchResult.id} searchResult={searchResult} /> */}
+            <div className="searchResult__card__container">
 
-                        <Button variant="link"
-                            onClick={handleShow} className="" id="bootstrap" >
-                            {searchResult.title}</Button>
+                <Card style={{ width: '18rem' }} className="searchResult_card" border="info">
+                    <Card.Body>
+                        <Card.Img className="searchResult__card__image" src={searchResult.thumbnail} />
+                        <Card.Title className="">
+                            <Button variant="link" onClick={handleShow} className="searchResult_title" id="bootstrap" >
+                                {searchResult.title}</Button>
+                            <h5 className="searchResult__author">{searchResult.authors}</h5>
+                            <div className="searchResult__summary">{searchResult.textSnippet}</div>
+                        </Card.Title>
+                    </Card.Body>
 
-
-
-
-                        <Modal
-                            show={show}
-                            onHide={handleClose}
-                            backdrop="static"
-                            keyboard={false}
-                        >
-                            <Modal.Header closeButton>
-                                <Modal.Title>Add Book to My Library {searchResult.id}</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                {/* import details of chosen book */}
-
-                                <fieldset>
-                                    <div className="form-group">
-                                        <label htmlFor="shelfId">Add To Shelf:</label>
-                                        <select name="shelfId" id="shelfId" className="form-control" onChange={handleControlledInputChange}>
-                                            <option value="0">Choose a shelf</option>
-                                            <option value="1">Currently Reading</option>
-                                            <option value="2">Book Club</option>
-                                            <option value="3">Mystery</option>
-                                            <option value="4">Historical Fiction</option>
-                                            <option value="5">Beach Read</option>
-                                        </select>
-                                    </div>
-                                </fieldset>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Close
-          </Button>
-                                <Button variant="primary" onClick={addBook}>Add</Button>
-                            </Modal.Footer>
-                        </Modal>
-
-                        <div className="searchResult__author">{searchResult.authors}</div>
-                        <div className="searchResult__summary">{searchResult.textSnippet}</div>
-                    </Card.Title>
-                </Card.Body>
-
-            </Card>
+                </Card>
+            </div>
             <br />
+
+            {/* ------------------JSX for Modal---------------------------- */}
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Add {searchResult.title} to My Library</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="shelfId">Add To Shelf:</label>
+                            <select name="shelfId" id="shelfId" className="form-control" onChange={handleControlledInputChange}>
+                                <option value="0">Choose a shelf</option>
+                                <option value="1">Currently Reading</option>
+                                <option value="2">Book Club</option>
+                                <option value="3">Mystery</option>
+                                <option value="4">Historical Fiction</option>
+                                <option value="5">Beach Read</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}> Close </Button>
+                    <Button variant="primary" onClick={handleClickSaveBook}>Add</Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 };

@@ -1,4 +1,30 @@
+.searchResult{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+}
+.searchResult__card{
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 2rem;
+}
+
+.searchResult_title{
+    font-size: x-large;
+}
+
 .searchResult__card__image{
 
-    max-width: 10%;
+    max-width: 50%;
+}
+.searchResult__summary{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+.card-body{
+    margin: 2rem;
 }

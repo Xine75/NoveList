@@ -40,13 +40,13 @@ namespace NoveList.Controllers
 
 
         //Add book from Google Search/by GoogleApiId
-        [HttpPost("{GoogleApiId}")]
-        public IActionResult Post(Book book)
+        [HttpPost]
+        public IActionResult Create(Book book)
         {
-            //set userId to current user
+ 
             var currentUser = GetCurrentUserProfile();
             book.UserId = currentUser.Id;
-            //set start date to current date
+ 
             book.StartDate = DateTime.Now;
 
             _bookRepository.Add(book);
