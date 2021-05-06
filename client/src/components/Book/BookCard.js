@@ -15,6 +15,7 @@ export const BookCard = ({ book }) => {
 
 
 
+
     //------------------JSX for Book Card -------------------------
     return (
         <>
@@ -38,7 +39,7 @@ export const BookCard = ({ book }) => {
                         <td>{date}</td>
                         <td>{book.title}</td>
                         <td>{book.author}</td>
-                        <td>{book.shelfId}</td>
+                        <td>{book.shelf.name}</td>
                         <td>{book.rating}</td>
                         <td>{book.finishDate}</td>
                     </tr>
