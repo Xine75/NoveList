@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { SearchContext } from "../Providers/SearchProvider"
 import { BookContext } from "../Providers/BookProvider"
 import Card from "react-bootstrap/Card"
@@ -14,6 +14,8 @@ import "./Search.css"
 
 export const SearchCard = ({ searchResult }) => {
 
+
+    const history = useHistory();
     //--------------Setting up modal------------------
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -22,7 +24,7 @@ export const SearchCard = ({ searchResult }) => {
     //-------------------Setting State----------------------
     const { addBook } = useContext(BookContext);
     const [book, setBook] = useState({
-        id: "",
+        id: 2,
         googleApiId: searchResult.id,
         shelfId: 0
     })
@@ -40,26 +42,31 @@ export const SearchCard = ({ searchResult }) => {
         e.preventDefault()
         const newBook = { ...book }
         addBook(newBook)
+            .then(() => history.push("/"))
     };
+
+    //-------------------------JSX for Search Card-------------------------
 
     return (
         <>
-            <Card className="searchResult_card" border="success">
-                <Card.Body>
-                    <Card.Img className="searchResult__card__image" src={searchResult.thumbnail} />
-                    <Card.Title className="searchResult_title">
-                        {/* <BookForm key={searchResult.id} searchResult={searchResult} /> */}
+            <div className="searchResult__card__container">
 
-                        <Button variant="link"
-                            onClick={handleShow} className="" id="bootstrap" >
-                            {searchResult.title}</Button>
-                        <div className="searchResult__author">{searchResult.authors}</div>
-                        <div className="searchResult__summary">{searchResult.textSnippet}</div>
-                    </Card.Title>
-                </Card.Body>
+                <Card style={{ width: '18rem' }} className="searchResult_card" border="info">
+                    <Card.Body>
+                        <Card.Img className="searchResult__card__image" src={searchResult.thumbnail} />
+                        <Card.Title className="">
+                            <Button variant="link" onClick={handleShow} className="searchResult_title" id="bootstrap" >
+                                {searchResult.title}</Button>
+                            <h5 className="searchResult__author">{searchResult.authors}</h5>
+                            <div className="searchResult__summary">{searchResult.textSnippet}</div>
+                        </Card.Title>
+                    </Card.Body>
 
-            </Card>
+                </Card>
+            </div>
             <br />
+
+            {/* ------------------JSX for Modal---------------------------- */}
 
             <Modal
                 show={show}
