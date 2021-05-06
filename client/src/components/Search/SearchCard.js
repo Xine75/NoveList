@@ -26,6 +26,10 @@ export const SearchCard = ({ searchResult }) => {
     const [book, setBook] = useState({
         id: 0,
         googleApiId: searchResult.id,
+        title: searchResult.title,
+        author: searchResult.authors,
+        thumbnail: searchResult.thumbnail,
+        textSnippet: searchResult.textSnippet,
         shelfId: 0
     })
 
