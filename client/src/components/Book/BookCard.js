@@ -11,31 +11,39 @@ import Button from "react-bootstrap/Button"
 export const BookCard = ({ book }) => {
 
     const history = useHistory();
-    const { books, setBooks } = useContext(BookContext);
+    const date = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' })
+
+
 
     //------------------JSX for Book Card -------------------------
+    return (
+        <>
+            <h3>My Library</h3>
 
-    <Table striped bordered hover size="sm">
-        <thead>
-            <tr>
-                <th>Date Added</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Shelf</th>
-                <th>Rating</th>
-                <th>Date Finished</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{book.StartDate}</td>
-                <td>{book.Title}</td>
-                <td>{book.Authors}</td>
-                <td>{book.ShelfId}</td>
-                <td>{book.Rating}</td>
-                <td>{book.FinishDate}</td>
-            </tr>
-        </tbody>
-    </Table>
+            <Table striped bordered hover size="sm">
+                <thead>
+                    <tr>
 
+                        <th>Date Started</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Shelf</th>
+                        <th>Rating</th>
+                        <th>Date Finished</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>{date}</td>
+                        <td>{book.title}</td>
+                        <td>{book.author}</td>
+                        <td>{book.shelfId}</td>
+                        <td>{book.rating}</td>
+                        <td>{book.finishDate}</td>
+                    </tr>
+                </tbody>
+            </Table>
+        </>
+    )
 }
