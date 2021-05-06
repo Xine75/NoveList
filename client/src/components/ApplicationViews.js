@@ -40,11 +40,6 @@ export default function ApplicationViews() {
                 {isLoggedIn ? <BookDetail /> : <Redirect to="/login" />}
             </Route>
 
-            <Route path="/notes/:id(\d+)" exact>
-                <NoteProvider>
-                    {isLoggedIn ? <NoteList /> : <Redirect to="/login" />}
-                </NoteProvider>
-            </Route>
 
 
         </Switch >

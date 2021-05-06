@@ -26,6 +26,19 @@ export function BookProvider(props) {
             )
             .then(setBooks);
     };
+    const getBookById = (bookId) => {
+        //the proxy that was set up in package.json will be handling the first part of the URL
+        return getToken()
+            .then((token) =>
+                fetch(`${apiUrl}/${bookId}`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }).then((res) => res.json())
+            )
+            .then(setBook);
+    };
 
 
     const getBooksByCurrentUser = (userId) => {
@@ -68,7 +81,7 @@ export function BookProvider(props) {
     };
     return (
         <BookContext.Provider
-            value={{ book, books, setBooks, setBook, getAllBooks, getBooksByCurrentUser, addBook, deleteBook }}
+            value={{ book, books, setBooks, setBook, getAllBooks, getBookById, getBooksByCurrentUser, addBook, deleteBook }}
         >
             {props.children}
         </BookContext.Provider>
