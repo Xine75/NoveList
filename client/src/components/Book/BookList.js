@@ -7,27 +7,27 @@ import { BookCard } from "./BookCard";
 
 export const BookList = () => {
 
-    const { book, getBooksByCurrentUser } = useContext(BookContext);
+    const { book, books, getAllBooks } = useContext(BookContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
 
     //------- get Books---------------------
 
     useEffect(() => {
-        getBooksByCurrentUser(currentUser)
+        getAllBooks()
     }, [])
+
 
     //--------------FILTER books for those belonging to current user, then feed each object in the array into BookCard
     return (
         <>
             <div className="books">
                 {
-                    book.filter(b => b.userId === currentUser).map(book => {
+                    books.filter(b => b.userId === currentUser).map(book => {
                         return <BookCard key={book.id} book={book} />
                     })
                 }
             </div>
         </>
     )
-
-
 }
+export default BookList;

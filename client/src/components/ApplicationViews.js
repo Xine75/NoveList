@@ -32,7 +32,7 @@ export default function ApplicationViews() {
                 {isLoggedIn ? <GoogleSearch /> : <Redirect to="/login" />}
             </Route>
 
-            <Route path="/book/:id(\d+)" exact>
+            <Route path="/book" exact>
                 {isLoggedIn ? <BookList /> : <Redirect to="/login" />}
             </Route>
 
