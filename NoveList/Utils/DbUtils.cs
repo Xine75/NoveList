@@ -17,14 +17,11 @@ namespace NoveList.Utils
         /// <returns>The value of the given column or null.</returns>
         public static string GetString(SqlDataReader reader, string column)
         {
-            var ordinal = reader.GetOrdinal(column);
-            if (reader.IsDBNull(ordinal))
-            {
-                return null;
-            }
 
-            return reader.GetString(ordinal);
+            return reader.GetString(reader.GetOrdinal(column));
         }
+
+ 
 
         /// <summary>
         ///  Get an int from a data reader object.
@@ -65,6 +62,21 @@ namespace NoveList.Utils
             }
 
             return reader.GetInt32(ordinal);
+        }
+        /// <summary>
+        ///  Get a String? (nullable String) from a data reader object and gracefully handle NULL values
+        /// </summary>
+        /// <param name="reader">A SqlDataReader that has not exhausted it's result set.</param>
+        /// <param name="column">The name of the column from the result set refereed to by the reader.</param>
+        /// <returns>The value of the given column or null.</returns>
+        public static string? GetNullableString(SqlDataReader reader, string column)
+        {
+            var ordinal = reader.GetOrdinal(column);
+            if (reader.IsDBNull(ordinal))
+            {
+                return null;
+            }
+            return reader.GetString(ordinal);
         }
 
         /// <summary>

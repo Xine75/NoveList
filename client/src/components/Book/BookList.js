@@ -7,7 +7,7 @@ import { BookCard } from "./BookCard";
 
 export const BookList = () => {
 
-    const { book, books, getAllBooks } = useContext(BookContext);
+    const { books, getAllBooks } = useContext(BookContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
 
     //------- get Books---------------------
@@ -16,6 +16,7 @@ export const BookList = () => {
         getAllBooks()
     }, [])
 
+    console.log(books);
 
     //--------------FILTER books for those belonging to current user, then feed each object in the array into BookCard
     return (

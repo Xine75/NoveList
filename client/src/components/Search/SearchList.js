@@ -7,7 +7,7 @@ import { SearchCard } from "./SearchCard";
 //the DOM
 
 export const SearchList = () => {
-    const { searchResult, setSearchResult } = useContext(SearchContext);
+    const { searchResult } = useContext(SearchContext);
 
     //----feed each object in the searchResult array into the SearchCard------
 
