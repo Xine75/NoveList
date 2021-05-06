@@ -16,7 +16,6 @@ export const BookList = () => {
         getAllBooks()
     }, [])
 
-    console.log(books);
 
     //--------------FILTER books for those belonging to current user, then feed each object in the array into BookCard
     return (
