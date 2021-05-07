@@ -39,14 +39,24 @@ namespace NoveList.Controllers
             return Ok(_bookRepository.GetAllBooks());
         }
 
-
-        //get all books by current user
+        //get book by Id
         [HttpGet("{id}")]
-        public IActionResult GetBooksByCurrentUser(int id)
+        public IActionResult Get(int id)
         {
-            return Ok(_bookRepository.GetBooksByCurrentUser(id));
+            var book = _bookRepository.GetBookById(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return Ok(book);
         }
 
+        //get all books by current user
+        //[HttpGet("{id}")]
+        //public IActionResult GetBooksByCurrentUser(int id)
+        //{
+        //    return Ok(_bookRepository.GetBooksByCurrentUser(id));
+        //}
 
         //Add book from Google Search
         [HttpPost]
@@ -59,6 +69,19 @@ namespace NoveList.Controllers
             book.StartDate = DateTime.Now;
 
             _bookRepository.Add(book);
+            return NoContent();
+        }
+
+        //edit a book
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Book book)
+        {
+            if (id != book.Id)
+            {
+                return BadRequest();
+            }
+
+            _bookRepository.Update(book);
             return NoContent();
         }
 

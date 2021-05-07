@@ -70,6 +70,53 @@ namespace NoveList.Repositories
                 }
             }
         }
+
+        //get book by Id
+        public Book GetBookById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.StartDate, b.FinishDate, b.UserId,
+                                        s.Name as Shelf
+                                    FROM Book b
+                                    LEFT JOIN Shelf s on s.Id = b.ShelfId
+                                    WHERE b.Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    var reader = cmd.ExecuteReader();
+                    Book book = null;
+                    while (reader.Read())
+                    {
+                        book = new Book()
+                        {
+                            Id = DbUtils.GetInt(reader, "BookId"),
+                            GoogleApiId = DbUtils.GetString(reader, "GoogleApiId"),
+                            Title = DbUtils.GetString(reader, "Title"),
+                            Author = DbUtils.GetString(reader, "Author"),
+                            Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
+                            TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
+                            StartDate = DbUtils.GetDateTime(reader, "StartDate"),
+                            FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
+                            UserId = DbUtils.GetInt(reader, "UserId"),
+                            shelf = new Shelf()
+                            {
+                                Name = DbUtils.GetNullableString(reader, "Shelf")
+                            }
+
+                        };
+                    }
+                    reader.Close();
+                    return book;
+                }
+
+            }
+        }
+
+
         //get all books of current user
         public List<Book> GetBooksByCurrentUser(int id)
         {
@@ -130,6 +177,31 @@ namespace NoveList.Repositories
                     cmd.Parameters.AddWithValue("@UserId", book.UserId);
 
                     book.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        //edit a book
+        public void Update (Book book)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        UPDATE Book
+                                        SET Rating = @Rating,
+                                            FinishDate = @FinishDate,
+                                            ShelfId = @ShelfId
+                                        WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@Rating", book.Rating);
+                    DbUtils.AddParameter(cmd, "@FinishDate", book.FinishDate);
+                    DbUtils.AddParameter(cmd, "@ShelfId", book.ShelfId);
+
+                    cmd.ExecuteNonQuery();
+
                 }
             }
         }

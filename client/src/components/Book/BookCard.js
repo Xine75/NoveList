@@ -10,10 +10,17 @@ import Button from "react-bootstrap/Button"
 
 export const BookCard = ({ book }) => {
 
+    const { deleteBook } = useContext(BookContext)
+
+
     const history = useHistory();
-    const date = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' })
+    const date = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
 
+    //-----------------HANDLE DELETE --------------------
 
+    const handleDelete = () => {
+        deleteBook(book.id)
+    }
 
 
     //------------------JSX for Book Card -------------------------
@@ -31,17 +38,19 @@ export const BookCard = ({ book }) => {
                         <th>Shelf</th>
                         <th>Rating</th>
                         <th>Date Finished</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
 
                         <td>{date}</td>
-                        <td>{book.title}</td>
+                        <td><Link to={`/book/${book.id}`}>{book.title}</Link></td>
                         <td>{book.author}</td>
                         <td>{book.shelf.name}</td>
                         <td>{book.rating}</td>
                         <td>{book.finishDate}</td>
+                        <td><Button onClick={handleDelete}>Delete</Button></td>
                     </tr>
                 </tbody>
             </Table>
