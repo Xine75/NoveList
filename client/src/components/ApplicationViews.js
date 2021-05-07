@@ -6,10 +6,9 @@ import { SearchProvider } from "./Providers/SearchProvider";
 import Login from "./Login/Login";
 import Register from "./Login/Register";
 import Hello from "./Hello";
-import NoteList from "./Note/NoteList"
 import GoogleSearch from "./Search/BookSearch"
 import { BookList } from "./Book/BookList";
-import { BookDetail } from "./Book/BookDetail"
+import { BookDetail } from "./Book/BookDetail";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -36,6 +35,7 @@ export default function ApplicationViews() {
             <Route path="/book" exact>
                 {isLoggedIn ? <BookList /> : <Redirect to="/login" />}
             </Route>
+
             <Route path="/book/:id(\d+)" exact>
                 {isLoggedIn ? <BookDetail /> : <Redirect to="/login" />}
             </Route>

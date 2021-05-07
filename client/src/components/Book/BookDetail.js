@@ -8,11 +8,9 @@ import Row from "react-bootstrap/Row"
 
 export const BookDetail = () => {
     const { getBookById } = useContext(BookContext);
-    const [book, setBook] = useState({});
+    const [book, setBook] = useState();
     const bookId = useParams().id;
     const history = useHistory();
-    console.log("bookId", bookId)
-
     //const startDate = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
 
 
@@ -26,12 +24,11 @@ export const BookDetail = () => {
 
     //-------------Find correct book using book Id in params -------------
     useEffect(() => {
-        getBookById({ bookId })
-            .then((response) => {
-                setBook(response)
-            })
-    }, [])
+        getBookById(bookId).then(setBook)
+    }, []);
+
     console.log("book", book);
+
 
     //-----------------JSX for Book Details-------------------------
 

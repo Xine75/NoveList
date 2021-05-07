@@ -39,7 +39,6 @@ export function BookProvider(props) {
             )
             .then(setBook);
     };
-    debugger;
 
 
     const getBooksByCurrentUser = (userId) => {
