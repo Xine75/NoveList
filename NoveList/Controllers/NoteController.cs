@@ -27,7 +27,8 @@ namespace NoveList.Controllers
         public IActionResult Create(Note note)
         {
             _noteRepository.Add(note);
-            return CreatedAtAction("Get", new { id = note.Id }, note);
+            return NoContent();
+            //return CreatedAtAction("Get", new { id = note.Id }, note);
         }
 
         //Edit a note

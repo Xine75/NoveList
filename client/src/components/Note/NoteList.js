@@ -1,13 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { NoteContext } from "../Providers/NoteProvider";
+import { BookContext } from "../Providers/BookProvider"
 import { Note } from "./Note";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 export const NoteList = () => {
     const { notes, getNotesByBookId } = useContext(NoteContext);
     const history = useHistory();
     const bookId = useParams().id;
+
 
     //--------------Setting up modal------------------
     const [show, setShow] = useState(false);
@@ -25,16 +28,19 @@ export const NoteList = () => {
 
     //-------------Saving User Input-------------
     const handleControlledInputChange = (e) => {
-        const newNote = { ...book }
-        newBook[e.target.id] = e.target.value
+        const newNote = { ...note }
+        newNote[e.target.id] = e.target.value
         setNote(newNote)
     };
 
     //--------------Saving New Note upon Click event-----------------
     const handleClickSaveNote = (e) => {
         e.preventDefault()
-        const newNote = { ...note }
-        addNote(newNote)
+        addNote({
+            bookId: parseInt(bookId),
+            content: note.content,
+            pageNum: note.pageNum
+        })
             .then(() => history.push(`/book/${bookId}`))
 
     }
@@ -46,7 +52,7 @@ export const NoteList = () => {
             })
     }, []);
 
-    //------------------JSX for NoteList ----------------------------
+    //------------------JSX for NoteList and Add Note Modal----------------------------
     return (
         <>
             <h4 className="notes__header">Notes</h4>
@@ -81,13 +87,13 @@ export const NoteList = () => {
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="name">Page?</label>
-                            <input type="text" id="pageNum" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Plant name" value={plant.name} />
+                            <input type="text" id="pageNum" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Page" />
                         </div>
                     </fieldset>
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="name">Thoughts?</label>
-                            <input type="textarea" rows="8" id="type" onChange={handleControlledInputChange} required className="form-control" placeholder="Scientific or common" value={plant.type} />
+                            <input type="textarea" rows="10" id="content" onChange={handleControlledInputChange} required className="form-control" placeholder="Your thoughts?" />
                         </div>
                     </fieldset>
 
