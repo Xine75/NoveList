@@ -7,7 +7,7 @@ namespace NoveList.Models
 {
     public class Shelf
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
     }
 }

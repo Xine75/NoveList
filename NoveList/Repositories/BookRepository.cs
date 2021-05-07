@@ -37,8 +37,8 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.Rating, b.TextSnippet, b.StartDate, b.FinishDate, b.UserId,
-                                        s.Name as Shelf
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.Rating, b.TextSnippet, b.StartDate, b.FinishDate, b.ShelfId as BookShelfId, b.UserId,
+                                        s.Name as Shelf, s.Id as ShelfId
                                     FROM Book b
                                     LEFT JOIN Shelf s on s.Id = b.ShelfId
                                     ORDER BY b.StartDate ASC";
@@ -59,8 +59,10 @@ namespace NoveList.Repositories
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                             FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
                             UserId = DbUtils.GetInt(reader, "UserId"),
+                            ShelfId = DbUtils.GetNullableInt(reader, "BookShelfId"),
                             shelf = new Shelf()
                             {
+                                Id = DbUtils.GetNullableInt(reader, "ShelfId"),
                                 Name = DbUtils.GetNullableString(reader, "Shelf") 
                             }
                         }
@@ -80,8 +82,8 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.Rating, b.StartDate, b.FinishDate, b.UserId,
-                                        s.Name as Shelf
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.Rating, b.StartDate, b.FinishDate, b.ShelfId as BookShelfId, b.UserId,
+                                        s.Name as Shelf, s.Id as ShelfId
                                     FROM Book b
                                     LEFT JOIN Shelf s on s.Id = b.ShelfId
                                     WHERE b.Id = @id";
@@ -104,10 +106,10 @@ namespace NoveList.Repositories
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                             FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
                             UserId = DbUtils.GetInt(reader, "UserId"),
-                            //set shelfId
+                            ShelfId = DbUtils.GetNullableInt(reader, "BookShelfId"),
                             shelf = new Shelf()
                             {
-                                //set shelfId 
+                                Id = DbUtils.GetNullableInt(reader, "ShelfId"),
                                 Name = DbUtils.GetNullableString(reader, "Shelf")
                             }
 
