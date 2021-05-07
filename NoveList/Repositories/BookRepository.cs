@@ -22,7 +22,7 @@ namespace NoveList.Repositories
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var searchTask = client.GetStreamAsync($"https://www.googleapis.com/books/v1/volumes?q={searchTerms}&printType=books&key=AIzaSyAWa0D5qNDRqhiLmfU5nE3w7X5ivwP9MZ8");
+            var searchTask = client.GetStreamAsync($"https://www.googleapis.com/books/v1/volumes?q={searchTerms}&key=AIzaSyAWa0D5qNDRqhiLmfU5nE3w7X5ivwP9MZ8");
             var response = await JsonSerializer.DeserializeAsync<SearchResponse>(await searchTask);
 
             var desiredParts = response.items.Select(item => new LimitedSearchResult(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.imageLinks.thumbnail, item.searchInfo.textSnippet)).ToList();
@@ -37,7 +37,7 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.StartDate, b.FinishDate, b.UserId,
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.Rating, b.TextSnippet, b.StartDate, b.FinishDate, b.UserId,
                                         s.Name as Shelf
                                     FROM Book b
                                     LEFT JOIN Shelf s on s.Id = b.ShelfId
@@ -54,6 +54,7 @@ namespace NoveList.Repositories
                             Title = DbUtils.GetString(reader, "Title"),
                             Author = DbUtils.GetString(reader, "Author"),
                             Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
+                            Rating = DbUtils.GetNullableInt(reader, "Rating"),
                             TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                             FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
@@ -79,7 +80,7 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.StartDate, b.FinishDate, b.UserId,
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.Rating, b.StartDate, b.FinishDate, b.UserId,
                                         s.Name as Shelf
                                     FROM Book b
                                     LEFT JOIN Shelf s on s.Id = b.ShelfId
@@ -99,11 +100,14 @@ namespace NoveList.Repositories
                             Author = DbUtils.GetString(reader, "Author"),
                             Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
                             TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
+                            Rating = DbUtils.GetNullableInt(reader, "Rating"),
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                             FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
                             UserId = DbUtils.GetInt(reader, "UserId"),
+                            //set shelfId
                             shelf = new Shelf()
                             {
+                                //set shelfId 
                                 Name = DbUtils.GetNullableString(reader, "Shelf")
                             }
 
@@ -195,6 +199,8 @@ namespace NoveList.Repositories
                                             FinishDate = @FinishDate,
                                             ShelfId = @ShelfId
                                         WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", book.Id);
 
                     DbUtils.AddParameter(cmd, "@Rating", book.Rating);
                     DbUtils.AddParameter(cmd, "@FinishDate", book.FinishDate);

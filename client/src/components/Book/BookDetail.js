@@ -9,16 +9,26 @@ import Modal from "react-bootstrap/Modal"
 
 export const BookDetail = () => {
     const { getBookById, updateBook } = useContext(BookContext);
-    const [book, setBook] = useState({});
     const bookId = useParams().id;
     const history = useHistory();
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
+    const [book, setBook] = useState({
+        id: bookId,
+        shelfId: 0,
+        rating: 0,
+        finishDate: "",
+        shelf: { name: "" }
+
+    });
     const startDate = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
 
-    //--------------Setting up modal------------------
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+    //-------------Find correct book using book Id in params -------------
+    useEffect(() => {
+        getBookById(bookId).then(setBook)
+    }, []);
+
+
 
     //-------------Saving User Input-------------
     const handleControlledInputChange = (e) => {
@@ -29,32 +39,31 @@ export const BookDetail = () => {
 
 
     //----handle Finish Book ---------------
-    const handleFinish = () => {
+    const handleFinish = (e) => {
+        e.preventDefault()
         updateBook({
-            id: book.id,
-            shelfId: book.shelf.id,
-            shelf: book.shelf.name,
+            id: bookId,
+            shelfId: book.shelfId,
             rating: book.rating,
             finishDate: book.finishDate
         })
             .then(() => {
-                history.push("/book/${bookId}")
+                history.push("/book")
             })
     }
 
-    //-------------Find correct book using book Id in params -------------
-    useEffect(() => {
-        getBookById(bookId).then(setBook)
-    }, []);
 
-    console.log("book", book);
+    //--------------Setting up modal------------------
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
 
 
     //-----------------JSX for Book Details and Book Finished Modal-------------------------
 
     return (
         <>
-
             <section className="book" style={{ width: '20rem' }}>
                 <Row>
                     <Col>
@@ -72,7 +81,7 @@ export const BookDetail = () => {
                     <div className="book__detail__author"><i>{book.author}</i></div>
                     <div className="book__startDate">Started: {startDate}</div>
                     <div className="book__textSnippet">{book.textSnippet}</div>
-                    {/* <div className="book__detail__shelfName">{book.shelf.name}</div> */}
+                    <div className="book__detail__shelfName">{book.shelf.name}</div>
                 </section>
                 <br />
 
@@ -99,24 +108,28 @@ export const BookDetail = () => {
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="name">Date Finished:</label>
-                            <input type="date" id="dateFinished" onChange={handleControlledInputChange} required className="form-control" value={book.finishDate} />
+                            <input type="date" id="finishDate" onChange={handleControlledInputChange} required className="form-control" value={book.finishDate} />
                         </div>
                     </fieldset>
 
-                    {/* <fieldset>
-                        <select class="dropdown" id="shelfSelect">
-                            <option value="0">Select a Shelf</option>
-                                ${
-                                book.shelfId.map((book) => `<option value=${book.shelf.id}>${book.shelf.name}</option>`
-                                )
-                            }
-                        </select>
-                    </fieldset> */}
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="rating">Rating</label>
+                            <select name="rating" id="rating" className="form-control" onChange={handleControlledInputChange}>
+                                <option value="0">What did you think?</option>
+                                <option value="1">One Star</option>
+                                <option value="2">Two Stars</option>
+                                <option value="3">Three Stars</option>
+                                <option value="4">Four Stars</option>
+                                <option value="5">Five Stars</option>
+                            </select>
+                        </div>
+                    </fieldset>
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="shelfId">Add To Shelf:</label>
-                            <select name="shelfId" id="shelfId" className="form-control" onChange={handleControlledInputChange}>
+                            <label htmlFor="shelfId">Reshelve?</label>
+                            <select name="shelfId" id="shelf.id" className="form-control" onChange={handleControlledInputChange}>
                                 <option value="0">Choose a shelf</option>
                                 <option value="1">Currently Reading</option>
                                 <option value="2">Book Club</option>

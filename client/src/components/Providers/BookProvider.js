@@ -37,9 +37,9 @@ export function BookProvider(props) {
                     },
                 }).then((res) => res.json())
             )
-            .then(setBook);
+        //.then(setBook);
     };
-    debugger;
+
 
     const getBooksByCurrentUser = (userId) => {
         return getToken().then((token) =>
@@ -51,7 +51,6 @@ export function BookProvider(props) {
             }).then((res) => res.json())
         )
             .then(setBooks)
-
     };
 
     const addBook = bookObj => {
@@ -67,9 +66,9 @@ export function BookProvider(props) {
         //.then(resp => resp.json())
     };
 
-    const updateBook = bookId => {
+    const updateBook = (book) => {
         return getToken().then((token) =>
-            fetch(`${apiUrl}/${bookId}`, {
+            fetch(`${apiUrl}/${book.id}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -94,7 +93,13 @@ export function BookProvider(props) {
     };
     return (
         <BookContext.Provider
-            value={{ book, books, setBooks, setBook, getAllBooks, getBookById, getBooksByCurrentUser, addBook, updateBook, deleteBook }}
+            value={{
+                book, books,
+                setBooks, setBook,
+                getAllBooks, getBookById,
+                getBooksByCurrentUser, addBook,
+                updateBook, deleteBook
+            }}
         >
             {props.children}
         </BookContext.Provider>
