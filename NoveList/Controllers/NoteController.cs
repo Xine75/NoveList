@@ -16,7 +16,7 @@ namespace NoveList.Controllers
         }
 
         //Get notes by Book Id
-        [HttpGet("book/{bookId}/notes")]
+        [HttpGet("{bookId}")]
         public IActionResult GetNotesByBookId(int bookId)
         {
             return Ok(_noteRepository.GetNotesByBookId(bookId));
@@ -24,7 +24,7 @@ namespace NoveList.Controllers
 
         //Add Note
         [HttpPost]
-        public IActionResult Post(Note note)
+        public IActionResult Create(Note note)
         {
             _noteRepository.Add(note);
             return CreatedAtAction("Get", new { id = note.Id }, note);

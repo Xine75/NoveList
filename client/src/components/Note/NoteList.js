@@ -7,10 +7,10 @@ import Button from "react-bootstrap/Button";
 export const NoteList = () => {
     const { notes, getNotesByBookId } = useContext(NoteContext);
     const history = useHistory();
-    const { bookId } = useParams();
+    const bookId = useParams().id;
 
     useEffect(() => {
-        getNotesByBookId();
+        getNotesByBookId(bookId);
     }, []);
 
     return (
@@ -26,6 +26,12 @@ export const NoteList = () => {
                     })
                 }
             </div>
+            <div>
+                <Button className="notes__btn" size="sm" variant="info" onClick={() => { history.push("api/note") }}>
+                    Add a Note
+                </Button>
+            </div>
+
         </>
     );
 };

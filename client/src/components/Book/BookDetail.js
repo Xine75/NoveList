@@ -81,12 +81,14 @@ export const BookDetail = () => {
                     <div className="book__detail__author"><i>{book.author}</i></div>
                     <div className="book__startDate">Started: {startDate}</div>
                     <div className="book__textSnippet">{book.textSnippet}</div>
-                    <div className="book__detail__shelfName">{book.shelf.name}</div>
+                    <div className="book__detail__shelfName">Shelved as: {book.shelf.name}</div>
                 </section>
                 <br />
 
+
+
             </section>
-            {/* <NoteList /> */}
+            <NoteList />
             <Button className="book__detail__done__btn" variant="link" size="sm"
                 onClick={() => { history.push("/book") }}>Done</Button>
 
@@ -129,7 +131,7 @@ export const BookDetail = () => {
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="shelfId">Reshelve?</label>
-                            <select name="shelfId" id="shelf.id" className="form-control" onChange={handleControlledInputChange}>
+                            <select name="shelfId" id="shelfId" className="form-control" onChange={handleControlledInputChange}>
                                 <option value="0">Choose a shelf</option>
                                 <option value="1">Currently Reading</option>
                                 <option value="2">Book Club</option>

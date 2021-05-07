@@ -57,9 +57,9 @@ namespace NoveList.Repositories
                                         OUTPUT INSERTED.ID
                                         VALUES (@PageNum, @Content, @BookId)";
 
-                    DbUtils.AddParameter(cmd, "@PageNum", note.PageNum);
-                    DbUtils.AddParameter(cmd, "@Content", note.Content);
-                    DbUtils.AddParameter(cmd, "@BookId", note.BookId);
+                    cmd.Parameters.AddWithValue("@PageNum", note.PageNum);
+                    cmd.Parameters.AddWithValue("@Content", note.Content);
+                    cmd.Parameters.AddWithValue("@BookId", note.BookId);
 
                     note.Id = (int)cmd.ExecuteScalar();
                     

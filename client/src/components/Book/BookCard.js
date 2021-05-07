@@ -14,7 +14,9 @@ export const BookCard = ({ book }) => {
 
 
     const history = useHistory();
-    const date = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
+    const startDate = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
+    const finishDate = new Date(book.finishDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
+
 
     //-----------------HANDLE DELETE --------------------
 
@@ -44,12 +46,12 @@ export const BookCard = ({ book }) => {
                 <tbody>
                     <tr>
 
-                        <td>{date}</td>
+                        <td>{startDate}</td>
                         <td><Link to={`/book/${book.id}`}>{book.title}</Link></td>
                         <td>{book.author}</td>
                         <td>{book.shelf.name}</td>
                         <td>{book.rating}</td>
-                        <td>{book.finishDate}</td>
+                        <td>{finishDate}</td>
                         <td><Button onClick={handleDelete}>Delete</Button></td>
                     </tr>
                 </tbody>
