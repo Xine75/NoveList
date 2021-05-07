@@ -181,6 +181,31 @@ namespace NoveList.Repositories
             }
         }
 
+        //edit a book
+        public void Update (Book book)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        UPDATE Book
+                                        SET Rating = @Rating,
+                                            FinishDate = @FinishDate,
+                                            ShelfId = @ShelfId
+                                        WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@Rating", book.Rating);
+                    DbUtils.AddParameter(cmd, "@FinishDate", book.FinishDate);
+                    DbUtils.AddParameter(cmd, "@ShelfId", book.ShelfId);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
         public void Delete(int id)
         {
             using (var conn = Connection)

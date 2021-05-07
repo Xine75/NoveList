@@ -72,6 +72,19 @@ namespace NoveList.Controllers
             return NoContent();
         }
 
+        //edit a book
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Book book)
+        {
+            if (id != book.Id)
+            {
+                return BadRequest();
+            }
+
+            _bookRepository.Update(book);
+            return NoContent();
+        }
+
 
         //Delete Book
         [HttpDelete("{id}")]

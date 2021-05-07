@@ -12,5 +12,6 @@ namespace NoveList.Repositories
         Book GetBookById(int id);
         List<Book> GetBooksByCurrentUser(int id);
         Task<List<LimitedSearchResult>> Search(string q);
+        void Update(Book book);
     }
 }

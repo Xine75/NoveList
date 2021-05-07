@@ -11,7 +11,7 @@ export function BookProvider(props) {
     //const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
     const { searchTerms } = useContext(SearchContext);
     const [books, setBooks] = useState([]);
-    const [book, setBook] = useState()
+    const [book, setBook] = useState({})
 
     const getAllBooks = () => {
         //the proxy that was set up in package.json will be handling the first part of the URL
@@ -39,7 +39,7 @@ export function BookProvider(props) {
             )
             .then(setBook);
     };
-
+    debugger;
 
     const getBooksByCurrentUser = (userId) => {
         return getToken().then((token) =>
@@ -67,6 +67,19 @@ export function BookProvider(props) {
         //.then(resp => resp.json())
     };
 
+    const updateBook = bookId => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/${bookId}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(book)
+            }))
+        //.then(getAllBooks)
+    }
+
     const deleteBook = (bookId) => {
         return getToken()
             .then((token) =>
@@ -81,7 +94,7 @@ export function BookProvider(props) {
     };
     return (
         <BookContext.Provider
-            value={{ book, books, setBooks, setBook, getAllBooks, getBookById, getBooksByCurrentUser, addBook, deleteBook }}
+            value={{ book, books, setBooks, setBook, getAllBooks, getBookById, getBooksByCurrentUser, addBook, updateBook, deleteBook }}
         >
             {props.children}
         </BookContext.Provider>
