@@ -86,11 +86,11 @@ export const BookDetail = () => {
                 <br />
 
 
+                <Button className="book__detail__done__btn" variant="link" size="sm"
+                    onClick={() => { history.push("/book") }}>Done</Button>
 
             </section>
             <NoteList />
-            <Button className="book__detail__done__btn" variant="link" size="sm"
-                onClick={() => { history.push("/book") }}>Done</Button>
 
 
 

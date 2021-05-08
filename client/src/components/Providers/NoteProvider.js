@@ -29,7 +29,8 @@ export function NoteProvider(props) {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(noteObj)
-            }).then(setNotes)
+            })
+            //.then(setNotes)
         );
 
     };

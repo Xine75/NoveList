@@ -7,17 +7,19 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export const NoteList = () => {
-    const { notes, getNotesByBookId } = useContext(NoteContext);
+    const { notes, setNotes, getNotesByBookId } = useContext(NoteContext);
     const history = useHistory();
     const bookId = useParams().id;
-
 
     //--------------Setting up modal------------------
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
+
     //-------------------Setting State----------------------
+
     const { addNote } = useContext(NoteContext);
     const [note, setNote] = useState({
         id: 0,
@@ -36,12 +38,16 @@ export const NoteList = () => {
     //--------------Saving New Note upon Click event-----------------
     const handleClickSaveNote = (e) => {
         e.preventDefault()
+
         addNote({
             bookId: parseInt(bookId),
             content: note.content,
             pageNum: note.pageNum
         })
-            .then(() => history.push(`/book/${bookId}`))
+            .then(() => {
+                history.push(`/book/${bookId}`)
+            })
+            .then(() => { handleClose() })
 
     }
     //------------------Get Notes by Id------------------------
@@ -49,6 +55,7 @@ export const NoteList = () => {
         getNotesByBookId(bookId)
             .then(note => {
                 setNote(note)
+
             })
     }, []);
 
