@@ -42,7 +42,7 @@ export function NoteProvider(props) {
                         Authorization: `Bearer ${token}`,
                     }
                 })
-                    .then(getNotesByBookId)
+                //.then(getNotesByBookId)
             )
     };
 
