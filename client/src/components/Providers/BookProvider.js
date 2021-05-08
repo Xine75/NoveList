@@ -76,7 +76,6 @@ export function BookProvider(props) {
                 },
                 body: JSON.stringify(book)
             }))
-        //.then(getAllBooks)
     }
 
     const deleteBook = (bookId) => {
