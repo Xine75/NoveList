@@ -20,7 +20,7 @@ export const NoteList = () => {
 
     //-------------------Setting State----------------------
 
-    const { addNote, getNoteById } = useContext(NoteContext);
+    const { addNote, getNoteById, updateNote } = useContext(NoteContext);
     const [note, setNote] = useState({
         id: 0,
         pageNum: 0,
@@ -121,7 +121,7 @@ export const NoteList = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <Button variant="primary" onClick={handleClickSaveNote}>{note.id ? <>Save Changes</> : <>Add</>}</Button>
+                    <Button variant="primary" onClick={handleClickSaveNote}>Save</Button>
                 </Modal.Footer>
             </Modal>
 
