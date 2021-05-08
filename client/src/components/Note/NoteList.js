@@ -20,7 +20,7 @@ export const NoteList = () => {
 
     //-------------------Setting State----------------------
 
-    const { addNote } = useContext(NoteContext);
+    const { addNote, getNoteById, updateNote } = useContext(NoteContext);
     const [note, setNote] = useState({
         id: 0,
         pageNum: 0,
@@ -35,27 +35,42 @@ export const NoteList = () => {
         setNote(newNote)
     };
 
-    //--------------Saving New Note upon Click event-----------------
+    //--------------Saving New or EDITED Note upon Click event-----------------
     const handleClickSaveNote = (e) => {
         e.preventDefault()
-
-        addNote({
-            bookId: parseInt(bookId),
-            content: note.content,
-            pageNum: note.pageNum
-        })
-            .then(getNotesByBookId(bookId))
-            .then(() => { handleClose() })
-
+        if (note.id) {
+            updateNote({
+                id: note.id,
+                pageNum: note.pageNum,
+                content: note.content
+            })
+                .then(getNotesByBookId(bookId))
+                .then(() => { handleClose() })
+        } else {
+            addNote({
+                bookId: parseInt(bookId),
+                content: note.content,
+                pageNum: note.pageNum
+            })
+                .then(getNotesByBookId(bookId))
+                .then(() => { handleClose() })
+        }
 
     }
     //------------------Get Notes by Id------------------------
     useEffect(() => {
-        getNotesByBookId(bookId)
-            .then(note => {
-                setNote(note)
+        if (note.id) {
+            getNoteById(note.id)
+                .then(note => {
+                    setNote(note)
+                })
+        } else {
+            getNotesByBookId(bookId)
+                .then(note => {
+                    setNote(note)
 
-            })
+                })
+        }
     }, []);
 
     //------------------JSX for NoteList and Add Note Modal----------------------------
@@ -106,7 +121,7 @@ export const NoteList = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <Button variant="primary" onClick={handleClickSaveNote}>Add</Button>
+                    <Button variant="primary" onClick={handleClickSaveNote}>Save</Button>
                 </Modal.Footer>
             </Modal>
 

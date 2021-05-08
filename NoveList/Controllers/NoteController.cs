@@ -22,6 +22,13 @@ namespace NoveList.Controllers
             return Ok(_noteRepository.GetNotesByBookId(bookId));
         }
 
+        //get note by id (for edit)
+        [HttpGet("detail/{noteId}")]
+        public IActionResult GetNoteById (int noteId)
+        {
+            return Ok(_noteRepository.GetNoteById(noteId));
+        }
+
         //Add Note
         [HttpPost]
         public IActionResult Create(Note note)

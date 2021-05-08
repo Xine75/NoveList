@@ -15,7 +15,8 @@ export const Note = ({ note }) => {
         deleteNote(note.id)
             .then(getNotesByBookId(bookId))
     }
-    console.log("note.id", note.id)
+
+
 
 
 
@@ -29,6 +30,7 @@ export const Note = ({ note }) => {
                     <div className="note__text">{note.content}</div>
                 </Card.Body>
                 <Button variant="link" size="sm" onClick={handleDelete}>Delete</Button>
+                <Button variant="link" size="sm" onClick={handleDelete}>Edit</Button>
 
             </Card>
         </>
