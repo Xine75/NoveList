@@ -30,15 +30,26 @@ export function NoteProvider(props) {
                 },
                 body: JSON.stringify(noteObj)
             })
-            //.then(setNotes)
+            //.then(getNotesByBookId)
         );
-
+    };
+    const deleteNote = (noteId) => {
+        return getToken()
+            .then((token) =>
+                fetch(`${apiUrl}/${noteId}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
+                    .then(getNotesByBookId)
+            )
     };
 
 
     return (
         <NoteContext.Provider
-            value={{ note, notes, setNote, setNotes, getNotesByBookId, addNote }}
+            value={{ note, notes, setNote, setNotes, getNotesByBookId, addNote, deleteNote }}
         >
             {props.children}
         </NoteContext.Provider>
