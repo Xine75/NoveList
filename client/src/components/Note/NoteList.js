@@ -44,10 +44,9 @@ export const NoteList = () => {
             content: note.content,
             pageNum: note.pageNum
         })
-            .then(() => {
-                history.push(`/book/${bookId}`)
-            })
+            .then(getNotesByBookId(bookId))
             .then(() => { handleClose() })
+
 
     }
     //------------------Get Notes by Id------------------------
@@ -60,7 +59,7 @@ export const NoteList = () => {
     }, []);
 
     //------------------JSX for NoteList and Add Note Modal----------------------------
-    return (
+    return notes ? (
         <>
             <h4 className="notes__header">Notes</h4>
             <div className="notes">
@@ -112,6 +111,6 @@ export const NoteList = () => {
             </Modal>
 
         </>
-    );
+    ) : null;
 };
 export default NoteList;
