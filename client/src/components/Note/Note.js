@@ -4,7 +4,14 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 export const Note = ({ note }) => {
-    const { getNotesByBookId } = useContext(NoteContext);
+    const { deleteNote, getNotesByBookId } = useContext(NoteContext);
+
+    //----------------- DELETE NOTE FUNCTION ------------------------
+
+    const handleDelete = () => {
+        deleteNote(note.id)
+            .then(getNotesByBookId)
+    }
 
 
 
@@ -17,6 +24,8 @@ export const Note = ({ note }) => {
                 <Card.Body className="note__text">
                     <div className="note__text">{note.content}</div>
                 </Card.Body>
+                <Button variant="link" size="sm" onClick={handleDelete}>Delete</Button>
+
             </Card>
         </>
     )

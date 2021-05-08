@@ -72,28 +72,23 @@ export const BookDetail = () => {
 
                     <Col>
                         <Button className="finish__btn" variant="primary" size="sm" onClick={handleShow}>I Finished!</Button>
-
+                        <Button className="book__detail__done__btn" variant="link" size="sm"
+                            onClick={() => { history.push("/book") }}>Done</Button>
                     </Col>
                 </Row>
                 <br />
                 <section className="book__details">
                     <h3 className="book__detail__title"><b>{book.title}</b></h3>
                     <div className="book__detail__author"><i>{book.author}</i></div>
-                    <div className="book__startDate">Started: {startDate}</div>
+                    <div className="book__startDate"><b>Started:</b> {startDate}</div>
                     <div className="book__textSnippet">{book.textSnippet}</div>
-                    <div className="book__detail__shelfName">Shelved as: {book.shelf.name}</div>
+                    <div className="book__detail__shelfName"><b>Shelved as:</b> {book.shelf.name}</div>
                 </section>
                 <br />
-
-
-                <Button className="book__detail__done__btn" variant="link" size="sm"
-                    onClick={() => { history.push("/book") }}>Done</Button>
-
             </section>
+
+
             <NoteList />
-
-
-
 
 
             <Modal

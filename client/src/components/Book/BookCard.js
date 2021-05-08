@@ -28,34 +28,18 @@ export const BookCard = ({ book }) => {
     //------------------JSX for Book Card -------------------------
     return (
         <>
-            <h3>My Library</h3>
 
-            <Table striped bordered hover size="sm">
-                <thead>
-                    <tr>
+            <tr>
+                <td>{startDate}</td>
+                <td><Link to={`/book/${book.id}`}>{book.title}</Link></td>
+                <td>{book.author}</td>
+                <td>{book.shelf.name}</td>
+                <td>{book.rating}</td>
+                <td>{finishDate}</td>
+                <td><Button onClick={handleDelete}>Delete</Button></td>
+            </tr>
 
-                        <th>Date Started</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Shelf</th>
-                        <th>Rating</th>
-                        <th>Date Finished</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
 
-                        <td>{startDate}</td>
-                        <td><Link to={`/book/${book.id}`}>{book.title}</Link></td>
-                        <td>{book.author}</td>
-                        <td>{book.shelf.name}</td>
-                        <td>{book.rating}</td>
-                        <td>{finishDate}</td>
-                        <td><Button onClick={handleDelete}>Delete</Button></td>
-                    </tr>
-                </tbody>
-            </Table>
         </>
     )
 }
