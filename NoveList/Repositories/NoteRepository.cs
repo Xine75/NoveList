@@ -45,6 +45,37 @@ namespace NoveList.Repositories
                 }
             }
         }
+        public Note GetNoteById (int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT n.PageNum, n.Content, n.BookId
+                                        FROM Note n
+                                        WHERE n.id = @id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+                    var reader = cmd.ExecuteReader();
+                    Note note = null;
+                    while (reader.Read())
+                    {
+                        note = new Note()
+                        {
+                            Id = id,
+                            PageNum = DbUtils.GetInt(reader, "PageNum"),
+                            Content = DbUtils.GetString(reader, "Content"),
+                            BookId = DbUtils.GetInt(reader, "BookId")
+
+                        };
+                    }
+                    reader.Close();
+                    return note;
+                }
+            }
+        }
         public void Add(Note note)
         {
             using (var conn = Connection)

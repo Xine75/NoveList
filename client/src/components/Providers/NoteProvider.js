@@ -20,6 +20,19 @@ export function NoteProvider(props) {
                 .then(setNotes)
         )
     };
+
+    const getNoteById = (noteId) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/detail/${noteId}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json())
+        )
+    };
+
+
     const addNote = noteObj => {
         return getToken().then((token) =>
             fetch(`${apiUrl}`, {
@@ -57,7 +70,7 @@ export function NoteProvider(props) {
     };
     return (
         <NoteContext.Provider
-            value={{ note, notes, setNote, setNotes, getNotesByBookId, addNote, updateNote, deleteNote }}
+            value={{ note, notes, setNote, setNotes, getNotesByBookId, getNoteById, addNote, updateNote, deleteNote }}
         >
             {props.children}
         </NoteContext.Provider>

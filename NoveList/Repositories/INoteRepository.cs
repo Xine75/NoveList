@@ -9,5 +9,6 @@ namespace NoveList.Repositories
         void Add(Note note);
         void Update(Note note);
         void Delete(int id);
+        Note GetNoteById(int id);
     }
 }
