@@ -29,6 +29,7 @@ export const BookList = () => {
                     <tr>
 
                         <th>Date Started</th>
+                        <th>Cover</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Shelf</th>

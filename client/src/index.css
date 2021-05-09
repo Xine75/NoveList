@@ -36,3 +36,18 @@ p {
   display: flex;
   flex-direction: row;
 }
+.landing_page{
+  margin-left: 2rem;
+  margin-right: 1rem;
+  height: 450rem;
+  background-image: url("./images/woman-reading.png");
+  background-repeat: no-repeat; 
+   background-position-x: center;
+  background-position-y:1rem;
+  color: white;
+}
+
+.landing_page_text{
+  margin-top: 4rem;
+  /* background-color:rgb(139, 214, 90); */
+}

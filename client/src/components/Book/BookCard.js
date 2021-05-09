@@ -31,6 +31,7 @@ export const BookCard = ({ book }) => {
 
             <tr>
                 <td>{startDate}</td>
+                <td><img src={book.thumbnail} /></td>
                 <td><Link to={`/book/${book.id}`}>{book.title}</Link></td>
                 <td>{book.author}</td>
                 <td>{book.shelf.name}</td>
