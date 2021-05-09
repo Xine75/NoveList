@@ -1,18 +1,41 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react"
+import { useParams, useHistory } from "react-router-dom"
+import { BookContext } from "./Providers/BookProvider"
+import { BookDetail } from "./Book/BookDetail"
+import Card from "react-bootstrap/Card"
+import Col from "react-bootstrap/Col"
+import Row from "react-bootstrap/Row"
 
-export default function Hello() {
+
+export const Hello = () => {
+    const { getAllBooks } = useContext(BookContext);
+    const [books, setBooks] = useState([])
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).firstName;
+
+
+    //-------------Find correct bookd using udrt Id  -------------
+    useEffect(() => {
+        getAllBooks()
+    }, [])
+
+
+
     return (
         <>
-            <span style={{
-                position: "fixed",
-                left: 0,
-                right: 0,
-                top: "50%",
-                marginTop: "-0.5rem",
-                textAlign: "center",
-            }}>Welcome to NoveList
-      <div>Do you dare enter the blogosphere?</div></span>
+            <Card bg={"Dark"}>
+                <span className="landing_page" style={{
+                    position: "fixed",
+                    left: 0,
+                    right: 0,
+                    marginTop: "-0.5rem",
+                    textAlign: "center",
+                }}
 
+                ><div className="landing_page_text"><h3>Hello {currentUser}!</h3>
+                    </div></span>
+
+            </Card>
         </>
     );
 }
+export default Hello;

@@ -30,7 +30,7 @@ export const Note = ({ note }) => {
                     <div className="note__text">{note.content}</div>
                 </Card.Body>
                 <Button variant="link" size="sm" onClick={handleDelete}>Delete</Button>
-                <Button variant="link" size="sm" onClick={handleDelete}>Edit</Button>
+                <Button variant="link" size="sm" >Edit</Button>
 
             </Card>
         </>
