@@ -17,7 +17,7 @@ export const Note = ({ note }) => {
     }
 
 
-
+    //-------------------JSX for Note Card ---------------------------------
 
 
     return note ? (

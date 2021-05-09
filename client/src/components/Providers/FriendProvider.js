@@ -45,6 +45,19 @@ export function FriendProvider(props) {
                 .then(setSearchResult)
         )
     };
+    const getAllFriends = () => {
+        //the proxy that was set up in package.json will be handling the first part of the URL
+        return getToken()
+            .then((token) =>
+                fetch(`${apiUrl}`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }).then((res) => res.json())
+            )
+            .then(setFriends);
+    };
     const getFriendsByBookId = (googleApiId) => {
         //the proxy that was set up in package.json will be handling the first part of the URL
         return getToken()
@@ -63,7 +76,7 @@ export function FriendProvider(props) {
                 friend, friends,
                 setFriend, setFriends,
                 addFriend, deleteFriend,
-                searchUsers, getFriendsByBookId
+                searchUsers, getAllFriends, getFriendsByBookId
             }}
         >
             {props.children}
