@@ -23,7 +23,6 @@ export const FriendCard = ({ friend }) => {
         <>
 
             <tr>
-                <td>{ }</td>
                 <td>{friend.friendInfo.firstName}</td>
                 <td>{friend.friendInfo.lastName}</td>
                 <td>{friend.friendInfo.userName}</td>

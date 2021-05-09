@@ -40,6 +40,10 @@ export default function ApplicationViews() {
                 {isLoggedIn ? <BookDetail /> : <Redirect to="/login" />}
             </Route>
 
+            <Route path="/friend" exact>
+                {isLoggedIn ? <FriendList /> : <Redirect to="/login" />}
+            </Route>
+
 
 
         </Switch >

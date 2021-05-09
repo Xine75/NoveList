@@ -7,7 +7,8 @@ import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import SearchProvider from './components/Providers/SearchProvider';
 import { BookProvider } from './components/Providers/BookProvider';
-import NoteProvider from './components/Providers/NoteProvider';
+import { NoteProvider } from './components/Providers/NoteProvider';
+import { FriendProvider } from './components/Providers/FriendProvider';
 
 function App() {
   return (
@@ -15,10 +16,12 @@ function App() {
       <UserProfileProvider>
         <SearchProvider>
           <BookProvider>
-            <NoteProvider>
-              <Header />
-              <ApplicationViews />
-            </NoteProvider>
+            <FriendProvider>
+              <NoteProvider>
+                <Header />
+                <ApplicationViews />
+              </NoteProvider>
+            </FriendProvider>
           </BookProvider>
         </SearchProvider>
       </UserProfileProvider>
