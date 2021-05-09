@@ -20,5 +20,6 @@ namespace NoveList.Models
         public int? ShelfId { get; set; }
         public Shelf shelf { get; set; }
         public List <Note> Notes { get; set; }
+        public List <Friend> FriendsWithBook { get; set; }
     }
 }

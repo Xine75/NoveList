@@ -22,7 +22,7 @@ namespace NoveList.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public List<Book> UserBooks { get; set; }
-        public List<UserProfile> UserFriends { get; set; }
+        public List<UserProfile> Friends { get; set; }
 
     }
 }

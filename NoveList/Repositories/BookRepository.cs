@@ -189,8 +189,6 @@ namespace NoveList.Repositories
             }
         }
 
-
-
         //get all books of current user
         public List<Book> GetBooksByCurrentUser(int id)
         {

@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace NoveList.Models
 {
-    public class Shelf
+    public class Friend
     {
-        public int? Id { get; set; }
-        public string Name { get; set; }
+        public int Id { get; set; }
         public int UserId { get; set; }
+        public int FriendId { get; set; }
+        public UserProfile friendInfo { get; set; }
     }
 }
