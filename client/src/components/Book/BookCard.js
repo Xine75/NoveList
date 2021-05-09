@@ -43,7 +43,7 @@ export const BookCard = ({ book }) => {
                 <td>{book.author}</td>
                 <td>{book.shelf.name}</td>
                 <td>{book.rating}</td>
-                <td>{finishDate ? finishDate : "not entered"}</td>
+                <td>{finishDate ? finishDate : null}</td>
                 <td><Button onClick={handleDelete}>Delete</Button></td>
             </tr>
 

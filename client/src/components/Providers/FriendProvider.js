@@ -34,9 +34,9 @@ export function FriendProvider(props) {
             )
     };
 
-    const searchUsers = (searchTerms) => {
+    const searchUsers = (searchName) => {
         return getToken().then((token) =>
-            fetch(`${apiUrl}/searchq=${searchTerms}`, {
+            fetch(`${apiUrl}/searchq=${searchName}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`
