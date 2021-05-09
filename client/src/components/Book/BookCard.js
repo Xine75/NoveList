@@ -10,10 +10,12 @@ import Button from "react-bootstrap/Button"
 
 export const BookCard = ({ book }) => {
 
-    const { deleteBook } = useContext(BookContext)
+    const { deleteBook, getAllBooks } = useContext(BookContext)
 
 
     const history = useHistory();
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
+
     const startDate = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
     const finishDate = new Date(book.finishDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
 
@@ -22,6 +24,11 @@ export const BookCard = ({ book }) => {
 
     const handleDelete = () => {
         deleteBook(book.id)
+
+            .then(() => {
+                history.push("/book")
+
+            }).then(getAllBooks)
     }
 
 
@@ -36,7 +43,7 @@ export const BookCard = ({ book }) => {
                 <td>{book.author}</td>
                 <td>{book.shelf.name}</td>
                 <td>{book.rating}</td>
-                <td>{finishDate}</td>
+                <td>{finishDate ? finishDate : "not entered"}</td>
                 <td><Button onClick={handleDelete}>Delete</Button></td>
             </tr>
 

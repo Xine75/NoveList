@@ -19,7 +19,7 @@ export const BookList = () => {
 
 
     //--------------FILTER books for those belonging to current user, then feed each object in the array into BookCard
-    return (
+    return books ? (
         <>
 
             <h3>My Library</h3>
@@ -47,6 +47,6 @@ export const BookList = () => {
                 </tbody>
             </Table>
         </>
-    )
+    ) : null;
 }
 export default BookList;
