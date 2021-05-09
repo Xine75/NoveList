@@ -8,7 +8,8 @@ namespace NoveList.Models
     public class Friend
     {
         public int Id { get; set; }
-        public int Friend1 { get; set; }
-        public int Friend2 { get; set; }
+        public int UserId { get; set; }
+        public int FriendId { get; set; }
+        public UserProfile friendInfo { get; set; }
     }
 }
