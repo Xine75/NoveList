@@ -87,7 +87,7 @@ export function BookProvider(props) {
                         Authorization: `Bearer ${token}`,
                     }
                 })
-                    .then(setBooks)
+                //.then(setBooks)
             )
     };
     return (

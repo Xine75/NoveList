@@ -47,7 +47,7 @@ export const SearchCard = ({ searchResult }) => {
         e.preventDefault()
         const newBook = { ...book }
         addBook(newBook)
-            .then(() => history.push("/"))
+            .then(() => history.push("/book"))
     };
 
     //-------------------------JSX for Search Card & Book Add Modal-------------------------

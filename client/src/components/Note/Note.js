@@ -23,7 +23,7 @@ export const Note = ({ note }) => {
     return note ? (
         <>
             <Card className="note" border="secondary" style={{ width: '2 rem' }} bg="#b2d3c2" id={note.id}>
-                <Card.Header className="note__date">{note.pageNum}
+                <Card.Header className="note__date">Page: {note.pageNum}
                 </Card.Header>
 
                 <Card.Body className="note__text">
