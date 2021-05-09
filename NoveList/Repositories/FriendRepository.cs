@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NoveList.Repositories 
 {
-    public class FriendRepository : BaseRepository
+    public class FriendRepository : BaseRepository, IFriendRepository
     {
         public FriendRepository(IConfiguration configuration) : base(configuration) { }
         //add friend
@@ -70,7 +70,7 @@ namespace NoveList.Repositories
                     var friends = new List<UserProfile>();
                     while (reader.Read())
                     {
-                        var userId = DbUtils.GetInt(reader, "UserId");
+                        var userId = DbUtils.GetNullableInt(reader, "UserId");
 
                         var userFriend = friends.FirstOrDefault(up => up.Id == userId);
                         //the first time through the loop, it is null bc the list was empty
@@ -102,7 +102,7 @@ namespace NoveList.Repositories
                     cmd.CommandText = @"SELECT f.Id as FriendshipId, f.UserId, f.FriendId as Friend,
                                         up.FirstName, up.LastName, up.UserName
                                      FROM Friend f
-                                     LEFT JOIN UserProfile up ON f.Friend1 = up.Id";
+                                     LEFT JOIN UserProfile up ON f.FriendId = up.Id";
 
                     var reader = cmd.ExecuteReader();
                     var friends = new List<Friend>();
@@ -111,8 +111,8 @@ namespace NoveList.Repositories
                         friends.Add(new Friend()
                         {
                             Id = DbUtils.GetInt(reader, "FriendshipId"),
-                            UserId = DbUtils.GetInt(reader, "UserId"),
-                            FriendId = DbUtils.GetInt(reader, "FriendId"),
+                            UserId = DbUtils.GetNullableInt(reader, "UserId"),
+                            FriendId = DbUtils.GetNullableInt(reader, "Friend"),
                             friendInfo = new UserProfile()
                             {
                                 FirstName = DbUtils.GetString(reader, "FirstName"),
@@ -128,20 +128,20 @@ namespace NoveList.Repositories
             }
         }
         //list of friends with bookId
-        public List <Friend> GetFriendsByBookId(int id)
+        public List<Friend> GetFriendsByBookId(string id)
         {
             using (var conn = Connection)
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT f.Id as FriendshipId, f.FriendId as Friend,
+                    cmd.CommandText = @"SELECT f.Id as FriendshipId, f.UserId, f.FriendId as Friend,
                                         up.FirstName, up.LastName, up.UserName,
                                         b.Id, b.GoogleApiId, b.Title
                                         FROM Friend f
-                                        LEFT JOIN UserProfile on up.Id = f.FriendId
-                                        LEFT JOIN Book on b.UserId = up.Id
-                                        WHERE b.GoogleApiId = id";
+                                        LEFT JOIN UserProfile up on up.Id = f.FriendId
+                                        LEFT JOIN Book b on b.UserId = up.Id
+                                        WHERE b.GoogleApiId = @id";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
                     var reader = cmd.ExecuteReader();
@@ -151,7 +151,8 @@ namespace NoveList.Repositories
                         friends.Add(new Friend()
                         {
                             Id = DbUtils.GetInt(reader, "FriendshipId"),
-                            FriendId = DbUtils.GetInt(reader, "Friend"),
+                            UserId = DbUtils.GetNullableInt(reader, "UserId"),
+                            FriendId = DbUtils.GetNullableInt(reader, "Friend"),
                             friendInfo = new UserProfile()
                             {
                                 FirstName = DbUtils.GetString(reader, "FirstName"),
