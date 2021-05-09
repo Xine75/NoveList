@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FriendContext } from "../Providers/FriendProvider";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 export const FriendCard = ({ friend }) => {
-    const { getAllFriends, deleteFriend }
+    const { getAllFriends, deleteFriend } = useContext(FriendContext);
+    const history = useHistory();
 
     //-----------------HANDLE DELETE --------------------
 

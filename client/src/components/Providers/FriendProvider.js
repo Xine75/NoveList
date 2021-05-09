@@ -34,7 +34,7 @@ export function FriendProvider(props) {
             )
     };
 
-    const SearchUsers = (searchTerms) => {
+    const searchUsers = (searchTerms) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/searchq=${searchTerms}`, {
                 method: "GET",

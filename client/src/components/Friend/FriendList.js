@@ -1,9 +1,8 @@
 import { React, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { BookContext } from "../Providers/BookProvider";
-import { BookCard } from "./BookCard";
+import { FriendContext } from "../Providers/FriendProvider";
+import { FriendCard } from "./FriendCard";
 import Table from "react-bootstrap/Table"
-import { FriendContext } from '../Providers/FriendProvider';
 
 //Friend List will be responsible for rendering a list of the current user's friends
 
