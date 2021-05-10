@@ -16,7 +16,7 @@ export const FriendSearch = () => {
     const searchSubmit = (e) => {
         e.preventDefault();
         searchUsers(searchName)
-            .then(() => history.push(`/search/${searchName}`))
+            .then(() => history.push(`api/friend/search/${searchName}`))
     }
 
     return (
@@ -30,4 +30,5 @@ export const FriendSearch = () => {
             <Button onClick={searchSubmit}>Search</Button>
         </>
     )
-}
+};
+export default FriendSearch;

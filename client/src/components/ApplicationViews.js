@@ -46,7 +46,7 @@ export default function ApplicationViews() {
                 {isLoggedIn ? <FriendList /> : <Redirect to="/login" />}
             </Route>
 
-            <Route path="/friend/search" exact>
+            <Route path="/api/friend/search" exact>
                 {isLoggedIn ? <FriendSearch /> : <Redirect to="/login" />}
             </Route>
 
