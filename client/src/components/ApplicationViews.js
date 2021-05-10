@@ -10,6 +10,7 @@ import GoogleSearch from "./Search/BookSearch"
 import { BookList } from "./Book/BookList";
 import { BookDetail } from "./Book/BookDetail";
 import { FriendList } from "./Friend/FriendList";
+import { FriendSearch } from "./Friend/FriendSearch";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -43,6 +44,10 @@ export default function ApplicationViews() {
 
             <Route path="/friend" exact>
                 {isLoggedIn ? <FriendList /> : <Redirect to="/login" />}
+            </Route>
+
+            <Route path="/friend/search" exact>
+                {isLoggedIn ? <FriendSearch /> : <Redirect to="/login" />}
             </Route>
 
 

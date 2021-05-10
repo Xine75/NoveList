@@ -9,6 +9,7 @@ export function UserProfileProvider(props) {
     const apiUrl = "/api/userProfile";
     const userProfile = sessionStorage.getItem("userProfile");
     const [userProfiles, setUserProfiles] = useState([]);
+    const [searchName, setSearchName] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
 
     const getToken = () => firebase.auth().currentUser.getIdToken();
@@ -20,6 +21,18 @@ export function UserProfileProvider(props) {
             setIsFirebaseReady(true);
         });
     }, []);
+
+    const searchUsers = (searchName) => {
+        return getToken().then((token) =>
+            fetch(`/api/friend/searchq=${searchName}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json())
+                .then(setSearchName)
+        )
+    };
 
     const getAllUserProfiles = () => {
         //the proxy that was set up in package.json will be handling the first part of the URL
@@ -107,7 +120,7 @@ export function UserProfileProvider(props) {
     };
 
     return (
-        <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, userProfiles, setUserProfiles, getUserProfileById, deactivateUserProfile }}>
+        <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register, getToken, getUserProfile, searchUsers, getAllUserProfiles, userProfiles, setUserProfiles, getUserProfileById, deactivateUserProfile }}>
             {isFirebaseReady
                 ? props.children
                 : <Spinner className="app-spinner dark" />}
