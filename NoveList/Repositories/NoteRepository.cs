@@ -115,7 +115,6 @@ namespace NoveList.Repositories
                     DbUtils.AddParameter(cmd, "@PageNum", note.PageNum);
                     DbUtils.AddParameter(cmd, "@Content", note.Content);
 
-
                     cmd.ExecuteNonQuery();
 
                 }

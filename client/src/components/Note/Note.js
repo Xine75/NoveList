@@ -8,7 +8,6 @@ import Modal from "react-bootstrap/Modal";
 export const Note = ({ note }) => {
 
     const { deleteNote, getNotesByBookId, updateNote, getNoteById } = useContext(NoteContext);
-    const [setNote] = useState({})
     const bookId = useParams().id;
 
     //--------------Setting up modal------------------
@@ -17,49 +16,34 @@ export const Note = ({ note }) => {
     const handleShow = () => setShow(true);
 
     // --------------------- Setting State-----------------------
-    // const [setNote] = useState({
-    //     id: 0,
-    //     pageNum: 0,
-    //     content: "",
-    //     bookId: bookId
-    // })
+    const [editedNote, setEditedNote] = useState(note)
 
     //-------------Saving User Input-------------
     const handleControlledInputChange = (e) => {
-        const newNote = { ...note }
+        const newNote = { ...editedNote }
         newNote[e.target.id] = e.target.value
-        // setNote(newNote)
+        setEditedNote(newNote)
     };
 
-    //--------------Jess' method Saving user input----------------
-    // const handleControlledInputChange = (e) => {
-    //     const newNote = { ...note }
-    //     let selectedVal = e.target.value
-    //     if (e.target.id.includes("id")) {
-    //         selectedVal = parseInt(selectedVal)
-    //     }
-    //     newNote[e.target.id] = selectedVal
-    //     //setNote(newNote)
-    // }
 
     //--------------Saving edited note input---------------------
 
     const handleClickUpdateNote = (e) => {
         e.preventDefault()
         updateNote({
-            id: note.id,
-            pageNum: note.pageNum,
-            content: note.content
+            id: editedNote.id,
+            pageNum: editedNote.pageNum,
+            content: editedNote.content
         })
             .then(getNotesByBookId(bookId))
             .then(() => { handleClose() })
     }
     //------------------Get Notes by Id------------------------
     useEffect(() => {
-        getNoteById(note.id)
-        // .then(note => {
-        //     setNote(note)
-        // })
+        getNoteById(editedNote.id)
+            .then(editedNote => {
+                setEditedNote(editedNote)
+            })
     }, []);
 
 
@@ -105,13 +89,13 @@ export const Note = ({ note }) => {
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="pageNum">Page?</label>
-                            <input type="text" id={note.pageNum} defaultValue={note.pageNum} onChange={handleControlledInputChange} required className="form-control" />
+                            <input type="text" id="pageNum" defaultValue={editedNote.pageNum} onChange={handleControlledInputChange} required className="form-control" />
                         </div>
                     </fieldset>
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="content">Thoughts?</label>
-                            <input type="textarea" rows="10" id={note.content} defaultValue={note.content} onChange={handleControlledInputChange} required className="form-control" />
+                            <input type="textarea" rows="10" id="content" defaultValue={editedNote.content} onChange={handleControlledInputChange} required className="form-control" />
                         </div>
                     </fieldset>
 
