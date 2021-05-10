@@ -19,11 +19,13 @@ export const FriendSearchCard = ({ friendSearchResult }) => {
                 <Card.Body>
 
                     <Card.Title className="">
-                        <Button variant="link" className="friendSearchResult_userName" id="bootstrap" >
-                            {friendSearchResult.userName}</Button>
+                        <h4>UserName: {friendSearchResult.userName}</h4>
                     </Card.Title>
-                    <h5 className="searchResult__name">{friendSearchResult.firstName} {friendSearchResult.lastName}</h5>
+                    <h5 className="searchResult__name"><i>{friendSearchResult.firstName} {friendSearchResult.lastName}</i></h5>
                 </Card.Body>
+                <Button variant="primary" className="add_Friend" id="bootstrap" >
+                    Add Friend</Button>
+
 
             </Card>
         </div>

@@ -9,10 +9,11 @@ import { FriendSearchCard } from "./FriendSearchCard";
 export const FriendSearchList = () => {
     const { friendSearchResult } = useContext(FriendContext);
 
-    //----feed each object in the searchResult array into the SearchCard------
+    //----feed each object in the searchResult array into the FriendSearchCard------
 
     return (
         <>
+            <h4>Results:</h4>
             <div className="friendSearchResult">
                 {friendSearchResult.map(friendSearchResult => {
                     return <FriendSearchCard key={friendSearchResult.id} friendSearchResult={friendSearchResult} />

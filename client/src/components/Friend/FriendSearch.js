@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { FriendContext } from "../Providers/FriendProvider";
 import { Button } from 'react-bootstrap'
+import FriendSearchList from "./FriendSearchList";
 
 
 //------------search for friends method---------------
@@ -16,7 +17,7 @@ export const FriendSearch = () => {
     const searchSubmit = (e) => {
         e.preventDefault();
         searchUsers(searchName)
-            .then(() => history.push(`api/friend/search/${searchName}`))
+            .then(() => history.push(`/api/friend/search/${searchName}`))
     }
 
 
@@ -28,6 +29,8 @@ export const FriendSearch = () => {
 
                 onChange={e => setSearchName(e.target.value)} placeholder="Name or UserName" />
             <Button onClick={searchSubmit}>Search</Button>
+
+            {/* <FriendSearchList /> */}
         </>
     )
 };
