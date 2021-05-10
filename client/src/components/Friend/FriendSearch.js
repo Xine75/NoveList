@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
-import { UserProfileContext } from "../Providers/UserProfileProvider";
+import { FriendContext } from "../Providers/FriendProvider";
 import { Button } from 'react-bootstrap'
 
 
@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap'
 export const FriendSearch = () => {
 
     const [searchName, setSearchName] = useState("");
-    const { searchUsers } = useContext(UserProfileContext);
+    const { searchUsers } = useContext(FriendContext);
     const history = useHistory();
 
 
@@ -18,6 +18,7 @@ export const FriendSearch = () => {
         searchUsers(searchName)
             .then(() => history.push(`api/friend/search/${searchName}`))
     }
+
 
     return (
         <>

@@ -8,6 +8,8 @@ export function FriendProvider(props) {
     const { getToken } = useContext(UserProfileContext);
     const [friend, setFriend] = useState();
     const [friends, setFriends] = useState([]);
+    const [searchName, setSearchName] = useState("");
+    const [friendSearchResult, setFriendSearchResult] = useState([])
 
 
     const addFriend = friendObj => {
@@ -22,6 +24,19 @@ export function FriendProvider(props) {
             })
         );
     };
+
+    const searchUsers = (searchName) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/search?q=${searchName}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json())
+                .then(setFriendSearchResult)
+        )
+    };
+    debugger;
     const deleteFriend = (friendId) => {
         return getToken()
             .then((token) =>
@@ -64,6 +79,8 @@ export function FriendProvider(props) {
             value={{
                 friend, friends,
                 setFriend, setFriends,
+                searchUsers,
+                friendSearchResult, setFriendSearchResult,
                 addFriend, deleteFriend,
                 getAllFriends, getFriendsByBookId
             }}
