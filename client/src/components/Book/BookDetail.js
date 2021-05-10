@@ -93,7 +93,7 @@ export const BookDetail = () => {
                         </section>
                     </Col>
                     <Col>
-                        <h7>here's where friend names who have added this book will go</h7>
+                        <h7>Friends who have also read this book:</h7>
                     </Col>
                 </Row>
                 <br />

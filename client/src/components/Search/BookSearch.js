@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import { SearchContext } from "../Providers/SearchProvider";
 import {SearchList } from "./SearchList"
@@ -26,6 +26,7 @@ export const GoogleSearch = () => {
 
             onChange={e => setSearchTerms(e.target.value)} placeholder="Search by author or title" />
             <Button onClick={searchSubmit}>Search</Button>
+            
             <SearchList />
         </>
     )
