@@ -1,12 +1,54 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { NoteContext } from "../Providers/NoteProvider";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
 
 export const Note = ({ note }) => {
-    const { deleteNote, getNotesByBookId } = useContext(NoteContext);
+
+    const { deleteNote, getNotesByBookId, updateNote, getNoteById } = useContext(NoteContext);
     const bookId = useParams().id;
+
+    //--------------Setting up modal------------------
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    //    ---------------------Setting State-----------------------
+    const [setNote] = useState({
+        id: 0,
+        pageNum: 0,
+        content: "",
+        bookId: bookId
+    })
+
+    //-------------Saving User Input-------------
+    const handleControlledInputChange = (e) => {
+        const newNote = { ...note }
+        newNote[e.target.id] = e.target.value
+        //setNote(newNote)
+    };
+
+    //--------------Saving edited note input---------------------
+
+    const handleClickUpdateNote = (e) => {
+        e.preventDefault()
+        updateNote({
+            id: note.id,
+            pageNum: note.pageNum,
+            content: note.content
+        })
+            .then(getNotesByBookId(bookId))
+            .then(() => { handleClose() })
+    }
+    //------------------Get Notes by Id------------------------
+    useEffect(() => {
+        getNoteById(note.id)
+        // .then(note => {
+        //     setNote(note)
+        // })
+    }, []);
 
 
     //----------------- DELETE NOTE FUNCTION ------------------------
@@ -30,9 +72,43 @@ export const Note = ({ note }) => {
                     <div className="note__text">{note.content}</div>
                 </Card.Body>
                 <Button variant="link" size="sm" onClick={handleDelete}>Delete</Button>
-                <Button variant="link" size="sm" >Edit</Button>
+                <Button variant="link" size="sm" onClick={handleShow} >Edit</Button>
 
             </Card>
+
+
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>What are you thinking?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="name">Page?</label>
+                            <input type="text" id="pageNum" value={note.pageNum} onChange={handleControlledInputChange} required autoFocus className="form-control" />
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div className="form-group">
+                            <label htmlFor="name">Thoughts?</label>
+                            <input type="textarea" rows="10" id="content" value={note.content} onChange={handleControlledInputChange} required className="form-control" />
+                        </div>
+                    </fieldset>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>Close</Button>
+                    <Button variant="primary" onClick={handleClickUpdateNote}>Update</Button>
+                </Modal.Footer>
+            </Modal>
         </>
     ) : null;
 }

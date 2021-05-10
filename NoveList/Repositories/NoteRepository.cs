@@ -110,6 +110,9 @@ namespace NoveList.Repositories
                                             Content = @Content,
                                             BookId = @BookId,
                                             WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@id", note.Id);
+
                     DbUtils.AddParameter(cmd, "@PageNum", note.PageNum);
                     DbUtils.AddParameter(cmd, "@Content", note.Content);
                     DbUtils.AddParameter(cmd, "@BookId", note.BookId);

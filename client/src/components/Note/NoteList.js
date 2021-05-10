@@ -20,7 +20,7 @@ export const NoteList = () => {
 
     //-------------------Setting State----------------------
 
-    const { addNote, getNoteById, updateNote } = useContext(NoteContext);
+    const { addNote, getNoteById } = useContext(NoteContext);
     const [note, setNote] = useState({
         id: 0,
         pageNum: 0,
@@ -38,39 +38,23 @@ export const NoteList = () => {
     //--------------Saving New or EDITED Note upon Click event-----------------
     const handleClickSaveNote = (e) => {
         e.preventDefault()
-        if (note.id) {
-            updateNote({
-                id: note.id,
-                pageNum: note.pageNum,
-                content: note.content
-            })
-                .then(getNotesByBookId(bookId))
-                .then(() => { handleClose() })
-        } else {
-            addNote({
-                bookId: parseInt(bookId),
-                content: note.content,
-                pageNum: note.pageNum
-            })
-                .then(getNotesByBookId(bookId))
-                .then(() => { handleClose() })
-        }
+        addNote({
+            bookId: parseInt(bookId),
+            content: note.content,
+            pageNum: note.pageNum
+        })
+            .then(getNotesByBookId(bookId))
+            .then(() => { handleClose() })
+
 
     }
     //------------------Get Notes by Id------------------------
     useEffect(() => {
-        if (note.id) {
-            getNoteById(note.id)
-                .then(note => {
-                    setNote(note)
-                })
-        } else {
-            getNotesByBookId(bookId)
-                .then(note => {
-                    setNote(note)
+        getNotesByBookId(bookId)
+            .then(note => {
+                setNote(note)
+            })
 
-                })
-        }
     }, []);
 
     //------------------JSX for NoteList and Add Note Modal----------------------------
