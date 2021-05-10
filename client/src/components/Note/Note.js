@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 export const Note = ({ note }) => {
 
     const { deleteNote, getNotesByBookId, updateNote, getNoteById } = useContext(NoteContext);
+    const [setNote] = useState({})
     const bookId = useParams().id;
 
     //--------------Setting up modal------------------
@@ -15,20 +16,31 @@ export const Note = ({ note }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    //    ---------------------Setting State-----------------------
-    const [setNote] = useState({
-        id: 0,
-        pageNum: 0,
-        content: "",
-        bookId: bookId
-    })
+    // --------------------- Setting State-----------------------
+    // const [setNote] = useState({
+    //     id: 0,
+    //     pageNum: 0,
+    //     content: "",
+    //     bookId: bookId
+    // })
 
     //-------------Saving User Input-------------
     const handleControlledInputChange = (e) => {
         const newNote = { ...note }
         newNote[e.target.id] = e.target.value
-        //setNote(newNote)
+        // setNote(newNote)
     };
+
+    //--------------Jess' method Saving user input----------------
+    // const handleControlledInputChange = (e) => {
+    //     const newNote = { ...note }
+    //     let selectedVal = e.target.value
+    //     if (e.target.id.includes("id")) {
+    //         selectedVal = parseInt(selectedVal)
+    //     }
+    //     newNote[e.target.id] = selectedVal
+    //     //setNote(newNote)
+    // }
 
     //--------------Saving edited note input---------------------
 
@@ -92,14 +104,14 @@ export const Note = ({ note }) => {
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="name">Page?</label>
-                            <input type="text" id="pageNum" value={note.pageNum} onChange={handleControlledInputChange} required autoFocus className="form-control" />
+                            <label htmlFor="pageNum">Page?</label>
+                            <input type="text" id={note.pageNum} defaultValue={note.pageNum} onChange={handleControlledInputChange} required className="form-control" />
                         </div>
                     </fieldset>
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="name">Thoughts?</label>
-                            <input type="textarea" rows="10" id="content" value={note.content} onChange={handleControlledInputChange} required className="form-control" />
+                            <label htmlFor="content">Thoughts?</label>
+                            <input type="textarea" rows="10" id={note.content} defaultValue={note.content} onChange={handleControlledInputChange} required className="form-control" />
                         </div>
                     </fieldset>
 
@@ -113,3 +125,5 @@ export const Note = ({ note }) => {
     ) : null;
 }
 export default Note;
+
+

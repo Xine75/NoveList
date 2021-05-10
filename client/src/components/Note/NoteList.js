@@ -20,7 +20,7 @@ export const NoteList = () => {
 
     //-------------------Setting State----------------------
 
-    const { addNote, getNoteById } = useContext(NoteContext);
+    const { addNote } = useContext(NoteContext);
     const [note, setNote] = useState({
         id: 0,
         pageNum: 0,
@@ -35,7 +35,7 @@ export const NoteList = () => {
         setNote(newNote)
     };
 
-    //--------------Saving New or EDITED Note upon Click event-----------------
+    //--------------Saving New Note upon Click event-----------------
     const handleClickSaveNote = (e) => {
         e.preventDefault()
         addNote({
@@ -91,13 +91,13 @@ export const NoteList = () => {
 
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="name">Page?</label>
+                            <label htmlFor="pageNum">Page?</label>
                             <input type="text" id="pageNum" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Page" />
                         </div>
                     </fieldset>
                     <fieldset>
                         <div className="form-group">
-                            <label htmlFor="name">Thoughts?</label>
+                            <label htmlFor="content">Thoughts?</label>
                             <input type="textarea" rows="10" id="content" onChange={handleControlledInputChange} required className="form-control" placeholder="Your thoughts?" />
                         </div>
                     </fieldset>

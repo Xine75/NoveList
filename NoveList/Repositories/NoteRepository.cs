@@ -107,15 +107,14 @@ namespace NoveList.Repositories
                     cmd.CommandText = @"
                                         UPDATE Note
                                         SET PageNum = @PageNum,
-                                            Content = @Content,
-                                            BookId = @BookId,
+                                            Content = @Content
                                             WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@id", note.Id);
 
                     DbUtils.AddParameter(cmd, "@PageNum", note.PageNum);
                     DbUtils.AddParameter(cmd, "@Content", note.Content);
-                    DbUtils.AddParameter(cmd, "@BookId", note.BookId);
+
 
                     cmd.ExecuteNonQuery();
 
