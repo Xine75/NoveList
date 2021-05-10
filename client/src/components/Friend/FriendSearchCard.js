@@ -10,6 +10,28 @@ import Card from "react-bootstrap/Card"
 
 export const FriendSearchCard = ({ friendSearchResult }) => {
 
+    //-------------------Setting State----------------------
+    const history = useHistory();
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
+    const { addFriend } = useContext(FriendContext);
+    const [newFollow, setNewFollow] = useState({
+        id: 0,
+        friendId: friendSearchResult.id,
+        firstName: friendSearchResult.firstName,
+        lastName: friendSearchResult.lastName,
+        userName: friendSearchResult.userName,
+        userId: currentUser
+    })
+
+    //------------Saving New Friend on Click Event-------------
+
+    const handleClickSaveFriend = (e) => {
+        e.preventDefault()
+        const newFriend = { ...newFollow }
+        addFriend(newFriend)
+            .then(() => history.push("/friend"))
+    };
+
     //--------------------JSX for FriendSearchCard----------------------
 
     return (
@@ -23,8 +45,7 @@ export const FriendSearchCard = ({ friendSearchResult }) => {
                     </Card.Title>
                     <h5 className="searchResult__name"><i>{friendSearchResult.firstName} {friendSearchResult.lastName}</i></h5>
                 </Card.Body>
-                <Button variant="primary" className="add_Friend" id="bootstrap" >
-                    Add Friend</Button>
+                <Button variant="primary" className="add_Friend" id="bootstrap" onClick={handleClickSaveFriend} >Add Friend</Button>
 
 
             </Card>

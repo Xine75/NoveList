@@ -31,12 +31,6 @@ export const FriendCard = ({ friend }) => {
                 <td>{friend.friendInfo.userName}</td>
                 <td><Button onClick={handleDelete}>Remove Friend</Button></td>
             </tr>
-
-            <br />
-
-
-            <Button variant="info" className="find_friends_btn" onClick={() => { history.push(`/api/friend/search`) }}>Find Friends</Button>
-
         </>
     )
 }
