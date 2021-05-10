@@ -88,11 +88,20 @@ export const SearchCard = ({ searchResult }) => {
                             <label htmlFor="shelfId">Add To Shelf:</label>
                             <select name="shelfId" id="shelfId" className="form-control" onChange={handleControlledInputChange}>
                                 <option value="0">Choose a shelf</option>
-                                <option value="1">Currently Reading</option>
-                                <option value="2">Book Club</option>
-                                <option value="3">Mystery</option>
-                                <option value="4">Historical Fiction</option>
-                                <option value="5">Beach Read</option>
+                                <option value="1">Book Club</option>
+                                <option value="2">Currently Reading</option>
+                                <option value="3">Experimental</option>
+                                <option value="4">Fantasy/Mythological</option>
+                                <option value="5">Favorites</option>
+                                <option value="6">Graphic Novel</option>
+                                <option value="7">Horror</option>
+                                <option value="8">Literary</option>
+                                <option value="9">Mystery</option>
+                                <option value="10">Romance</option>
+                                <option value="11">Speculative</option>
+                                <option value="12">Suspense/Thriller</option>
+                                <option value="13">Western</option>
+                                <option value="14">Young Adult</option>
                             </select>
                         </div>
                     </fieldset>

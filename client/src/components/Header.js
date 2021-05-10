@@ -26,7 +26,7 @@ export default function Header() {
                             <NavItem className="nav-items">
                                 <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link href="/book">Novels</Nav.Link>
-                                <Nav.Link href="/shelves">Shelves</Nav.Link>
+                                {/* <Nav.Link href="/shelves">Shelves</Nav.Link> */}
                                 <Nav.Link href="/friend">Friends</Nav.Link>
                                 <Nav.Link href="/search">Search</Nav.Link>
                             </NavItem>

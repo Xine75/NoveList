@@ -1,25 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FriendContext } from "../Providers/FriendProvider";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+
 
 export const FriendCard = ({ friend }) => {
-    const { getAllFriends, deleteFriend } = useContext(FriendContext);
+    const { getAllFriends, deleteFriend, searchUsers } = useContext(FriendContext);
+    const [searchName, setSearchName] = useState("");
     const history = useHistory();
+
+
 
     //-----------------HANDLE DELETE --------------------
 
     const handleDelete = () => {
         deleteFriend(friend.id)
-
             .then(() => {
                 history.push("/friend")
 
             }).then(getAllFriends)
     }
+    //------------------JSX for Friend Card and Find Friend Modal -------------------------
 
-    //------------------JSX for Book Card -------------------------
     return (
         <>
 
@@ -30,6 +32,10 @@ export const FriendCard = ({ friend }) => {
                 <td><Button onClick={handleDelete}>Remove Friend</Button></td>
             </tr>
 
+            <br />
+
+
+            <Button variant="info" className="find_friends_btn" onClick={() => { history.push(`/api/friend/search`) }}>Find Friends</Button>
 
         </>
     )

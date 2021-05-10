@@ -24,7 +24,7 @@ namespace NoveList.Repositories
                 {
                     cmd.CommandText = @"INSERT INTO Friend (UserId, FriendId)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@Friend1, @Friend2)";
+                                        VALUES (@UserId, @FriendId)";
 
                     cmd.Parameters.AddWithValue("@UserId", friend.UserId);
                     cmd.Parameters.AddWithValue("@FriendId", friend.FriendId);
@@ -52,7 +52,7 @@ namespace NoveList.Repositories
         }
 
         //search for friends
-        public List<UserProfile> Search(string criterion)
+        public List<UserProfile> Search(string searchName)
         {
             using (var conn = Connection)
             {
@@ -62,9 +62,9 @@ namespace NoveList.Repositories
                     cmd.CommandText =
                         @"SELECT up.Id as UserId, up.FirstName, up.LastName, up.UserName
                             FROM UserProfile up
-                            WHERE up.FirstName LIKE @Criterion OR up.LastName LIKE @Criterion OR up.UserName LIKE @Criterion";
+                            WHERE up.FirstName LIKE @searchName OR up.LastName LIKE @searchName OR up.UserName LIKE @searchName";
 
-                    DbUtils.AddParameter(cmd, "@Criterion", $"%{criterion}%");
+                    DbUtils.AddParameter(cmd, "@searchName", $"%{searchName}%");
                     var reader = cmd.ExecuteReader();
 
                     var friends = new List<UserProfile>();

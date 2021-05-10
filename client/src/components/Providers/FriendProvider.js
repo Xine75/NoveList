@@ -8,7 +8,9 @@ export function FriendProvider(props) {
     const { getToken } = useContext(UserProfileContext);
     const [friend, setFriend] = useState();
     const [friends, setFriends] = useState([]);
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchName, setSearchName] = useState("");
+    const [friendSearchResult, setFriendSearchResult] = useState([])
+
 
     const addFriend = friendObj => {
         return getToken().then((token) =>
@@ -22,6 +24,19 @@ export function FriendProvider(props) {
             })
         );
     };
+
+    const searchUsers = (searchName) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/search?q=${searchName}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json())
+                .then(setFriendSearchResult)
+        )
+    };
+    debugger;
     const deleteFriend = (friendId) => {
         return getToken()
             .then((token) =>
@@ -34,17 +49,6 @@ export function FriendProvider(props) {
             )
     };
 
-    const searchUsers = (searchTerms) => {
-        return getToken().then((token) =>
-            fetch(`${apiUrl}/searchq=${searchTerms}`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }).then((res) => res.json())
-                .then(setSearchResult)
-        )
-    };
     const getAllFriends = () => {
         //the proxy that was set up in package.json will be handling the first part of the URL
         return getToken()
@@ -75,8 +79,10 @@ export function FriendProvider(props) {
             value={{
                 friend, friends,
                 setFriend, setFriends,
+                searchUsers,
+                friendSearchResult, setFriendSearchResult,
                 addFriend, deleteFriend,
-                searchUsers, getAllFriends, getFriendsByBookId
+                getAllFriends, getFriendsByBookId
             }}
         >
             {props.children}

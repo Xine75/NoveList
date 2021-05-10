@@ -37,10 +37,10 @@ namespace NoveList.Controllers
             return NoContent();
         }
         //search for a friend
-        [HttpGet("search")]
-        public IActionResult Search(string q)
+        [HttpGet("search/{searchName=searchName}")]
+        public IActionResult Search(string searchName)
         {
-            return Ok(_friendRepository.Search(q));
+            return Ok(_friendRepository.Search(searchName));
         }
         //get all friends
         [HttpGet]
