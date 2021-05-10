@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { FriendContext } from "../Providers/FriendProvider";
 import { FriendCard } from "./FriendCard";
 import Table from "react-bootstrap/Table"
+import Button from "react-bootstrap/Button"
 
 //Friend List will be responsible for rendering a list of the current user's friends
 
 export const FriendList = () => {
-
+    const history = useHistory();
     const { friends, getAllFriends } = useContext(FriendContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
 
@@ -22,6 +23,7 @@ export const FriendList = () => {
         <>
 
             <h3>My Friends</h3>
+            <Button variant="info" className="find_friends_btn" onClick={() => { history.push(`/api/friend/search`) }}>Find Friends</Button>
 
             <Table striped bordered hover size="sm">
                 <thead>
