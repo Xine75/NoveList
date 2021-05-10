@@ -29,7 +29,7 @@ export const SearchCard = ({ searchResult }) => {
         title: searchResult.title,
         author: searchResult.authors.toString(),
         thumbnail: searchResult.thumbnail,
-        textSnippet: searchResult.textSnippet,
+        description: searchResult.description,
         shelfId: 0,
         userId: currentUser
     })
@@ -63,7 +63,7 @@ export const SearchCard = ({ searchResult }) => {
                             <Button variant="link" onClick={handleShow} className="searchResult_title" id="bootstrap" >
                                 {searchResult.title}</Button>
                             <h5 className="searchResult__author">{searchResult.authors}</h5>
-                            <div className="searchResult__summary">{searchResult.textSnippet}</div>
+                            <div className="searchResult__description">{searchResult.description}</div>
                         </Card.Title>
                     </Card.Body>
 

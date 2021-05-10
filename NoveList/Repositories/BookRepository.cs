@@ -25,7 +25,7 @@ namespace NoveList.Repositories
             var searchTask = client.GetStreamAsync($"https://www.googleapis.com/books/v1/volumes?q={searchTerms}&key=AIzaSyAWa0D5qNDRqhiLmfU5nE3w7X5ivwP9MZ8");
             var response = await JsonSerializer.DeserializeAsync<SearchResponse>(await searchTask);
 
-            var desiredParts = response.items.Select(item => new LimitedSearchResult(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.imageLinks.thumbnail, item.searchInfo.textSnippet)).ToList();
+            var desiredParts = response.items.Select(item => new LimitedSearchResult(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.imageLinks.thumbnail, item.volumeInfo.description)).ToList();
 
 
             return desiredParts;
@@ -37,7 +37,7 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.Rating, b.TextSnippet, b.StartDate, b.FinishDate, b.ShelfId as BookShelfId, b.UserId,
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.Rating, b.Description, b.StartDate, b.FinishDate, b.ShelfId as BookShelfId, b.UserId,
                                         s.Name as Shelf, s.Id as ShelfId
                                     FROM Book b
                                     LEFT JOIN Shelf s on s.Id = b.ShelfId
@@ -55,7 +55,7 @@ namespace NoveList.Repositories
                             Author = DbUtils.GetString(reader, "Author"),
                             Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
                             Rating = DbUtils.GetNullableInt(reader, "Rating"),
-                            TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
+                            Description = DbUtils.GetNullableString(reader, "Description"),
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                             FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
                             UserId = DbUtils.GetInt(reader, "UserId"),
@@ -82,7 +82,7 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.Rating, b.StartDate, b.FinishDate, b.ShelfId as BookShelfId, b.UserId,
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.Description, b.Rating, b.StartDate, b.FinishDate, b.ShelfId as BookShelfId, b.UserId,
                                         s.Name as Shelf, s.Id as ShelfId
                                     FROM Book b
                                     LEFT JOIN Shelf s on s.Id = b.ShelfId
@@ -101,7 +101,7 @@ namespace NoveList.Repositories
                             Title = DbUtils.GetString(reader, "Title"),
                             Author = DbUtils.GetString(reader, "Author"),
                             Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
-                            TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
+                            Description = DbUtils.GetNullableString(reader, "Description"),
                             Rating = DbUtils.GetNullableInt(reader, "Rating"),
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                             FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
@@ -130,7 +130,7 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.Rating, b.StartDate, b.FinishDate, b.ShelfId as BookShelfId, b.UserId,
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.Description, b.Rating, b.StartDate, b.FinishDate, b.ShelfId as BookShelfId, b.UserId,
                                         s.Name as Shelf, s.Id as ShelfId,
                                         n.Id, as NoteId, n.pageNum, n.content, n.bookId
                                     FROM Book b
@@ -155,7 +155,7 @@ namespace NoveList.Repositories
                                 Title = DbUtils.GetString(reader, "Title"),
                                 Author = DbUtils.GetString(reader, "Author"),
                                 Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
-                                TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
+                                Description = DbUtils.GetNullableString(reader, "Description"),
                                 Rating = DbUtils.GetNullableInt(reader, "Rating"),
                                 StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                                 FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate"),
@@ -197,7 +197,7 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.TextSnippet, b.StartDate, b.FinishDate, b.ShelfId
+                    cmd.CommandText = @"SELECT b.Id as BookId, b.GoogleApiId, b.Title, b.Author, b.Thumbnail, b.Description, b.StartDate, b.FinishDate, b.ShelfId
                                     FROM Book b
                                     WHERE b.userId = @id
                                     ORDER BY b.StartDate ASC";
@@ -214,7 +214,7 @@ namespace NoveList.Repositories
                             Title = DbUtils.GetString(reader, "Title"),
                             Author = DbUtils.GetString(reader, "Author"),
                             Thumbnail = DbUtils.GetString(reader, "Thumbnail"),
-                            TextSnippet = DbUtils.GetString(reader, "TextSnippet"),
+                            Description = DbUtils.GetNullableString(reader, "Description"),
                             ShelfId = DbUtils.GetInt(reader, "ShelfId"),
                             StartDate = DbUtils.GetDateTime(reader, "StartDate"),
                             FinishDate = DbUtils.GetNullableDateTime(reader, "FinishDate")
@@ -235,20 +235,20 @@ namespace NoveList.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO Book (GoogleApiId, Title, Author, Thumbnail, TextSnippet, StartDate, ShelfId, UserId)
+                    cmd.CommandText = @"INSERT INTO Book (GoogleApiId, Title, Author, Thumbnail, Description, StartDate, ShelfId, UserId)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@GoogleApiId, @Title, @Author, @Thumbnail, @TextSnippet, @StartDate, @ShelfId, @UserId)";
+                                        VALUES (@GoogleApiId, @Title, @Author, @Thumbnail, @Description, @StartDate, @ShelfId, @UserId)";
 
                     cmd.Parameters.AddWithValue("@GoogleApiId", book.GoogleApiId);
                     cmd.Parameters.AddWithValue("@Title", book.Title) ;
                     cmd.Parameters.AddWithValue("@Author", book.Author);
                     cmd.Parameters.AddWithValue("@Thumbnail", book.Thumbnail);
-                    cmd.Parameters.AddWithValue("@TextSnippet", book.TextSnippet);
+                    cmd.Parameters.AddWithValue("@Description", book.Description);
                     cmd.Parameters.AddWithValue("@StartDate", book.StartDate);
                     cmd.Parameters.AddWithValue("@ShelfId", book.ShelfId);
                     cmd.Parameters.AddWithValue("@UserId", book.UserId);
 
-                    book.Id = (int)cmd.ExecuteScalar();
+                                           book.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }

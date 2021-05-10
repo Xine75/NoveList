@@ -12,7 +12,7 @@ namespace NoveList.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public string Thumbnail { get; set; }
-        public string TextSnippet { get; set; }
+        public string? Description { get; set; }
         public int? Rating { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? FinishDate { get; set; }

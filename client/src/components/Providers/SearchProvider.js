@@ -19,7 +19,6 @@ export const SearchProvider = (props) => {
                 .then(setSearchResult)
         )
     };
-    debugger;
     return (
         <SearchContext.Provider
             value={{ searchTerms, setSearchTerms, searchResult, setSearchResult, Search }}

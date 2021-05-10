@@ -81,7 +81,7 @@ export const BookDetail = () => {
                     <h3 className="book__detail__title"><b>{book.title}</b></h3>
                     <div className="book__detail__author"><i>{book.author}</i></div>
                     <div className="book__startDate"><b>Started:</b> {startDate}</div>
-                    <div className="book__textSnippet">{book.textSnippet}</div>
+                    <div className="book__description">{book.description}</div>
                     <div className="book__detail__shelfName"><b>Shelved as:</b> {book.shelf.name}</div>
                 </section>
                 <br />
@@ -114,11 +114,11 @@ export const BookDetail = () => {
                             <label htmlFor="rating">Rating</label>
                             <select name="rating" id="rating" className="form-control" onChange={handleControlledInputChange}>
                                 <option value="0">What did you think?</option>
-                                <option value="1">One Star</option>
-                                <option value="2">Two Stars</option>
-                                <option value="3">Three Stars</option>
-                                <option value="4">Four Stars</option>
-                                <option value="5">Five Stars</option>
+                                <option value="1">⭐</option>
+                                <option value="2">⭐⭐</option>
+                                <option value="3">⭐⭐⭐</option>
+                                <option value="4">⭐⭐⭐⭐</option>
+                                <option value="5">⭐⭐⭐⭐⭐</option>
                             </select>
                         </div>
                     </fieldset>

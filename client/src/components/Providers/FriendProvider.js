@@ -36,7 +36,7 @@ export function FriendProvider(props) {
                 .then(setFriendSearchResult)
         )
     };
-    debugger;
+
     const deleteFriend = (friendId) => {
         return getToken()
             .then((token) =>
