@@ -12,15 +12,15 @@ namespace NoveList.Models
         public string Title { get; set; }
         public List<string> Authors { get; set; }
         public string Thumbnail { get; set; }
-        public string TextSnippet { get; set; }
+        public string Description { get; set; }
 
-        public LimitedSearchResult (string id, string title, List<string> authors, string thumbnail, string textSnippet)
+        public LimitedSearchResult (string id, string title, List<string> authors, string thumbnail, string description)
         {
             Id = id;
             Title = title;
             Authors = authors;
             Thumbnail = thumbnail;
-            TextSnippet = textSnippet;
+            Description = description;
 
         }
     }
