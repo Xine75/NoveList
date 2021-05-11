@@ -6,6 +6,7 @@ export const SearchContext = createContext();
 export const SearchProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
     const [searchResult, setSearchResult] = useState([]);
+    const [searchSuccess, setSearchSuccess] = useState(true)
     const [searchTerms, setSearchTerms] = useState("");
 
     const Search = (searchTerms) => {
@@ -16,7 +17,14 @@ export const SearchProvider = (props) => {
                     Authorization: `Bearer ${token}`
                 }
             }).then((res) => res.json())
-                .then(setSearchResult)
+                .then((searchResult) => {
+                    if (searchResult.status === 404) {
+                        setSearchSuccess(false)
+                    } else {
+                        setSearchResult(searchResult)
+                    }
+                })
+                .catch((err) => setSearchSuccess(false))
         )
     };
     return (

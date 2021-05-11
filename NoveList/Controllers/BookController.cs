@@ -29,6 +29,10 @@ namespace NoveList.Controllers
            searchTerm = searchTerm.Replace(' ', '+');
            
            var searchResults =  await _bookRepository.Search(searchTerm);
+            if (searchResults ==null)
+            {
+                return NotFound();
+            }
            return Ok(searchResults);
         }
 

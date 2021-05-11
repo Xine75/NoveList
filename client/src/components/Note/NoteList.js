@@ -7,7 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import "./Note.css"
 
 export const NoteList = () => {
-    const { notes, setNotes, getNotesByBookId } = useContext(NoteContext);
+    const { notes, getNotesByBookId } = useContext(NoteContext);
     const bookId = useParams().id;
 
     //--------------Setting up modal------------------
@@ -40,18 +40,14 @@ export const NoteList = () => {
             content: note.content,
             pageNum: note.pageNum
         })
-            .then(getNotesByBookId(bookId))
+            .then(() => {
+                getNotesByBookId(bookId)
+            })
             .then(() => { handleClose() })
-
-
     }
     //------------------Get Notes by Id------------------------
     useEffect(() => {
         getNotesByBookId(bookId)
-            .then(note => {
-                setNote(note)
-            })
-
     }, []);
 
     //------------------JSX for NoteList and Add Note Modal----------------------------

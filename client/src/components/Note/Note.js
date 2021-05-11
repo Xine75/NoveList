@@ -68,7 +68,7 @@ export const Note = ({ note }) => {
                 <Card.Body className="note__text">
                     <div className="note__text">{note.content}</div>
                 </Card.Body>
-                <Button variant="link" size="sm" onClick={handleDelete}><i className="note__trash fas fa-trash-alt"></i></Button>
+                <Button variant="link" size="sm" onClick={handleDelete}><i class="far fa-trash-alt"></i></Button>
                 <Button variant="link" size="sm" onClick={handleShow} >Edit</Button>
 
             </Card>
