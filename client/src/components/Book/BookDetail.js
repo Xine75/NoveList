@@ -13,7 +13,7 @@ import { FriendProvider } from "../Providers/FriendProvider"
 export const BookDetail = () => {
     const { getBookById, updateBook } = useContext(BookContext);
     const { getFriendsByBookId } = useContext(FriendContext);
-    const { matchingFriends, setMatchingFriends } = useState([]);
+    const [matchingFriends, setMatchingFriends] = useState([]);
     const bookId = useParams().id;
 
     const history = useHistory();
@@ -69,11 +69,20 @@ export const BookDetail = () => {
     useEffect(() => {
         getBookById(bookId)
             .then(setBook)
-            .then(getFriendsByBookId(book.googleApiId))
-            .then(setMatchingFriends)
+
     }, [])
 
-    debugger
+    useEffect(() => {
+        getFriendsByBookId(book.googleApiId)
+            .then((x) => {
+                if (x) {
+                    setMatchingFriends(x)
+                }
+                return
+            })
+    }, [book])
+
+
 
     //-----------------JSX for Book Details and Book Finished Modal-------------------------
 
@@ -108,11 +117,11 @@ export const BookDetail = () => {
                     </Col>
                     <Col>
                         <h7>Friends who have also read this book:</h7>
-                        {/* <div>
+                        <div>
                             {
-                                matchingFriends.map(matchingFriend => matchingFriend.userName)
+                                matchingFriends.map(matchingFriend => matchingFriend.friendInfo.userName)
                             }
-                        </div> */}
+                        </div>
                     </Col>
                 </Row>
                 <br />
