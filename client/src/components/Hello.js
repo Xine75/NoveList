@@ -1,15 +1,11 @@
-import React, { useContext, useEffect, useState } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import React, { useContext, useEffect } from "react"
 import { BookContext } from "./Providers/BookProvider"
-import { BookDetail } from "./Book/BookDetail"
 import Card from "react-bootstrap/Card"
-import Col from "react-bootstrap/Col"
-import Row from "react-bootstrap/Row"
+
 
 
 export const Hello = () => {
     const { getAllBooks } = useContext(BookContext);
-    const [books, setBooks] = useState([])
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).firstName;
 
 

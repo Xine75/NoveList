@@ -20,7 +20,6 @@ export const FriendSearch = () => {
             .then(() => history.push(`/api/friend/search/${searchName}`))
     }
 
-
     return (
         <>
             <h4>Find a Friend</h4>
@@ -30,7 +29,6 @@ export const FriendSearch = () => {
                 onChange={e => setSearchName(e.target.value)} placeholder="Name or UserName" />
             <Button onClick={searchSubmit}>Search</Button>
 
-            {/* <FriendSearchList /> */}
         </>
     )
 };

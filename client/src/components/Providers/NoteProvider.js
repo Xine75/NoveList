@@ -20,7 +20,6 @@ export function NoteProvider(props) {
                 .then(setNotes)
         )
     };
-
     const getNoteById = (noteId) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/detail/${noteId}`, {
@@ -31,8 +30,6 @@ export function NoteProvider(props) {
             }).then((res) => res.json())
         )
     };
-
-
     const addNote = noteObj => {
         return getToken().then((token) =>
             fetch(`${apiUrl}`, {
@@ -45,7 +42,6 @@ export function NoteProvider(props) {
             })
         );
     };
-
     const updateNote = (note) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/${note.id}`, {

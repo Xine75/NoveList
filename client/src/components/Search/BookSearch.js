@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { SearchContext } from "../Providers/SearchProvider";
 import {SearchList } from "./SearchList"
 import { Button } from 'react-bootstrap'

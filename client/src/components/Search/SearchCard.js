@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react"
-import { Link, useHistory } from "react-router-dom"
-import { SearchContext } from "../Providers/SearchProvider"
+import { useHistory } from "react-router-dom"
 import { BookContext } from "../Providers/BookProvider"
 import Card from "react-bootstrap/Card"
 import Col from "react-bootstrap/Col"

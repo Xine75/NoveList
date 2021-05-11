@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { BookContext } from "../Providers/BookProvider"
-import Table from "react-bootstrap/Table"
 import Button from "react-bootstrap/Button"
 
 
@@ -12,9 +11,7 @@ export const BookCard = ({ book }) => {
 
     const { deleteBook, getAllBooks } = useContext(BookContext)
 
-
     const history = useHistory();
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
 
     const startDate = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
     const finishDate = book.finishDate ? new Date(book.finishDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' }) : null;
@@ -30,7 +27,6 @@ export const BookCard = ({ book }) => {
 
             }).then(getAllBooks)
     }
-
 
     //------------------JSX for Book Card -------------------------
     return (

@@ -64,16 +64,16 @@ namespace NoveList.Controllers
             return NoContent();
         }
         //Get a single user with all their books
-        [HttpGet("GetUserProfileByIdWithBooks/{id}")]
-        public IActionResult GetUserProfileByIdWithPosts(int id)
-        {
-            var user = _userProfileRepository.GetUserProfileByIdWithBooks(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
-        }
+        //[HttpGet("GetUserProfileByIdWithBooks/{id}")]
+        //public IActionResult GetUserProfileByIdWithPosts(int id)
+        //{
+        //    var user = _userProfileRepository.GetUserProfileByIdWithBooks(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(user);
+        //}
 
     }
 }

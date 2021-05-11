@@ -1,22 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { NoteContext } from "../Providers/NoteProvider";
-import { BookContext } from "../Providers/BookProvider"
 import { Note } from "./Note";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export const NoteList = () => {
     const { notes, setNotes, getNotesByBookId } = useContext(NoteContext);
-    const history = useHistory();
     const bookId = useParams().id;
 
     //--------------Setting up modal------------------
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-
 
     //-------------------Setting State----------------------
 
@@ -62,8 +58,6 @@ export const NoteList = () => {
         <>
             <h4 className="notes__header">Notes</h4>
             <div className="notes">
-
-
                 {
                     notes.filter(note => note.bookId === parseInt(bookId)).map(note => {
 

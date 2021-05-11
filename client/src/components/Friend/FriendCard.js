@@ -5,8 +5,7 @@ import Button from "react-bootstrap/Button";
 
 
 export const FriendCard = ({ friend }) => {
-    const { getAllFriends, deleteFriend, searchUsers } = useContext(FriendContext);
-    const [searchName, setSearchName] = useState("");
+    const { getAllFriends, deleteFriend } = useContext(FriendContext);
     const history = useHistory();
 
 

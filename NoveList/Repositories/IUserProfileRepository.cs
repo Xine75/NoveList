@@ -11,6 +11,6 @@ namespace NoveList.Repositories
         void Add(UserProfile user);
         void Update(UserProfile user);
         void Delete(int id);
-        UserProfile GetUserProfileByIdWithBooks(int id);
+        //UserProfile GetUserProfileByIdWithBooks(int id);
     }
 }
