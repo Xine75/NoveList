@@ -127,7 +127,7 @@ namespace NoveList.Repositories
                 }
             }
         }
-        //list of friends with bookId
+        //list of friends with googleApiId
         public List<Friend> GetFriendsByBookId(string id)
         {
             using (var conn = Connection)

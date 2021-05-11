@@ -74,6 +74,7 @@ export function FriendProvider(props) {
                 }).then((res) => res.json())
             )
     };
+
     return (
         <FriendContext.Provider
             value={{

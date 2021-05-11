@@ -1,16 +1,21 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import { BookContext } from "../Providers/BookProvider"
+import { FriendContext } from "../Providers/FriendProvider";
 import { NoteList } from "../Note/NoteList"
 import Button from "react-bootstrap/Button"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Modal from "react-bootstrap/Modal"
 import "./Book.css"
+import { FriendProvider } from "../Providers/FriendProvider"
 
 export const BookDetail = () => {
     const { getBookById, updateBook } = useContext(BookContext);
+    const { getFriendsByBookId } = useContext(FriendContext);
+    const [matchingFriends, setMatchingFriends] = useState([]);
     const bookId = useParams().id;
+
     const history = useHistory();
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
     const [book, setBook] = useState({
@@ -23,7 +28,6 @@ export const BookDetail = () => {
     });
     const startDate = new Date(book.startDate).toLocaleString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
 
-
     //-------------Find correct book using book Id in params -------------
     useEffect(() => {
         getBookById(bookId).then(setBook)
@@ -31,7 +35,14 @@ export const BookDetail = () => {
 
 
 
-    //-------------Saving User Input-------------
+    //--------------Setting up modal------------------
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+
+    //-------------Saving User Input in I Finished Modal-------------
     const handleControlledInputChange = (e) => {
         const newBook = { ...book }
         newBook[e.target.id] = e.target.value
@@ -39,7 +50,7 @@ export const BookDetail = () => {
     };
 
 
-    //----handle Finish Book ---------------
+    //----handle Finish Book after adding details in Modal---------------
     const handleFinish = (e) => {
         e.preventDefault()
         updateBook({
@@ -53,11 +64,23 @@ export const BookDetail = () => {
             })
     }
 
+    //--------------finding friends who've added this book-------------
 
-    //--------------Setting up modal------------------
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    useEffect(() => {
+        getBookById(bookId)
+            .then(setBook)
+
+    }, [])
+
+    useEffect(() => {
+        getFriendsByBookId(book.googleApiId)
+            .then((x) => {
+                if (x) {
+                    setMatchingFriends(x)
+                }
+                return
+            })
+    }, [book])
 
 
 
@@ -94,6 +117,11 @@ export const BookDetail = () => {
                     </Col>
                     <Col>
                         <h7>Friends who have also read this book:</h7>
+                        <div>
+                            {
+                                matchingFriends.map(matchingFriend => matchingFriend.friendInfo.userName)
+                            }
+                        </div>
                     </Col>
                 </Row>
                 <br />
