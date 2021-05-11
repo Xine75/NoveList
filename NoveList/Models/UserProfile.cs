@@ -21,8 +21,8 @@ namespace NoveList.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        public List<Book> UserBooks { get; set; }
-        public List<UserProfile> Friends { get; set; }
+       // public List<Book> UserBooks { get; set; }
+      
 
     }
 }

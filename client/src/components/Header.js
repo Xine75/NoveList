@@ -45,10 +45,10 @@ export default function Header() {
                         {!isLoggedIn &&
                             <>
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/login">Login</NavLink>
+                                    <Nav.Link href="/login">Login</Nav.Link>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={RRNavLink} to="/register">Register</NavLink>
+                                    <Nav.Link href="/register">Register</Nav.Link>
                                 </NavItem>
                             </>
                         }

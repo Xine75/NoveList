@@ -26,18 +26,18 @@ export default function Register() {
     };
 
     return (
-        <Form onSubmit={registerClick}>
+        <Form>
             <fieldset>
                 <FormGroup>
-                    <InputGroup.Text htmlFor="firstName">First Name</InputGroup.Text>
+                    <InputGroup.Text for="firstName">First Name</InputGroup.Text>
                     <input id="firstName" type="text" onChange={e => setFirstName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <InputGroup.Text htmlFor="lastName">Last Name</InputGroup.Text>
+                    <InputGroup.Text for="lastName">Last Name</InputGroup.Text>
                     <input id="lastName" type="text" onChange={e => setLastName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <InputGroup.Text htmlFor="userName">Display Name</InputGroup.Text>
+                    <InputGroup.Text for="userName">Display Name</InputGroup.Text>
                     <input id="userName" type="text" onChange={e => setUserName(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
@@ -53,7 +53,7 @@ export default function Register() {
                     <input id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
-                    <Button>Register</Button>
+                    <Button onClick={registerClick}>Register</Button>
                 </FormGroup>
             </fieldset>
         </Form>
