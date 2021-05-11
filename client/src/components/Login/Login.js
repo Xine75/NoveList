@@ -17,8 +17,6 @@ export default function Login() {
             .catch(() => alert("Invalid email or password"));
     };
 
-
-
     return (
         <Form>
             <fieldset>

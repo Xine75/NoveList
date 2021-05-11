@@ -7,9 +7,6 @@ export const BookContext = createContext();
 export function BookProvider(props) {
     const apiUrl = "/api/book";
     const { getToken } = useContext(UserProfileContext);
-    //const userProfile = sessionStorage.getItem("userProfile");
-    //const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
-    const { searchTerms } = useContext(SearchContext);
     const [books, setBooks] = useState([]);
     const [book, setBook] = useState({})
 
@@ -37,10 +34,7 @@ export function BookProvider(props) {
                     },
                 }).then((res) => res.json())
             )
-        //.then(setBook);
     };
-
-
     const getBooksByCurrentUser = (userId) => {
         return getToken().then((token) =>
             fetch(`${apiUrl}/${userId}`, {
@@ -63,7 +57,6 @@ export function BookProvider(props) {
                 },
                 body: JSON.stringify(bookObj)
             }));
-        //.then(resp => resp.json())
     };
 
     const updateBook = (book) => {
@@ -87,7 +80,6 @@ export function BookProvider(props) {
                         Authorization: `Bearer ${token}`,
                     }
                 })
-                //.then(setBooks)
             )
     };
     return (

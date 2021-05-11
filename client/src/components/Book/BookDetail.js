@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Modal from "react-bootstrap/Modal"
 import "./Book.css"
-import { FriendProvider } from "../Providers/FriendProvider"
 
 export const BookDetail = () => {
     const { getBookById, updateBook } = useContext(BookContext);
@@ -17,7 +16,7 @@ export const BookDetail = () => {
     const bookId = useParams().id;
 
     const history = useHistory();
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile")).id;
+
     const [book, setBook] = useState({
         id: bookId,
         shelfId: 0,
@@ -34,12 +33,10 @@ export const BookDetail = () => {
     }, []);
 
 
-
     //--------------Setting up modal------------------
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
 
 
     //-------------Saving User Input in I Finished Modal-------------
@@ -99,9 +96,6 @@ export const BookDetail = () => {
                         <Button className="book__detail__done__btn" variant="link" size="sm"
                             onClick={() => { history.push("/book") }}>Done</Button>
 
-
-
-
                     </Col>
                 </Row>
                 <br />
@@ -119,7 +113,7 @@ export const BookDetail = () => {
                         <h7>Friends who have also read this book:</h7>
                         <div>
                             {
-                                matchingFriends.map(matchingFriend => matchingFriend.friendInfo.userName)
+                                matchingFriends.map(matchingFriend => matchingFriend.friendInfo.userName).join(", ")
                             }
                         </div>
                     </Col>

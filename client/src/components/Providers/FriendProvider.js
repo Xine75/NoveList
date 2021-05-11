@@ -8,7 +8,6 @@ export function FriendProvider(props) {
     const { getToken } = useContext(UserProfileContext);
     const [friend, setFriend] = useState();
     const [friends, setFriends] = useState([]);
-    const [searchName, setSearchName] = useState("");
     const [friendSearchResult, setFriendSearchResult] = useState([])
 
 

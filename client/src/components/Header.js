@@ -1,18 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { NavLink as RRNavLink, useHistory } from "react-router-dom";
-import {
-    Navbar,
-    Nav,
-    NavItem,
-    NavLink
-} from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { UserProfileContext } from "./Providers/UserProfileProvider";
 
 export default function Header() {
     const { isLoggedIn, logout } = useContext(UserProfileContext);
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     return (
         <div>
