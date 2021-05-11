@@ -85,7 +85,7 @@ export const BookDetail = () => {
 
     return (
         <>
-            <section className="book" style={{ width: '20rem' }}>
+            <section className="book" style={{ width: '80rem' }}>
                 <Row>
                     <Col>
                         <img src={book.thumbnail} className="book__detail__image" />

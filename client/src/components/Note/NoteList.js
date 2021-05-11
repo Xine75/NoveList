@@ -4,6 +4,7 @@ import { NoteContext } from "../Providers/NoteProvider";
 import { Note } from "./Note";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import "./Note.css"
 
 export const NoteList = () => {
     const { notes, setNotes, getNotesByBookId } = useContext(NoteContext);
@@ -56,7 +57,8 @@ export const NoteList = () => {
     //------------------JSX for NoteList and Add Note Modal----------------------------
     return notes ? (
         <>
-            <h4 className="notes__header">Notes</h4>
+            <h4 className="notes__container__header">My Notes</h4>
+            <br />
             <div className="notes">
                 {
                     notes.filter(note => note.bookId === parseInt(bookId)).map(note => {
@@ -65,8 +67,9 @@ export const NoteList = () => {
                     })
                 }
             </div>
+            <br />
             <div>
-                <Button className="notes__btn" size="sm" variant="info" onClick={handleShow}>
+                <Button className="add__notes__btn" size="sm" variant="info" onClick={handleShow}>
                     Add a Note
                 </Button>
             </div>

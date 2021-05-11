@@ -1,0 +1,22 @@
+/* -----------Note List ----------------- */
+.notes{
+    display: flex;
+    flex: wrap;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 80rem; 
+}
+
+.notes__container__header{
+    margin-left: 2rem;
+}
+
+.add__notes__btn{
+    margin-bottom: 2rem;
+}
+/* -----------Note Card ----------------- */
+.note {
+    background-color: #ffffb2;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
