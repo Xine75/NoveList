@@ -23,7 +23,7 @@ export const BookList = () => {
 
             <h3>My Library</h3>
 
-            <Table striped bordered hover size="sm">
+            <Table className="book__list" striped bordered hover size="sm">
                 <thead>
                     <tr>
 

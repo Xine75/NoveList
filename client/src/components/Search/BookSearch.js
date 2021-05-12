@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { SearchContext } from "../Providers/SearchProvider";
-import {SearchList } from "./SearchList"
+import { SearchList } from "./SearchList"
 import { Button } from 'react-bootstrap'
+import "./Search.css"
 
 //This component is responsible for rendering the search bar
 //and redirecting the user to the search results (SearchList) when
@@ -20,13 +21,17 @@ export const GoogleSearch = () => {
     }
     return (
         <>
-            Search for a Book:
-         
-            <input type="text" className="input--wide" value={searchTerms}             
+            <div className="book__search__page">
 
-            onChange={e => setSearchTerms(e.target.value)} placeholder="Search by author or title" />
-            <Button onClick={searchSubmit}>Search</Button>
-            
+                <h4>Search for a Book</h4>
+
+                <input type="text" className="book__search__input" value={searchTerms}
+
+                    onChange={e => setSearchTerms(e.target.value)} placeholder="Search by author or title" />
+                <Button onClick={searchSubmit}>Search</Button>
+
+            </div>
+
             <SearchList />
         </>
     )

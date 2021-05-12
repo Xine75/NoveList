@@ -55,8 +55,8 @@ export const SearchCard = ({ searchResult }) => {
         <>
             <div className="searchResult__card__container">
 
-                <Card style={{ width: '18rem' }} className="searchResult_card" border="no border">
-                    <Card.Body>
+                <Card style={{ width: '25rem' }} className="searchResult_card" border="no border">
+                    <Card.Body className="search__card-body">
                         <Card.Img className="searchResult__card__image" src={searchResult.thumbnail} />
                         <Card.Title className="">
                             <Button variant="link" onClick={handleShow} className="searchResult_title" id="bootstrap" >
