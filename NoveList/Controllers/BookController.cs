@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NoveList.Models;
 using NoveList.Repositories;
@@ -12,6 +13,7 @@ namespace NoveList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
@@ -29,6 +31,10 @@ namespace NoveList.Controllers
            searchTerm = searchTerm.Replace(' ', '+');
            
            var searchResults =  await _bookRepository.Search(searchTerm);
+            if (searchResults ==null)
+            {
+                return NotFound();
+            }
            return Ok(searchResults);
         }
 

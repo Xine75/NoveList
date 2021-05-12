@@ -24,7 +24,10 @@ namespace NoveList.Repositories
 
             var searchTask = client.GetStreamAsync($"https://www.googleapis.com/books/v1/volumes?q={searchTerms}&key=AIzaSyAWa0D5qNDRqhiLmfU5nE3w7X5ivwP9MZ8");
             var response = await JsonSerializer.DeserializeAsync<SearchResponse>(await searchTask);
-
+            if(response.items==null)
+            {
+                return null;
+            }
             var desiredParts = response.items.Select(item => new LimitedSearchResult(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.imageLinks.thumbnail, item.volumeInfo.description)).ToList();
 
 

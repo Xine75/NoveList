@@ -4,6 +4,7 @@ import { NoteContext } from "../Providers/NoteProvider";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
+import "./Note.css"
 
 export const Note = ({ note }) => {
 
@@ -60,14 +61,14 @@ export const Note = ({ note }) => {
 
     return note ? (
         <>
-            <Card className="note" border="secondary" style={{ width: '2 rem' }} bg="#b2d3c2" id={note.id}>
-                <Card.Header className="note__date">Page: {note.pageNum}
+            <Card className="note" border="secondary" style={{ width: '18rem' }} id={note.id}>
+                <Card.Header className="note__page">Page: {note.pageNum}
                 </Card.Header>
 
                 <Card.Body className="note__text">
                     <div className="note__text">{note.content}</div>
                 </Card.Body>
-                <Button variant="link" size="sm" onClick={handleDelete}>Delete</Button>
+                <Button variant="link" size="sm" onClick={handleDelete}><i class="far fa-trash-alt"></i></Button>
                 <Button variant="link" size="sm" onClick={handleShow} >Edit</Button>
 
             </Card>
