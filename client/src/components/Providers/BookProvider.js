@@ -72,15 +72,14 @@ export function BookProvider(props) {
     }
 
     const deleteBook = (bookId) => {
-        return getToken()
-            .then((token) =>
-                fetch(`${apiUrl}/${bookId}`, {
-                    method: "DELETE",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    }
-                })
-            )
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/${bookId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+        )
     };
     return (
         <BookContext.Provider
