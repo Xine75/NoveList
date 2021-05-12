@@ -1,0 +1,17 @@
+
+
+.friends{
+    margin-top: 2rem;
+    width: 60rem;
+}
+
+.friend__list__header{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.friend__table{
+    margin-top: 2rem;
+}

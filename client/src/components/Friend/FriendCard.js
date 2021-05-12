@@ -25,10 +25,11 @@ export const FriendCard = ({ friend }) => {
         <>
 
             <tr>
+                <td><i class="fas fa-book-reader"></i></td>
+                <td>{friend.friendInfo.userName}</td>
                 <td>{friend.friendInfo.firstName}</td>
                 <td>{friend.friendInfo.lastName}</td>
-                <td>{friend.friendInfo.userName}</td>
-                <td><Button onClick={handleDelete}>Remove Friend</Button></td>
+                <td><Button size="sm" onClick={handleDelete}>Remove Friend</Button></td>
             </tr>
         </>
     )
