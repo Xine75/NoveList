@@ -20,16 +20,18 @@ export const SearchProvider = (props) => {
                 .then((searchResult) => {
                     if (searchResult.status === 404) {
                         setSearchSuccess(false)
+                        setSearchResult([])
                     } else {
                         setSearchResult(searchResult)
+                        setSearchSuccess(true)
                     }
+
                 })
-                .catch((err) => setSearchSuccess(false))
         )
     };
     return (
         <SearchContext.Provider
-            value={{ searchTerms, setSearchTerms, searchResult, setSearchResult, Search }}
+            value={{ searchTerms, setSearchTerms, searchResult, setSearchResult, Search, searchSuccess }}
         >
             {props.children}
         </SearchContext.Provider>

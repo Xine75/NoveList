@@ -15,7 +15,7 @@ export const SearchList = () => {
         <>
             <div className="searchResult">
 
-                {searchSuccess ?
+                {!searchSuccess ?
                     <h2>Your search has returned no results.</h2>
                     :
                     ""}
