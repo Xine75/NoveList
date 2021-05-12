@@ -22,13 +22,14 @@ export const FriendSearch = () => {
 
     return (
         <>
-            <h4>Find a Friend</h4>
+            <div className="friend__search__page">
+                <h4>Find a Friend</h4>
 
-            <input type="text" className="input--wide" value={searchName}
+                <input type="text" className="friend__search__input" value={searchName}
 
-                onChange={e => setSearchName(e.target.value)} placeholder="Name or UserName" />
-            <Button onClick={searchSubmit}>Search</Button>
-
+                    onChange={e => setSearchName(e.target.value)} placeholder="Name or UserName" />
+                <Button className="friend__search__btn" onClick={searchSubmit}>Search</Button>
+            </div>
         </>
     )
 };
