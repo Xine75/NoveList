@@ -4,6 +4,7 @@ import { NoteContext } from "../Providers/NoteProvider";
 import { Note } from "./Note";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import "./Note.css"
 
 export const NoteList = () => {
     const { notes, setNotes, getNotesByBookId } = useContext(NoteContext);

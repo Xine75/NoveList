@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
 body {
   margin-left: 5rem;
  margin-top: 0rem;
@@ -49,5 +52,7 @@ p {
 
 .landing_page_text{
   margin-top: 4rem;
-  /* background-color:rgb(139, 214, 90); */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ background-color: rgb(6, 78, 18);
+ font-family: "Gochi Hand";
 }
