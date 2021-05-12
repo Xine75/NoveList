@@ -1,0 +1,40 @@
+
+/* ------------------FriendsList------------------------ */
+.friends{
+    margin-top: 2rem;
+    
+    width: 60rem;
+}
+
+.friend__list__header{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.friend__table{
+    margin-top: 2rem;
+}
+
+/* ------------------FriendSearch------------------------ */
+
+.friend__search__page{
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+.friend__search__input{
+    margin-right: 2rem;
+}
+
+/* ------------------FriendSearchResult------------------------ */
+
+.searchResult__card__container{
+    margin-top: 2rem;
+}
+
+.friend__userName{
+    text-align: center;
+}
+

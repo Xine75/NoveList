@@ -92,7 +92,7 @@ export const BookDetail = () => {
                     </Col>
 
                     <Col>
-                        <Button className="finish__btn" variant="primary" size="sm" onClick={handleShow}>I Finished!</Button>
+                        <Button className="finish__btn" variant="primary" size="lg" onClick={handleShow}>I Finished!</Button>
                         <Button className="book__detail__done__btn" variant="link" size="sm"
                             onClick={() => { history.push("/book") }}>Done</Button>
 
@@ -104,13 +104,16 @@ export const BookDetail = () => {
                         <section className="book__details">
                             <h3 className="book__detail__title"><b>{book.title}</b></h3>
                             <div className="book__detail__author"><i>{book.author}</i></div>
+                            <br />
                             <div className="book__startDate"><b>Started:</b> {startDate}</div>
+                            <br />
                             <div className="book__description">{book.description}</div>
+                            <br />
                             <div className="book__detail__shelfName"><b>Shelved as:</b> {book.shelf.name}</div>
                         </section>
                     </Col>
-                    <Col>
-                        <h7>Friends who have also read this book:</h7>
+                    <Col className="book__detail__friendList">
+                        <h7 className="book__detail__friendList__title"><b><i class="fas fa-book-reader"></i>  Friends who have shelved this book:</b></h7>
                         <div>
                             {
                                 matchingFriends.map(matchingFriend => matchingFriend.friendInfo.userName).join(", ")

@@ -41,9 +41,12 @@ export const FriendSearchCard = ({ friendSearchResult }) => {
                 <Card.Body>
 
                     <Card.Title className="">
-                        <h4>UserName: {friendSearchResult.userName}</h4>
+                        <div><i class="fas fa-book-reader"></i>  UserName: </div>
+                        <br />
+                        <h4 className="friend__userName">{friendSearchResult.userName}</h4>
                     </Card.Title>
-                    <h5 className="searchResult__name"><i>{friendSearchResult.firstName} {friendSearchResult.lastName}</i></h5>
+                    <br />
+                    <h6 className="searchResult__name">Name:  <i>{friendSearchResult.firstName} {friendSearchResult.lastName}</i></h6>
                 </Card.Body>
                 <Button variant="primary" className="add_Friend" id="bootstrap" onClick={handleClickSaveFriend} >Add Friend</Button>
 
