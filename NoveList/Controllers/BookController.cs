@@ -13,7 +13,7 @@ namespace NoveList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;

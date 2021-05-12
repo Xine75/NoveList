@@ -18,17 +18,20 @@ export const Hello = () => {
 
     return (
         <>
-            <Card bg={"Dark"}>
+            <Card>
                 <span className="landing_page" style={{
                     position: "fixed",
                     left: 0,
                     right: 0,
                     marginTop: "-0.5rem",
+                    marginLeft: "2rem",
                     textAlign: "center",
                 }}
 
-                ><div className="landing_page_text"><h3>Hello {currentUser}!</h3>
-                    </div></span>
+                >
+                    <div className="landing_page_text"><h3>Hello {currentUser}!</h3>
+                    </div>
+                </span>
 
             </Card>
         </>

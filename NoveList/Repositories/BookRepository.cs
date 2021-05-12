@@ -30,7 +30,6 @@ namespace NoveList.Repositories
             }
             var desiredParts = response.items.Select(item => new LimitedSearchResult(item.id, item.volumeInfo.title, item.volumeInfo.authors, item.volumeInfo.imageLinks.thumbnail, item.volumeInfo.description)).ToList();
 
-
             return desiredParts;
         }
         public List<Book> GetAllBooks()
