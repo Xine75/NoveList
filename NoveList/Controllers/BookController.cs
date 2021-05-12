@@ -57,13 +57,6 @@ namespace NoveList.Controllers
             return Ok(book);
         }
 
-        //get all books by current user
-        //[HttpGet("{id}")]
-        //public IActionResult GetBooksByCurrentUser(int id)
-        //{
-        //    return Ok(_bookRepository.GetBooksByCurrentUser(id));
-        //}
-
         //Add book from Google Search
         [HttpPost]
         public IActionResult Create(Book book)
