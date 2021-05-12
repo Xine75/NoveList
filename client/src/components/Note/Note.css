@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
+
+/* ------------Note List---------------- */
+
+.notes{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 80rem;
+
+}
+.add__notes__btn{
+    margin-bottom: 2rem;
+}
+
+/* ------------Note Card---------------- */
+.note{
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    height: 15rem;
+    background-color: #fcffa4;
+    height:fit-content;
+}
+
+
+.note__text{
+    font-family: "Gochi Hand";
+    font-size: larger;
+    
+}
+
+.card__links{
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+
