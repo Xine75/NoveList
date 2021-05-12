@@ -16,9 +16,6 @@
 
 /* ------------Note Card---------------- */
 .note{
-    margin-left: 2rem;
-    margin-bottom: 2rem;
-    height: 15rem;
     background-color: #fcffa4;
     height:fit-content;
 }

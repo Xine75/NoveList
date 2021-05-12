@@ -1,3 +1,27 @@
+
+/* ------------------BookDetails----------------------- */
+.book{
+    margin-top: 2rem;
+    margin-left: 4rem;
+}
+
 .book__description {
-    font-size: smaller;
+    font-size: large;
+}
+
+.book__detail__image{
+    width: 35%;
+  
+    flex-shrink: 0;
+}
+
+.book__detail__friendList {
+    margin-left: 2rem;
+}
+
+.finish__btn{
+    margin-left: 2rem;
+}
+.book__detail__done__btn{
+    margin-left: 8rem;
 }
