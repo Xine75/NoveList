@@ -128,7 +128,7 @@ namespace NoveList.Repositories
             }
         }
         //list of friends with googleApiId
-        public List<Friend> GetFriendsByBookId(string id)
+        public List<Friend> GetFriendsByBookId(string googleApiId)
         {
             using (var conn = Connection)
             {
@@ -143,7 +143,8 @@ namespace NoveList.Repositories
                                         LEFT JOIN Book b on b.UserId = up.Id
                                         WHERE b.GoogleApiId = @id";
 
-                    DbUtils.AddParameter(cmd, "@Id", id);
+                    DbUtils.AddParameter(cmd, "@Id", googleApiId);
+
                     var reader = cmd.ExecuteReader();
                     var friends = new List<Friend>();
                     while (reader.Read())

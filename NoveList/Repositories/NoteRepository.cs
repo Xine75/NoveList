@@ -23,7 +23,8 @@ namespace NoveList.Repositories
                                         b.GoogleApiId, b.UserId
                                         FROM Note n
                                         LEFT JOIN Book b on b.Id = n.BookId
-                                        WHERE b.id = @id";
+                                        WHERE b.id = @id
+                                        ORDER BY n.PageNum ASC";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 

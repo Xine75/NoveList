@@ -5,6 +5,7 @@ using NoveList.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace NoveList.Controllers
@@ -54,6 +55,12 @@ namespace NoveList.Controllers
         public IActionResult GetFriendsByBookId(string googleApiId)
         {
             return Ok(_friendRepository.GetFriendsByBookId(googleApiId));
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseId(firebaseUserId);
         }
 
 
