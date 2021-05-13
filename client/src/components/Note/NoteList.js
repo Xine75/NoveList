@@ -65,7 +65,7 @@ export const NoteList = () => {
             </div>
             <br />
             <div>
-                <Button className="add__notes__btn" size="sm" variant="info" onClick={handleShow}>
+                <Button className="add__notes__btn" size="lg" variant="info" onClick={handleShow}>
                     Add a Note
                 </Button>
             </div>
