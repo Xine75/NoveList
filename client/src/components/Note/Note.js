@@ -62,7 +62,7 @@ export const Note = ({ note }) => {
     return note ? (
         <>
 
-            <Card className="note" border="secondary" style={{ width: '25rem' }} id={note.id}>
+            <Card className="note" border="secondary" style={{ width: '18rem' }} id={note.id}>
 
                 <Card.Header className="note__page">page {note.pageNum} </Card.Header>
 

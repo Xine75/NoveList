@@ -13,6 +13,7 @@ namespace NoveList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
 
     public class BookController : ControllerBase
     {
