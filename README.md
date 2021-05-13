@@ -1,6 +1,4 @@
 # NoveList
-Helping Novel-lovers manage and connect through books
-# NoveList
   NoveList is a website designed for readers to keep track of the novels they have read, log start- and finish-dates, make notes on their reading, and connect with friends.
 
 ## Table of Contents
