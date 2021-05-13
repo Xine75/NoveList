@@ -1,12 +1,12 @@
 # NoveList
 Helping Novel-lovers manage and connect through books
-# KaBloom
-  KaBloom is a mobile app intended to put houseplant care in the palm of the user's hand. It allows the user to see a list of their plants at a glance alongside a few pieces of crucial information - name, photo, type, and date last watered.  As a long-time plant parent, I find naming my plants personifies them and hooks me in to providing more consistent care for them.  Having a photo of the plant as it looked when I first adopted it is an important visual cue for comparing to the plant's current state. With a click, the user can access more detailed information about the plant's care needs, such as lighting, fertilization.  Users can also create personal notes relating to the plant's life events, such as repotting, blooming, etc.
+# NoveList
+  NoveList is a website designed for readers to keep track of the novels they have read, log start- and finish-dates, make notes on their reading, and connect with friends.
 
 ## Table of Contents
   * [Project Requirements and Features List](#project-requirements-and-features-list)
   * [Technologies Used](#technologies-used)
-  * [Installing and Launching NoveList](#instructions-for-installing-simplified-supper)
+  * [Installing and Launching NoveList](#instructions-for-installing-NoveList)
   * [Appendix 1: Planning Documentation](#appendix-1-planning-documentation)
     * [Entity Relationship Diagrams](#entity-relationship-diagram)
     * [Wireframes](#wireframes)
