@@ -6,7 +6,7 @@ Helping Novel-lovers manage and connect through books
 ## Table of Contents
   * [Project Requirements and Features List](#project-requirements-and-features-list)
   * [Technologies Used](#technologies-used)
-  * [Installing and Launching KaBloom](#instructions-for-installing-simplified-supper)
+  * [Installing and Launching NoveList](#instructions-for-installing-simplified-supper)
   * [Appendix 1: Planning Documentation](#appendix-1-planning-documentation)
     * [Entity Relationship Diagrams](#entity-relationship-diagram)
     * [Wireframes](#wireframes)
@@ -14,25 +14,25 @@ Helping Novel-lovers manage and connect through books
 
 ## Project Requirements and Features List
 ### Get Started
-When a user first registers an account with KaBloom they will be asked to enter their first plant.  The user will upload a photo of the plant and all the care instructions that come with the plant: date adopted, plant name and type, watering instructions, light needs, fertilization schedule and date last watered.
+When a user first registers an account with NoveList they will be directed to a welcome page.  Will go to the Search option in the NavBar and search for their first novel to begin their library.  A user may also search for friends.
 ![Get Started GIF](src/images/GettingStarted.gif)
 
 ### Care Cards
-Once a user has entered one or more plants they will be presented with a "home" screen of plant care cards that allow the user to see the photo, name and type of plant along with the plant's last watered date and a "I watered today!" button to easily update when the plant is watered.  
+Once a user has added one or more books to their library they can navigate to Novels to see a list of their added titles. From here they can click the novel's title to see a detail view of that book, including notes they have added and a list of friends who have also sheved the book.  
 ![Recipe Suggestion Engine GIF](src/images/ezgif.com-UsingKaBloom.gif)
 
 ## Technologies Used
   ### Development Languages and Libraries
-  <img src="./src/images/react.png" width="10%"></img> 
-  <img src="./src/images/bootstrap.png" width="10%"></img> <img src="./src/images/cloudinary.png" width="10%"></img> <img src="./src/images/fontawesome.png" width="10%"></img>
+  <img src="./src/images/react.png" width="10%"></img> <img src="./src/images/PngItem_3450034.png" width="10%"></img> <img src="./src/images/456px-NET_Logo.svg.png" width="10%"></img> <img src="./src/images/ASP>NET-Web-API-Logo.png" width="10%"></img> <img src="./src/images/Google_Books_logo_2015.png" width="10%"></img> <img src="./src/images/logo-standard.png" width="10%"></img> <img src="./src/images/sql-server-icon-png-11352.png" width="10%"></img> 
+  <img src="./src/images/bootstrap.png" width="10%"></img>  width="10%"></img> <img src="./src/images/fontawesome.png" width="10%"></img>
 
   ### Development Tools
  
-  <img src="./src/images/github.png" width="10%"></img>
+  <img src="./src/images/github.png" width="10%"></img>  <img src="./src/images/Daco_5237557.png" width="10%"></img>
   <img src="./src/images/vsCode .png" width="10%"></img> <img src="./src/images/sketchboard.jpeg" width="10%"></img> <img src="./src/images/dbdiagram.png" width="20%"></img> 
   
 
-## Instructions for Installing KaBloom
+## Instructions for Installing NoveList
   To launch the KaBloom app, you will need to have access to command line tools, node package manager, JSON Server. If you do not have access to any of these tools, you can find instructions for installing them in the [Appendix.](#appendix-2-set-up-instructions)
 
   Clone this repo on you personal machine using the following command
@@ -61,10 +61,10 @@ Once a user has entered one or more plants they will be presented with a "home" 
   ## Appendix 1: Planning Documentation
 
   ### Entity Relationship Diagram
-  ![KaBloom ERD](/src/images/erd.png)
+  ![KaBloom ERD](/src/images/ERD-NoveList.png)
 
   ### Wireframes/ Mockups
-  <img src="./src/images/wireframe.png" width="75%"></img> 
+  <img src="./src/images/Wireframe.png" width="75%"></img> 
 
 
   ## Appendix 2: Set Up Instructions
@@ -97,6 +97,6 @@ Once a user has entered one or more plants they will be presented with a "home" 
     /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
   ```
 
-  Now you can follow the [installation instructions](#instructions-for-installing-kabloom) to get KaBloom up and running on your machine.
+  Now you can follow the [installation instructions](#instructions-for-installing-NoveList) to get KaBloom up and running on your machine.
 
   This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
