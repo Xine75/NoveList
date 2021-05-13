@@ -1,6 +1,4 @@
 # NoveList
-Helping Novel-lovers manage and connect through books
-# NoveList
   NoveList is a website designed for readers to keep track of the novels they have read, log start- and finish-dates, make notes on their reading, and connect with friends.
 
 ## Table of Contents
@@ -23,13 +21,13 @@ Once a user has added one or more books to their library they can navigate to No
 
 ## Technologies Used
   ### Development Languages and Libraries
-  <img src="../src/images/react.png" width="10%"></img> <img src="../src/images/PngItem_3450034.png" width="10%"></img> <img src="./src/images/456px-NET_Logo.svg.png" width="10%"></img> <img src="./src/images/ASP>NET-Web-API-Logo.png" width="10%"></img> <img src="./src/images/Google_Books_logo_2015.png" width="10%"></img> <img src="./src/images/logo-standard.png" width="10%"></img> <img src="./src/images/sql-server-icon-png-11352.png" width="10%"></img> 
-  <img src="./src/images/bootstrap.png" width="10%"></img> <img src="./src/images/fontawesome.png" width="10%"></img>
+  <img src="./client/src/images/react.png" width="10%"></img> <img src="./client/src/images/PngItem_3450034.png" width="10%"></img> <img src="./client/src/images/456px-NET_Logo.png" width="10%"></img> <img src="./client/src/images/ASP.NET-Web-API-Logo.png" width="50%"></img> <img src="./client/src/images/Google_Books_logo_2015.png" width="10%"></img> <img src="./client/src/images/logo-standard.png" width="50%"></img> <img src="./client/src/images/sql-server-icon-png-11352.png" width="10%"></img> 
+  <img src="./client/src/images/bootstrap.png" width="10%"></img> <img src="./client/src/images/fontawesome.png" width="10%"></img>
 
   ### Development Tools
  
-  <img src="./src/images/github.png" width="10%"></img>  <img src="./src/images/Daco_5237557.png" width="10%"></img>
-  <img src="./src/images/vsCode .png" width="10%"></img> <img src="./src/images/sketchboard.jpeg" width="10%"></img> <img src="./src/images/dbdiagram.png" width="20%"></img> 
+  <img src="./client/src/images/github.png" width="10%"></img>  <img src="./client/src/images/Daco_5237557.png" width="10%"></img>
+  <img src="./client/src/images/vsCode .png" width="10%"></img> <img src="./client/src/images/sketchboard.jpeg" width="10%"></img> <img src="./client/src/images/dbdiagram.png" width="20%"></img> 
   
 
 ## Instructions for Installing NoveList
@@ -61,10 +59,10 @@ Once a user has added one or more books to their library they can navigate to No
   ## Appendix 1: Planning Documentation
 
   ### Entity Relationship Diagram
-  ![KaBloom ERD](/src/images/ERD-NoveList.png)
+  ![NoveList ERD](./client/src/images/ERD-NoveList.png)
 
   ### Wireframes/ Mockups
-  <img src="./src/images/Wireframe.png" width="75%"></img> 
+  <img src="./client/src/images/Wireframe.png" width="75%"></img> 
 
 
   ## Appendix 2: Set Up Instructions
