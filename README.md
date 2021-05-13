@@ -12,12 +12,14 @@
 
 ## Project Requirements and Features List
 ### Get Started
-When a user first registers an account with NoveList they will be directed to a welcome page.  Will go to the Search option in the NavBar and search for their first novel to begin their library.  A user may also search for friends.
-![Get Started GIF](src/images/GettingStarted.gif)
+When a user first registers an account with NoveList they will be directed to a welcome page.  Will go to the Search option in the NavBar and search for their first novel to begin their library.
+![Searching for a new Read](./client/src/images/SearchResults.png)
+![Adding a Book](./client/src/images/AddingBook.png)
 
-### Care Cards
-Once a user has added one or more books to their library they can navigate to Novels to see a list of their added titles. From here they can click the novel's title to see a detail view of that book, including notes they have added and a list of friends who have also sheved the book.  
-![Recipe Suggestion Engine GIF](src/images/ezgif.com-UsingKaBloom.gif)
+### NoveList
+Once a user has added one or more books to their library they can navigate to Novels to see a list of their added titles. From here they can click the novel's title to see a detail view of that book, including notes they have added and a list of friends who have also sheved the book. 
+![Book List](./client/src/images/NoveList ListView.png)
+![Book ListDetails](.client/src/images/BookDetailView.png)
 
 ## Technologies Used
   ### Development Languages and Libraries
