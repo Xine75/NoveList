@@ -24,7 +24,7 @@ Once a user has added one or more books to their library they can navigate to No
 ## Technologies Used
   ### Development Languages and Libraries
   <img src="../src/images/react.png" width="10%"></img> <img src="../src/images/PngItem_3450034.png" width="10%"></img> <img src="./src/images/456px-NET_Logo.svg.png" width="10%"></img> <img src="./src/images/ASP>NET-Web-API-Logo.png" width="10%"></img> <img src="./src/images/Google_Books_logo_2015.png" width="10%"></img> <img src="./src/images/logo-standard.png" width="10%"></img> <img src="./src/images/sql-server-icon-png-11352.png" width="10%"></img> 
-  <img src="./src/images/bootstrap.png" width="10%"></img>  width="10%"></img> <img src="./src/images/fontawesome.png" width="10%"></img>
+  <img src="./src/images/bootstrap.png" width="10%"></img> <img src="./src/images/fontawesome.png" width="10%"></img>
 
   ### Development Tools
  
