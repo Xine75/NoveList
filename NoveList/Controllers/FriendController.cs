@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NoveList.Models;
 using NoveList.Repositories;
@@ -12,6 +13,7 @@ namespace NoveList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FriendController : ControllerBase
     {
         private readonly IFriendRepository _friendRepository;
