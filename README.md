@@ -96,18 +96,10 @@ Once a user has added one or more books to their library they can navigate to No
     or
     /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
   ```
+  1. Pull down this repo
 
-  Now you can follow the [installation instructions](#instructions-for-installing-NoveList) to get NoveList up and running on your machine.
-
-  This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-  
-### Getting Started
-
-1. Pull down this repo
-
-1. Run the two scripts that are in the SQL folder. These will create the Tabloid database and add some test data. The database it creates is identitical to the prototype from the last MVC sprint, except now we're capturing the `FirebaseUserId` in the UserProfile table
-
-1. Everyone on the team should create their own Firebase project. **Each team member** should do the follow steps in the firebase console:
+1. Run the script that's in the SQL folder. This will create the NoveList database.
+1. You will need to set up a Firebase account: do the follow steps in the firebase console:
 
    - Go to [Firebase](https://console.firebase.google.com/u/0/) and add a new project. You can name it whatever you want (Tabloid is a good name)
    - Go to the Authentication tab, click "Set up sign in method", and enable the Username and Password option.
@@ -124,3 +116,11 @@ Once a user has added one or more books to their library they can navigate to No
 1. Rename the `.env.local.example` file to remove the `.example` extension. This file should now just be called `.env.local`
 
 1. Install your dependencies by running `npm install` from the same directory as your `package.json` file
+
+  Now you can follow the [installation instructions](#instructions-for-installing-NoveList) to get NoveList up and running on your machine.
+
+  This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  
+### Getting Started
+
+
