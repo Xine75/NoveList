@@ -23,7 +23,7 @@ Once a user has added one or more books to their library they can navigate to No
 
 ## Technologies Used
   ### Development Languages and Libraries
-  <img src="./client/src/images/react.png" width="10%"></img> <img src="./client/src/images/PngItem_3450034.png" width="10%"></img> <img src="./client/src/images/456px-NET_Logo.png" width="10%"></img> <img src="./client/src/images/ASP.NET-Web-API-Logo.png" width="50%"></img> <img src="./client/src/images/Google_Books_logo_2015.png" width="30%"></img> <img src="./client/src/images/logo-standard.png" width="30%"></img> <img src="./client/src/images/sql-server-icon-png-11352.png" width="10%"></img> 
+  <img src="./client/src/images/react.png" width="10%"></img> <img src="./client/src/images/PngItem_3450034.png" width="10%"></img> <img src="./client/src/images/456px-.NET_Logo.png" width="10%"></img> <img src="./client/src/images/ASP.NET-Web-API-Logo.png" width="50%"></img> <img src="./client/src/images/Google_Books_logo_2015.png" width="30%"></img> <img src="./client/src/images/logo-standard.png" width="30%"></img> <img src="./client/src/images/sql-server-icon-png-11352.png" width="10%"></img> 
   <img src="./client/src/images/bootstrap.png" width="10%"></img> <img src="./client/src/images/fontawesome.png" width="10%"></img>
 
   ### Development Tools
@@ -120,7 +120,6 @@ Once a user has added one or more books to their library they can navigate to No
   Now you can follow the [installation instructions](#instructions-for-installing-NoveList) to get NoveList up and running on your machine.
 
   This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-  
-### Getting Started
+
 
 
